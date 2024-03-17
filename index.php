@@ -27,10 +27,8 @@ include("functions.php");
 	<h1>This is the index page</h1>
 	<img src="pics/InProgress.jpg" alt="Image not found">
 
-	<div>
-        <img class="home-logo" src="res/img/logo.png" alt="Recipe Radar"/>
-    </div>
-	
+    <img class="home-logo" src="pics/logo.png" alt="Recipe Radar"/>
+
 	<br>
 	Hello, <?php echo $user_data['user_name']; ?>
 </body>

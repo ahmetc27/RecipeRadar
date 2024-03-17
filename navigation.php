@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="discover.php">DISCOVER</a>
+                    <a class="nav-link" href="index.php">DISCOVER</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="feed.php">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.php">PROFILE</a>
+                    <a class="nav-link" href="index.php">PROFILE</a>
                 </li>
             </ul>
         </div>
