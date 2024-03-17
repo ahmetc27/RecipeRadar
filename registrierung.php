@@ -100,6 +100,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
     <div class="page-content d-lg-flex align-items-center ">
         <div class="container">
@@ -164,7 +165,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <!-- Bootsttap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-‚</body>
-
+    <script src="res/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
 </html>
