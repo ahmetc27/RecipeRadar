@@ -10,7 +10,7 @@ $firstNameError = $lastNameError = $emailError = $userNameError = $passwordError
 $firstName = $lastName = $email = $address = $message = "";
 
 // Initializing additional variables to avoid undefined variable errors
-$firstName = $lastName = $email = $userName = $password = $passwordControl = $salutation = "";
+$firstName = $lastName = $email = $userName = $password = $passwordControl = $salutation = $birthDate = "";
 
 function cleanInput($value)
 {
@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
             // Hashen des Passworts
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $insert = "INSERT INTO `users`(`salutation`, `firstName`, `lastName`, `userName`, `email`, `password`) VALUES ('$salutation','$firstName','$lastName','$userName','$email','$hashedPassword')";
+            $insert = "INSERT INTO `users`(`salutation`, `firstName`, `lastName`, `birthDate`, `userName`, `email`, `password`) VALUES ('$salutation','$firstName','$lastName', '$birthDate','$userName','$email','$hashedPassword')";
             $result = mysqli_query($conn, $insert);
 
             if (!$result) {
@@ -113,8 +113,8 @@ if (isset($_POST['submit'])) {
                             <div class="mb-2">
                                 <label for="salutation" class="left-align-label">Anrede:</label>
                                 <select class="form-select auth-select mb-2" aria-label="Default select example" name="salutation">
-                                    <option value="Keine Angabe" class="auth-select" <?php if ($salutation == "Keine Angabe") echo "selected"; ?>>Keine Angabe</option>
-                                    <option value="Herr" class="auth-select" <?php if ($salutation == "Herr") echo "selected"; ?>>Mann</option>
+                                    <option value="Keine Angabe" class="auth-input" <?php if ($salutation == "Keine Angabe") echo "selected"; ?>>Keine Angabe</option>
+                                    <option value="Herr" class="auth-input" <?php if ($salutation == "Herr") echo "selected"; ?>>Mann</option>
                                     <option value="Frau" <?php if ($salutation == "Frau") echo "selected"; ?>>Frau</option>
                                 </select>
                             </div>
@@ -127,6 +127,10 @@ if (isset($_POST['submit'])) {
                                 <label for="lastName" class="left-align-label">Nachname:</label>
                                 <input type="text" class="form-control auth-input" name="lastName" value="<?php echo htmlspecialchars($lastName); ?>" required>
                                 <p class="text-danger left-align-label"><?= $lastNameError ?></p>
+                            </div>
+                            <div class="mb-2">
+                                <label for="birth_date" class="left-align-label">Geburtsdatum:</label>
+                                <input type="date" class="form-control auth-input" name="lastName" value="<?php echo htmlspecialchars($lastName); ?>" required>
                             </div>
                             <div class="mb-2">
                                 <label for="mail" class="left-align-label">E-Mail Adresse:</label>
