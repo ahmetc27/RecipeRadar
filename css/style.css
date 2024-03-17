@@ -13,14 +13,6 @@
     background-color: lightblue;
     border: none;
 }
-
-#box {
-    background-color: grey;
-    margin: auto;
-    width: 300px;
-    padding: 20px;
-}
-
 .InProgress {
     width: 50px;
     height: 30px;
@@ -206,18 +198,6 @@ h1 {
     align-items: center;
     background: linear-gradient(45deg, rgb(230, 230, 230) white);
     color: rgb(46, 46, 46);
-}
-
-/* Authentifizierungskarten */
-.auth-card {
-    background-color: white;
-    box-shadow: 0 3px 12px rgb(0 0 0/ 0.2);
-    border-radius: 20px;
-    padding: 10px 10%;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    text-align: center;
 }
 
 .auth-message {

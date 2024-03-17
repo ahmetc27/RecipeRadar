@@ -58,7 +58,7 @@ if (isset($_SESSION['message'])) {
         <label for="ingredients" style="font-size: 12px;">Ingredients/Recipe:</label><br>
         <textarea id="ingredients" name="ingredients" rows="6" cols="50" style="font-size: 14px; padding: 5px;" required></textarea><br><br>
 
-        <input type="submit" value="Submit" style="font-size: 12px; padding: 8px;">
+        <input type="submit" value="Submit" class="auth-btn">
     </form>
 </div>
 
