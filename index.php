@@ -10,6 +10,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/style.css">
 	<title>My website</title>
 </head>
 <body>
