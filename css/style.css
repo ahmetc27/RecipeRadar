@@ -153,3 +153,222 @@ footer {
 }
 
 /* armin */
+
+/* MOHAMAD AISSA (Login, registrierung und Welcome) Muss noch bearbeitet werden */
+/* Reset und grundlegende Stile */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    height: 100vh;
+}
+
+/* Überschriften */
+h1 {
+    color: teal;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* FAQ-Stile */
+.faq-container {
+    padding: 20px;
+}
+
+.faq-question {
+    background-color: #f0f0f0;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.faq-question.active {
+    background-color: #ddd;
+}
+
+.faq-answer {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.faq-card {
+    margin-bottom: 20px;
+}
+
+/* Seiteninhalt */
+.page-content {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    align-items: center;
+    background: linear-gradient(45deg, rgb(230, 230, 230) white);
+    color: rgb(46, 46, 46);
+}
+
+/* Authentifizierungskarten */
+.auth-card {
+    background-color: white;
+    box-shadow: 0 3px 12px rgb(0 0 0/ 0.2);
+    border-radius: 20px;
+    padding: 10px 10%;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.auth-message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Erfolgsmeldungen */
+.auth-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+/* Fehlermeldungen */
+.auth-error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+/* Logo-Titel */
+.logo-title {
+    padding: 20px 30%;
+    text-align: center;
+}
+
+/* Untertitel */
+.untertitle {
+    text-align: center;
+    color: rgb(46, 46, 46);
+}
+
+/* Service-Buttons */
+.service-btn {
+    background-color: white;
+    border: 1px solid rgb(220, 220, 220);
+    width: 100%;
+    height: 45px;
+    box-shadow: none;
+}
+
+.service-btn:hover {
+    color: teal;
+    border: 1px solid teal;
+}
+
+/* Trennlinien */
+.seprator {
+    width: 100%;
+    color: rgb(46, 46, 46);
+}
+
+/* Authentifizierungseingabefelder */
+.auth-input {
+    background: white;
+    height: 45px;
+    border: 1px solid rgb(220, 220, 220);
+    box-shadow: none !important;
+}
+
+.auth-input:focus {
+    color: teal;
+    border: 1px solid teal;
+}
+
+/* Authentifizierungsbuttons */
+.auth-btn {
+    background: teal;
+    color: white;
+    width: 100%;
+    height: 45px;
+    font-size: 18px;
+    box-shadow: none;
+}
+
+.auth-btn:hover {
+    background: rgb(28, 105, 97);
+    color: white;
+}
+
+/* Textlinks */
+.text-link {
+    color: teal;
+}
+
+/* Auswahlfelder */
+.auth-select {
+    width: 100%;
+    height: 45px;
+    box-shadow: none !important;
+}
+
+.auth-select:hover {
+    border: 1px solid teal;
+}
+
+.auth-select:focus {
+    border: 1px solid teal;
+}
+
+/* Upload-Button */
+.upload-button {
+    background-color: teal;
+    color: white;
+    box-shadow: none; 
+}
+
+/* Links ausrichten */
+.left-align-label {
+    text-align: left !important;
+    display: block;
+}
+
+
+#reserve-btn{
+    color: white;
+    background-color: teal;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+
+    
+}
+
+
+/* About Section */
+#about {
+	padding: 120px 0;
+}
+#about h3 {
+	font-size: 20px;
+}
+#about .about-text {
+	margin-left: 10px;
+}
+#about .about-img {
+	display: inline-block;
+	position: relative;
+}
+#about .about-img:before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	bottom: 8px;
+	left: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+}
+#about p {
+	line-height: 24px;
+	margin: 15px 0 30px;
+}
+/* ******************************************** */ 

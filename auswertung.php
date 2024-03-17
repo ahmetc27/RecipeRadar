@@ -15,7 +15,6 @@ if (isset($_SESSION["currentSession"])) {
   $statusSql = "SELECT * FROM users WHERE userName = '$inputUsername'";
   $statusQuery = mysqli_query($conn, $statusSql);
   $statusResult = mysqli_fetch_assoc($statusQuery);
-  $status = $statusResult['accStatus'];
 
   if (!$result) {
     die("SQL-Fehler: " . $conn->error);
