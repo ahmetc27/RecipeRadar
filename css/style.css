@@ -21,3 +21,9 @@
     width: 300px;
     padding: 20px;
 }
+img{
+    width: 30%;
+    height: 30%;
+    display: block;
+    margin: auto;
+}
