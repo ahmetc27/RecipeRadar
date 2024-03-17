@@ -6,14 +6,10 @@ if (!isset($_SESSION["currentSession"])) {
 $registeredData = $_SESSION["currentSession"];
 ?>
 <!DOCTYPE html>
-<html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Willkommen</title>
-    <link rel="stylesheet" href="res/css/design.css">
-    <link rel="stylesheet" href="res/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <?php
+        include('head.php');
+    ?>
 </head>
 
 <body>
