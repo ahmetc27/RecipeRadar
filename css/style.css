@@ -21,9 +21,9 @@
     padding: 20px;
 }
 
-img {
-    width: 30%;
-    height: 30%;
+.InProgress {
+    width: 50px;
+    height: 30px;
     display: block;
     margin: auto;
 }
@@ -208,6 +208,18 @@ h1 {
     color: rgb(46, 46, 46);
 }
 
+/* Authentifizierungskarten */
+.auth-card {
+    background-color: white;
+    box-shadow: 0 3px 12px rgb(0 0 0/ 0.2);
+    border-radius: 20px;
+    padding: 10px 10%;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
 .auth-message {
     margin-bottom: 20px;
     padding: 10px;
@@ -248,8 +260,8 @@ h1 {
 }
 
 .service-btn:hover {
-    color: #2981d3;
-    border: 1px solid #5d9cd8;
+    color:#1877d0;
+    border: 1px solid #1877d0;
 }
 
 /* Trennlinien */

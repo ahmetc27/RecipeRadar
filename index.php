@@ -11,31 +11,30 @@ include("functions.php");
 
 <nav>
     <?php
-        include('navigation.php');
+    include('navigation.php');
     ?>
 </nav>
 
 <head>
     <?php
-        include('head.php');
+    include('head.php');
     ?>
 </head>
 
 <body>
 
-	<a href="logout.php">Logout</a>
-	<h1>This is the index page</h1>
-	<img src="pics/InProgress.jpg" alt="Image not found">
+    <a href="logout.php">Logout</a>
+    <h1>This is the index page</h1>
 
-    <img class="home-logo" src="pics/logo.png" alt="Recipe Radar"/>
+    <img class="home-logo" src="pics/logo.png" alt="Recipe Radar" />
 
-	<br>
-	Hello, <?php echo $user_data['user_name']; ?>
+    <br>
+    <?php echo $user_data['user_name']; ?>
 </body>
 
 <footer>
     <?php
-        include('footer.php');
+    include('footer.php');
     ?>
 </footer>
 
