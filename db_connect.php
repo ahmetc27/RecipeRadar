@@ -1,11 +1,14 @@
 <?php
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "RecipeRadar_db";
+$username = "root";
+$hostname = "localhost";
+$password = "";
+$dbname = "md_hotel";
 
-if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname))
-{
-	die("failed to connect!");
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
+
+if (mysqli_connect_error()) {
+    die("Database connection failed: " . mysqli_connect_error());
 }
+
+?>

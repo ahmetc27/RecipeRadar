@@ -44,7 +44,6 @@ if (isset($_POST['submit'])) {
             // Benutzername bereits vorhanden!
             $userNameError = "Dieser Benutzername ist bereits vergeben!";
         }
-
         //Überprüfen ob der email bereits vorhanden ist.
         $checkQuery = "SELECT * FROM `users` WHERE `email` = '$email'";
         $checkResult = mysqli_query($conn, $checkQuery);
