@@ -15,6 +15,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">PROFILE</a>
                 </li>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">login</a>
+                </li>
             </ul>
         </div>
     </div>
