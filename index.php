@@ -9,9 +9,16 @@ include("functions.php");
 <!DOCTYPE html>
 <html>
 
+<nav>
+    <?php
+        include('navigation.php');
+    ?>
+</nav>
+
 <head>
-	<link rel="stylesheet" href="css/style.css">
-	<title>My website</title>
+    <?php
+        include('head.php');
+    ?>
 </head>
 
 <body>
@@ -20,8 +27,18 @@ include("functions.php");
 	<h1>This is the index page</h1>
 	<img src="pics/InProgress.jpg" alt="Image not found">
 
+	<div>
+        <img class="home-logo" src="res/img/logo.png" alt="Recipe Radar"/>
+    </div>
+	
 	<br>
 	Hello, <?php echo $user_data['user_name']; ?>
 </body>
+
+<footer>
+    <?php
+        include('footer.php');
+    ?>
+</footer>
 
 </html>
