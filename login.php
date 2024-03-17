@@ -1,58 +1,49 @@
-<?php
-session_start();
-
-include("connection.php");
-include("functions.php");
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	// something was posted
-	$user_name = $_POST['user_name'];
-	$password = $_POST['password'];
-
-	if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
-		// read from database
-		$query = "select * from users where user_name = '$user_name' limit 1";
-		$result = mysqli_query($con, $query);
-
-		if ($result) {
-			if ($result && mysqli_num_rows($result) > 0) {
-				$user_data = mysqli_fetch_assoc($result);
-				if ($user_data['password'] === $password) {
-					$_SESSION['user_id'] = $user_data['user_id'];
-					header("Location: index.php");
-					die;
-				}
-			}
-		}
-		echo "wrong username or password!";
-	} else {
-		echo "Please enter some valid information!";
-	}
-}
-?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-	<link rel="stylesheet" href="css/style.css">
-	<title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login MD Hotel</title>
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="res/css/design.css">
+
 </head>
 
 <body>
-	<div id="box">
-		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
+    <div class="page-content d-lg-flex align-items-center ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+                    <h4 class="untertitle mb-1 mt-5">login</h4>
+                    <hr>
+                    <form action="auswertung.php" method="post">
+                        <div class="mb-2 mt-3">
+                            <label for="userName" class="left-align-label">Benuzername:</label>
+                            <input type="text" class="form-control auth-input" name="userName" required>
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="password" class="left-align-label">Passwort:</label>
+                            <div class="mb-3 mt-2">
+                                <input type="password" class="form-control auth-input" name="password" id="password" required>
+                            </div>
 
-			<input id="text" type="text" name="user_name"><br><br>
-			<input id="text" type="password" name="password"><br><br>
+                        </div>
+                        <button class="btn auth-btn mt-2 mb-3">Sign in</button>
+                        <hr class="seperator">
+                        <p class="text mb-1 mt-3">Noch kein Konto? <a href="registrierung.php" class="text-link">Account erstellen</a></p>
+                        <p class="mb-5">Zur&uuml;ck zur <a href="index.php" class="text-link">Startseite</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-			<input id="button" type="submit" name="Login"><br><br>
-
-			<a href="signup.php">Click to Signup</a><br><br>
-		</form>
-	</div>
-
+        <!-- Bootsttap js -->
+        <script src="res/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
