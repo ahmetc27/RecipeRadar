@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
-                    <h4 class="untertitle mb-1 mt-5">login</h4>
+                    <h4 class="untertitle mb-1 mt-5">Login</h4>
                     <hr>
                     <form action="auswertung.php" method="post">
                         <div class="mb-2 mt-3">
