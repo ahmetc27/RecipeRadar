@@ -18,7 +18,7 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">login</a>
+                    <a class="nav-link" href="login.php">LOGIN</a>
                 </li>
             </ul>
         </div>
