@@ -20,12 +20,16 @@ session_start();
 
 <body>
 
-    <a href="logout.php">Logout</a>
+
+    <!-- <a href="logout.php">Logout</a> -->
 
     <img class="home-logo" src="pics/logo.png" alt="Recipe Radar" />
 
     <br>
-    <?php echo $user_data['user_name']; ?> 
+    
+    <?php 
+    //  echo $user_data['user_name']; 
+    ?> 
 </body>
 
 <footer>

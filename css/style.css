@@ -13,6 +13,7 @@
     background-color: lightblue;
     border: none;
 }
+
 .InProgress {
     width: 50px;
     height: 30px;
@@ -240,7 +241,7 @@ h1 {
 }
 
 .service-btn:hover {
-    color:#1877d0;
+    color: #1877d0;
     border: 1px solid #1877d0;
 }
 
@@ -302,7 +303,7 @@ h1 {
 .upload-button {
     background-color: #5d9cd8;
     color: white;
-    box-shadow: none; 
+    box-shadow: none;
 }
 
 /* Links ausrichten */
@@ -312,43 +313,49 @@ h1 {
 }
 
 
-#reserve-btn{
+#reserve-btn {
     color: white;
     background-color: #5d9cd8;
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 5px;
 
-    
+
 }
 
 
 /* About Section */
 #about {
-	padding: 120px 0;
+    padding: 120px 0;
 }
+
 #about h3 {
-	font-size: 20px;
+    font-size: 20px;
 }
+
 #about .about-text {
-	margin-left: 10px;
+    margin-left: 10px;
 }
+
 #about .about-img {
-	display: inline-block;
-	position: relative;
+    display: inline-block;
+    position: relative;
 }
+
 #about .about-img:before {
-	display: block;
-	content: '';
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	bottom: 8px;
-	left: 8px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
+    display: block;
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
+
 #about p {
-	line-height: 24px;
-	margin: 15px 0 30px;
+    line-height: 24px;
+    margin: 15px 0 30px;
 }
-/* ******************************************** */ 
+
+/* ******************************************** */
