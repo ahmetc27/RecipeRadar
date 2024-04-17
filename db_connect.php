@@ -3,7 +3,7 @@
 $username = "root";
 $hostname = "localhost";
 $password = "";
-$dbname = "reciperadar";
+$dbname = "reciperadar_db";
 
 $conn = mysqli_connect($hostname, $username, $password, $dbname);
 
