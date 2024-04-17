@@ -359,3 +359,29 @@ h1 {
 }
 
 /* ******************************************** */
+
+
+.rating {
+    margin-bottom: 10px;
+}
+
+.like-btn.clicked,
+.bookmark-btn.clicked,
+.share-btn.clicked {
+    color: blue;
+    /* Change color to blue when clicked */
+}
+
+.comment {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.comment-header {
+    font-weight: bold;
+}
+
+.comment-text {
+    margin-top: 5px;
+}

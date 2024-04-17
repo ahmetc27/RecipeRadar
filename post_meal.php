@@ -41,7 +41,7 @@ if (isset($_SESSION['message'])) {
     <br>
 
     <div class="container" style="max-width: 600px; padding: 20px;">
-    <h1 style="font-size: 24px; margin-bottom: 20px;">Meal Posting Form</h1>
+    <h1 style="font-size: 24px; margin-bottom: 20px;">New Meal</h1>
     <?php if (!empty($message)): ?>
         <div class="message"><?php echo $message; ?></div>
     <?php endif; ?>

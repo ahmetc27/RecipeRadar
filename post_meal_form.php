@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+include('db_connect.php'); // Include the database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gather data from the form
@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadOk = 0;
     }
 
-    // Check file size
-    if ($_FILES["photo"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+    // Check file size (2MB = 2 * 1024 * 1024 bytes)
+    if ($_FILES["photo"]["size"] > 2 * 1024 * 1024) {
+        echo "Sorry, your file is too large. Maximum file size allowed is 2MB.";
         $uploadOk = 0;
     }
 
@@ -38,13 +38,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
+        include('feed.php');
     } else {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
-            // Now you can save the meal details (including the file path) to your database
+            // Insert data into the database using the established connection
+            $sql = "INSERT INTO posts (title, content, picPath) VALUES ('$meal_title', '$description', '$target_file')";
+
+            if ($conn->query($sql) === TRUE) {
+                // Display a JavaScript popup message without redirecting
+                echo "New record created successfully";
+                include('feed.php');
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+                include('feed.php');
+            }
         } else {
             echo "Sorry, there was an error uploading your file.";
+            include('feed.php');
         }
     }
 }
