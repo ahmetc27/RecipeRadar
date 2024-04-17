@@ -153,7 +153,11 @@ include('db_connect.php'); // Include the database connection file
                 }
             });
         });
+
+        // funktionier nicht wegen login??
+        
         // Simulating comment submission
+        /*
         document.querySelectorAll('.submit-comment-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const commentSection = button.parentNode;
@@ -182,6 +186,49 @@ include('db_connect.php'); // Include the database connection file
                     xhr.open("POST", "save_comment.php", true);
                     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhr.send(`postId=${postId}&commenterName=${commenterName}&commentText=${commentText}`);
+                } else {
+                    alert('Please enter a comment before submitting.');
+                }
+            });
+        });
+        */
+
+        // Simulating comment submission
+        document.querySelectorAll('.submit-comment-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const commentSection = button.parentNode;
+                const textarea = commentSection.querySelector('textarea');
+                const commentText = textarea.value.trim();
+                if (commentText !== '') {
+                    // Here, you can handle the submission of the comment, such as sending it to the server
+                    // For now, let's just display the comment underneath the comment submit option
+                    const commentContainer = commentSection.querySelector('.comment-container');
+                    const commenterName = "John Doe"; // Replace with actual commenter's name
+                    const newComment = document.createElement('div');
+                    newComment.classList.add('comment');
+                    newComment.innerHTML = `
+                        <div class="comment-header">
+                            <span class="profile-photo">👨‍🍳</span> ${commenterName}
+                        </div>
+                        <div class="comment-text">${commentText}</div>
+                        <button class="btn btn-success like-comment-btn">👍 <span class="like-count">0</span></button>
+                    `;
+                    commentContainer.appendChild(newComment);
+
+                    // Clear the textarea after submission
+                    textarea.value = '';
+
+                    // Add event listener for like button within the new comment
+                    newComment.querySelector('.like-comment-btn').addEventListener('click', () => {
+                        const likeCount = newComment.querySelector('.like-count');
+                        if (!likeCount.classList.contains('clicked')) {
+                            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                            likeCount.classList.add('clicked'); // Add 'clicked' class to indicate the button has been clicked
+                        } else {
+                            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+                            likeCount.classList.remove('clicked'); // Remove 'clicked' class to indicate the button has been unclicked
+                        }
+                    });
                 } else {
                     alert('Please enter a comment before submitting.');
                 }
