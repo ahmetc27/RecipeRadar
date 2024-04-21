@@ -1,41 +1,41 @@
 <?php
 session_start();
 
+include('config/db_connect.php');
+
 ?>
 
 <!DOCTYPE html>
 <html>
 
-<nav>
     <?php
-    include('navigation.php');
+        include('head.php');
     ?>
-</nav>
 
-<head>
-    <?php
-    include('head.php');
-    ?>
-</head>
+    <body>
 
-<body>
+        <header>
 
+            <?php
+                include('navigation.php');
+            ?>
+        
+        </header>
 
-    <!-- <a href="logout.php">Logout</a> -->
+        <main>
 
-    <img class="home-logo" src="pics/logo.png" alt="Recipe Radar" />
+        <img class="home-logo" src="pics/logo.png" alt="Recipe Radar" />
 
-    <br>
-    
-    <?php 
-    //  echo $user_data['user_name']; 
-    ?> 
-</body>
+        </main>
+        
+        <?php 
+        //  echo $user_data['user_name']; ???
+        ?> 
 
-<footer>
-    <?php
-    include('footer.php');
-    ?>
-</footer>
+        <?php
+            include('footer.php');
+        ?>
+
+    </body>
 
 </html>

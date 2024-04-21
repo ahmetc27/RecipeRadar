@@ -2,7 +2,7 @@
 
     <div class="text-center p-2 footer">
 
-        <div class="row">
+        <div class="row col-12">
 
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
