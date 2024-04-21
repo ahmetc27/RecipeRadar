@@ -34,3 +34,4 @@ if ($userData) {
 mysqli_close($conn);
 
 ?>
+<a class="nav-link" href="logout_service.php">Logout</a>
