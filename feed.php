@@ -4,37 +4,12 @@ include('config/db_connect.php'); // Include the database connection file
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <?php
+<?php
         include('head.php');
     ?>
-    <style>
-        .rating {
-            margin-bottom: 10px;
-        }
+<head>
+<link rel="stylesheet" type="text/css" href="css/feed_style.css">
 
-        .like-btn.clicked,
-        .bookmark-btn.clicked,
-        .share-btn.clicked {
-            color: blue;
-            /* Change color to blue when clicked */
-        }
-
-        .comment {
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin-top: 5px;
-        }
-
-        .comment-header {
-            font-weight: bold;
-        }
-
-        .comment-text {
-            margin-top: 5px;
-        }
-    </style>
 </head>
 
 <body>
