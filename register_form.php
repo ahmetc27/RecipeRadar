@@ -2,7 +2,7 @@
 
     <div class="mb-2">
          <label for="salutation" class="left-align-label">Anrede:</label>
-        <select class="form-select auth-select mb-2" name="salutation" required>
+        <select class="form-select auth-input mb-2" name="salutation" required>
             <option value="Keine Angabe" disabled selected hidden>Keine Angabe</option>
             <option value="Herr">Herr</option>
             <option value="Frau">Frau</option>
