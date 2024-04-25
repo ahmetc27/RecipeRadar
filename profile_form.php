@@ -151,6 +151,7 @@ if (isset($_POST["edit"])) {
         </form>
     </div>
     </div>
+    <a class="nav-link" href="logout_service.php">Logout</a>
 </body>
 
 </html>
