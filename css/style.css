@@ -259,7 +259,7 @@ h1 {
 }
 
 .auth-input:focus {
-    color: teal;
+    color: #5d9cd8;
     border: 1px solid #5d9cd8;
 }
 
