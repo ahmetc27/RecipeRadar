@@ -1,3 +1,70 @@
+<?php
+
+require "config/db_connect.php";
+
+// Session starten, um auf Benutzerdaten zugreifen zu können
+session_start();
+
+// Überprüfen, ob der Benutzer angemeldet ist
+if (isset($_SESSION['currentSession'])) {
+    // Benutzerdaten aus der Session abrufen
+    $userData = $_SESSION['currentSession'];
+
+    // Datenbankabfrage, um die vorhandenen Benutzerdaten abzurufen
+    $sql = "SELECT * FROM users WHERE userID = {$userData['userID']}";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    // Fehlervariablen für die Validierung initialisieren
+    $fnameError = $lnameError = $emailError = $unameError = "";
+    $error = false;
+
+    // Funktion zur Bereinigung von Eingaben definieren
+    function cleanInputs($input)
+    {
+        $data = trim($input);
+        $data = strip_tags($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    // Überprüfen, ob das Formular gesendet wurde
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
+        // Benutzereingaben bereinigen
+        $salutation = cleanInputs($_POST["salutation"]);
+        $fname = cleanInputs($_POST["firstName"]);
+        $mname = cleanInputs($_POST["middleName"]);
+        $lname = cleanInputs($_POST["lastName"]);
+        $username = cleanInputs($_POST["userName"]);
+        $email = cleanInputs($_POST["email"]);
+        $birthDate = cleanInputs($_POST["birthDate"]);
+
+        // Validierung der Eingaben...
+
+        // Wenn keine Validierungsfehler auftreten
+        if (!$error) {
+            // UPDATE-Abfrage vorbereiten und ausführen, um die Benutzerdaten in der Datenbank zu aktualisieren
+            $update = "UPDATE users SET salutation='$salutation', firstName='$fname', middleName='$mname', lastName='$lname', userName='$username', email='$email', birthDate='$birthDate' WHERE userID={$userData['userID']}";
+            $updateResult = mysqli_query($conn, $update);
+
+            // Überprüfen, ob die Aktualisierung erfolgreich war
+            if ($updateResult) {
+                // Erfolgsmeldung anzeigen
+                echo "<div class='alert alert-success'>Update erfolgreich</div>";
+            } else {
+                // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
+                echo "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
+            }
+        }
+    }
+} else {
+    // Weiterleitung zur Anmeldeseite, wenn der Benutzer nicht angemeldet ist
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<!-- HTML-Formular zum Aktualisieren des Benutzerprofils -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,74 +78,40 @@
 <body>
     <div class="container">
         <div class="row">
-            <form id="updateForm" method="post" autocomplete="off">
+            <form method="post" autocomplete="off">
                 <div class="mb-3 mt-3">
                     <label for="salutation" class="form-label">Salutation</label>
-                    <input type="text" required class="form-control" id="salutation" name="salutation" placeholder="Salutation">
+                    <input type="text" required class="form-control" id="salutation" name="salutation" placeholder="Salutation" value="<?= $row["salutation"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First name</label>
-                    <input type="text" required class="form-control" id="firstName" name="firstName" placeholder="First name">
+                    <input type="text" required class="form-control" id="firstName" name="firstName" placeholder="First name" value="<?= $row["firstName"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="middleName" class="form-label">Middle name</label>
-                    <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name">
+                    <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="<?= $row["middleName"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" required class="form-control" id="lastName" name="lastName" placeholder="Last name">
+                    <input type="text" required class="form-control" id="lastName" name="lastName" placeholder="Last name" value="<?= $row["lastName"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="userName" class="form-label">User name</label>
-                    <input type="text" required class="form-control" id="userName" name="userName" placeholder="User name">
+                    <input type="text" required class="form-control" id="userName" name="userName" placeholder="User name" value="<?= $row["userName"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" required class="form-control" id="email" name="email" placeholder="Email address">
+                    <input type="email" required class="form-control" id="email" name="email" placeholder="Email address" value="<?= $row["email"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="birthDate" class="form-label">Birth date</label>
-                    <input type="date" class="form-control" id="birthDate" name="birthDate">
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" value="<?= $row["birthDate"] ?>">
                 </div>
-                <button name="edit" type="button" class="btn btn-primary" onclick="updateAccount()">Edit account</button>
+                <button name="edit" type="submit" class="btn btn-primary">Edit account</button>
             </form>
         </div>
         <a class="btn btn-danger mt-4" href="logout_service.php">Logout</a>
     </div>
-
-    <script>
-        // JavaScript-Funktion zum Aktualisieren des Benutzerkontos
-        function updateAccount() {
-            // Formulardaten sammeln
-            var formData = new FormData(document.getElementById("updateForm"));
-            // AJAX-Anfrage senden, um Benutzerdaten zu aktualisieren
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "update_profile.php", true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Erfolgsfall: Aktualisierte Daten anzeigen
-                    var userData = JSON.parse(xhr.responseText);
-                    document.getElementById("salutation").value = userData.salutation;
-                    document.getElementById("firstName").value = userData.firstName;
-                    document.getElementById("middleName").value = userData.middleName;
-                    document.getElementById("lastName").value = userData.lastName;
-                    document.getElementById("userName").value = userData.userName;
-                    document.getElementById("email").value = userData.email;
-                    document.getElementById("birthDate").value = userData.birthDate;
-                    // Erfolgsmeldung anzeigen
-                    alert("Update erfolgreich");
-                } else {
-                    // Fehlerfall: Fehlermeldung anzeigen
-                    alert("Fehler: " + xhr.responseText);
-                }
-            };
-            xhr.onerror = function() {
-                // Fehlerfall: Fehlermeldung anzeigen
-                alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
-            };
-            xhr.send(formData);
-        }
-    </script>
 </body>
 
 </html>
