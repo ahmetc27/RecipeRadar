@@ -22,8 +22,6 @@
         <main class="page-content d-lg-block py-5 align-items-center">
 
             <div class="container">
-
-                <div class="justify-content-center">
                         
                         <?php
                             include('passwordreset.php');
