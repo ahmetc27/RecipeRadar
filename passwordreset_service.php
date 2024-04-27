@@ -23,7 +23,7 @@
 
             <div class="container">
 
-                <div class="row justify-content-center">
+                <div class="justify-content-center">
                         
                         <?php
                             include('passwordreset.php');
