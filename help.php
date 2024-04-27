@@ -11,7 +11,7 @@ include 'navbar.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="res/css/bootstrap.min.css">
-    <link rel="stylesheet" href="res/css/design.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             margin: 0;
@@ -20,7 +20,7 @@ include 'navbar.php';
         }
 
         h1 {
-            color: teal;
+            color: #5d9cd8;
             text-align: center;
             margin-bottom: 20px;
 
