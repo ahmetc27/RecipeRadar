@@ -69,25 +69,23 @@ if (isset($_POST["changepass"])) {
             <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5 mt-4">
 
                 <form method="post" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="passwordold" class="form-label">altes Passwort</label>
+                        <input type="password" class="form-control auth-input" id="passwordold" name="opassword" required>
+                        <span class="text-danger"><?= $opassError ?></span>
+                    </div>
 
-                    <div class="row">
-                        <div class="mb-3">
-                            <label for="passwordold" class="form-label">altes Passwort</label>
-                            <input type="password" class="form-control auth-input" id="passwordold" name="opassword" required>
-                            <span class="text-danger"><?= $opassError ?></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">neues passwort</label>
-                            <input type="password" class="form-control auth-input" id="password" name="password" required>
-                            <span class="text-danger"><?= $passError ?></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="rpassword" class="form-label">Passwort wiederholen</label>
-                            <input type="password" class="form-control auth-input" id="rpassword" name="rpassword" required>
-                            <span class="text-danger"><?= $rpassError ?></span>
-                        </div>
-                        <button name="changepass" type="submit" class="btn auth-btn btn-primary">passwort ändern</button>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">neues passwort</label>
+                        <input type="password" class="form-control auth-input" id="password" name="password" required>
+                        <span class="text-danger"><?= $passError ?></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rpassword" class="form-label">Passwort wiederholen</label>
+                        <input type="password" class="form-control auth-input" id="rpassword" name="rpassword" required>
+                        <span class="text-danger"><?= $rpassError ?></span>
+                    </div>
+                    <button name="changepass" type="submit" class="btn auth-btn btn-primary">passwort ändern</button>
 
                 </form>
             </div>
