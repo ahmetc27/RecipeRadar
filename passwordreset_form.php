@@ -3,6 +3,7 @@ require "config/db_connect.php";
 
 $passError = $rpassError = $opassError = ""; // Initialize error messages
 $error = false;
+$successMessage = ""; // Initialize success message
 function cleanInputs($input)
 {
     $data = trim($input); // removing extra spaces, tabs, newlines out of the string
@@ -75,6 +76,11 @@ if (isset($_POST["changepass"])) {
         <div class="row justify-content-center">
             <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5 mt-4">
 
+            <!-- Success message -->
+            <?php if (!empty($successMessage)) : ?>
+                    <div class="alert alert-success mt-3"><?= $successMessage ?></div>
+                <?php endif; ?>
+                
                 <form method="post" autocomplete="off">
                     <div class="mb-3">
                         <label for="passwordold" class="form-label">altes Passwort</label>
