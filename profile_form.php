@@ -109,6 +109,7 @@ if (isset($_SESSION['currentSession'])) {
                 </div>
                 <button name="edit" type="submit" class="btn btn-primary mt-2">Edit account</button>
             </form>
+            <p class="text mb-1 mt-3">Haben Sie Ihr Passort vergessen? <a href="passwordreset.php?id=<?= $_GET["id"] ?>" class="text-link">Passwort ändern</a></p>
         </div>
         <a class="btn btn-danger mt-4" href="logout_service.php">Logout</a>
     </div>
