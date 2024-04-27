@@ -1,11 +1,7 @@
 <?php
 require "config/db_connect.php";
 
-$sql = "SELECT * from users where userID = {$_SESSION['currentSession']['userID']}";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-
-$passError = $rpassError = $opassError = "";
+$passError = $rpassError = $opassError = ""; // Initialize error messages
 $error = false;
 function cleanInputs($input)
 {
@@ -15,7 +11,6 @@ function cleanInputs($input)
 
     return $data;
 }
-
 
 if (isset($_POST["changepass"])) {
 
@@ -52,10 +47,8 @@ if (isset($_POST["changepass"])) {
         $result = mysqli_query($conn, $sql);
     }
 }
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
