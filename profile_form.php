@@ -50,10 +50,10 @@ if (isset($_SESSION['currentSession'])) {
             // Überprüfen, ob die Aktualisierung erfolgreich war
             if ($updateResult) {
                 // Erfolgsmeldung anzeigen
-                echo "<div class='alert alert-success'>Update erfolgreich</div>";
+                $successMessage = "<div class='alert alert-success'>Update erfolgreich</div>";
             } else {
                 // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
-                echo "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
+                $errorMessage = "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
             }
         }
     }
@@ -78,10 +78,17 @@ if (isset($_SESSION['currentSession'])) {
 <body>
     <div class="container">
         <div class="row">
+            <?php echo isset($successMessage) ? $successMessage : ''; ?>
+            <?php echo isset($errorMessage) ? $errorMessage : ''; ?>
             <form method="post" autocomplete="off">
                 <div class="mb-3 mt-3">
                     <label for="salutation" class="form-label">Salutation</label>
-                    <input type="text" required class="form-control" id="salutation" name="salutation" placeholder="Salutation" value="<?= $row["salutation"] ?>">
+                    <select class="form-select" id="salutation" name="salutation" required>
+                        <option value="" disabled selected>Choose Salutation</option>
+                        <option value="Keine Angabe" <?php if ($row["salutation"] === "Keine Angabe") echo "selected"; ?>>Keine Angabe</option>
+                        <option value="Herr" <?php if ($row["salutation"] === "Herr") echo "selected"; ?>>Herr</option>
+                        <option value="Frau" <?php if ($row["salutation"] === "Frau") echo "selected"; ?>>Frau</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First name</label>
@@ -107,9 +114,7 @@ if (isset($_SESSION['currentSession'])) {
                     <label for="birthDate" class="form-label">Birth date</label>
                     <input type="date" class="form-control" id="birthDate" name="birthDate" value="<?= $row["birthDate"] ?>">
                 </div>
-                <p class="text mb-1 mt-2">Haben Sie Ihr Passort vergessen? <a href="passwordreset_service.php?id=<?= $_GET["id"] ?>" class="text-link">Passwort ändern</a></p>
-
-                <button name="edit" type="submit" class="btn btn-primary mt-2">Edit account</button>
+                <button name="edit" type="submit" class="btn btn-primary">Edit account</button>
             </form>
         </div>
         <a class="btn btn-danger mt-4" href="logout_service.php">Logout</a>
