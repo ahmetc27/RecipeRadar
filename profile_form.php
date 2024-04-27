@@ -110,6 +110,7 @@ if (isset($_SESSION['currentSession'])) {
                 <button name="edit" type="submit" class="btn btn-primary">Edit account</button>
             </form>
         </div>
+        <a class="nav-link" href="logout_service.php">Logout</a>
     </div>
 </body>
 
