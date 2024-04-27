@@ -4,34 +4,61 @@
 include('config/db_connect.php');
 
 // Retrieve logged-in user's data from session
-$userData = $_SESSION['currentSession'];
+session_start();
+if(isset($_SESSION['currentSession'])){
+    $userData = $_SESSION['currentSession'];
 
-// Query to select user information based on username or user ID
-//$query = "SELECT * FROM `users` WHERE `userName` = '{$userData['userName']}'";
-//$result = mysqli_query($conn, $query);
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve updated user data from the form
+        $salutation = $_POST['salutation'];
+        $firstName = $_POST['firstName'];
+        $middleName = $_POST['middleName'];
+        $lastName = $_POST['lastName'];
+        $email = $_POST['email'];
+        $birthDate = $_POST['birthDate'];
 
-if ($userData) {
-    // Fetch user data
-    //$userDataFromDB = mysqli_fetch_assoc($result);
+        // Update the user's data in the database
+        $query = "UPDATE `users` SET `salutation`='$salutation', `firstName`='$firstName', `middleName`='$middleName', `lastName`='$lastName', `email`='$email', `birthDate`='$birthDate' WHERE `id`={$userData['id']}";
+        $result = mysqli_query($conn, $query);
 
-    // Output user information
-    echo "<h1>User Information</h1>";
-    echo "<ul>";
-    echo "<li>Salutation: " . $userData['salutation'] . "</li>";
-    echo "<li>First Name: " . $userData['firstName'] . "</li>";
-    echo "<li>Middle Name: " . $userData['middleName'] . "</li>";
-    echo "<li>Last Name: " . $userData['lastName'] . "</li>";
-    echo "<li>Email: " . $userData['email'] . "</li>";
-    echo "<li>Birthday: " . $userData['birthDate'] . "</li>";
-    // Add other fields as needed
-    echo "</ul>";
+        if ($result) {
+            // If update is successful, redirect to profile page
+            header("Location: profile.php");
+            exit();
+        } else {
+            // Error handling if update fails
+            echo "Error updating record: " . mysqli_error($conn);
+        }
+    }
 } else {
-    // Error handling if query fails
-    echo "Error: " . mysqli_error($conn);
+    // Redirect to login page if user is not logged in
+    header("Location: login.php");
+    exit();
 }
 
+?>
+
+<h1>Update Profile</h1>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <label for="salutation">Salutation:</label>
+    <input type="text" name="salutation" value="<?php echo $userData['salutation']; ?>"><br>
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" value="<?php echo $userData['firstName']; ?>"><br>
+    <label for="middleName">Middle Name:</label>
+    <input type="text" name="middleName" value="<?php echo $userData['middleName']; ?>"><br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" value="<?php echo $userData['lastName']; ?>"><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" value="<?php echo $userData['email']; ?>"><br>
+    <label for="birthDate">Birthday:</label>
+    <input type="date" name="birthDate" value="<?php echo $userData['birthDate']; ?>"><br>
+    <!-- Add other fields as needed -->
+    <input type="submit" value="Update">
+</form>
+<a class="nav-link" href="logout_service.php">Logout</a>
+
+<?php
 // Close database connection
 mysqli_close($conn);
-
 ?>
-<a class="nav-link" href="logout_service.php">Logout</a>
