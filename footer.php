@@ -24,7 +24,7 @@
 
             <a> Impressum </a>
             <br>
-            <a>FAQ</a>
+            <a class="nav-link" href="help.php">FAQ</a>
             
         </div>
         
