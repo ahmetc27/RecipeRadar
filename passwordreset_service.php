@@ -25,12 +25,6 @@
 
                 <div class="row justify-content-center">
                         
-                    <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
-
-                        <h4 class="untertitle mb-1 mt-5">Password Reset</h4>
-
-                        <hr>
-
                         <?php
                             include('passwordreset.php');
                         ?>
