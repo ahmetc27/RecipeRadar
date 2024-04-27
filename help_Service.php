@@ -19,13 +19,16 @@ include('head.php');
 
     </header>
 
-    <div class="container">
+    <main>
 
-        <?php
-        include('help.php');
-        ?>
+        <div class="container">
+            <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+                <?php
+                include('help.php');
+                ?>
 
-    </div>
+            </div>
+        </div>
 
     </main>
 
