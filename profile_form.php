@@ -112,6 +112,13 @@ if (isset($_SESSION['currentSession'])) {
         </div>
         <a class="btn btn-danger mt-4" href="logout_service.php">Logout</a>
     </div>
+
+    <script>
+        // Verzögert das Ausblenden der Nachrichten um 5 Sekunden
+        setTimeout(function() {
+            document.getElementById('message').classList.add('hidden');
+        }, 5000);
+    </script>
 </body>
 
 </html>
