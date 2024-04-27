@@ -50,7 +50,7 @@ if (isset($_SESSION['currentSession'])) {
             // Überprüfen, ob die Aktualisierung erfolgreich war
             if ($updateResult) {
                 // Erfolgsmeldung anzeigen
-                $successMessage = "<div class='alert alert-success'>Update erfolgreich</div>";
+                $successMessage = "<div class='alert alert-success'>Update erfolgreich<br><small>Laden Sie die Seite neu, um die Updates anzuzeigen</small></div>";
             } else {
                 // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
                 $errorMessage = "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
