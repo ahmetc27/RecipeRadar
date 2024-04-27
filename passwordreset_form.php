@@ -45,6 +45,13 @@ if (isset($_POST["changepass"])) {
         $sql = "UPDATE users set password = '$password' WHERE userID = {$_SESSION['currentSession']['userID']}";
 
         $result = mysqli_query($conn, $sql);
+
+        // Check if the query was successful
+        if ($result) {
+            $successMessage = "Password changed successfully!";
+        } else {
+            $successMessage = "Something went wrong. Please try again later.";
+        }
     }
 }
 ?>
