@@ -105,7 +105,7 @@ if (isset($_SESSION['currentSession'])) {
                 </div>
                 <div class="mb-3">
                     <label for="birthDate" class="form-label">Birth date</label>
-                    <input type="date" class="form-control mt-3" id="birthDate" name="birthDate" value="<?= $row["birthDate"] ?>">
+                    <input type="date" class="form-control mb-3" id="birthDate" name="birthDate" value="<?= $row["birthDate"] ?>">
                 </div>
                 <button name="edit" type="submit" class="btn btn-primary">Edit account</button>
             </form>
