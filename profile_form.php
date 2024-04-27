@@ -1,7 +1,6 @@
 <?php
-include 'navbar.php';
 
-require "db_connect.php";
+require "config/db_connect.php";
 
 // Session starten, um auf Benutzerdaten zugreifen zu können
 session_start();
