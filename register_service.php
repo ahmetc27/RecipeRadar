@@ -76,6 +76,7 @@ if (isset($_POST['submit'])) {
                 $message = '<div class="auth-message auth-success">Erfolgreich registriert</div>';
                 // Set showForm to false to hide the form after successful registration
                 $showForm = false;
+                header("Location: welcome.php");
             } else {
                 $message = "<div class='alert alert-danger' role='alert'>
                 <h4 class='alert-heading'>Ohh, snap :|</h4>
