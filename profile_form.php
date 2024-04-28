@@ -72,11 +72,14 @@ if (isset($_SESSION['currentSession'])) {
         }
     }
 
-    // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
-    if (isset($_SESSION['successMessage'])) {
-        echo $_SESSION['successMessage'];
-        unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
-    }
+   // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
+if (isset($_SESSION['successMessage'])) {
+    echo '<div class="container">';
+    echo $_SESSION['successMessage'];
+    echo '</div>';
+    unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
+}
+
 } else {
     // Weiterleitung zur Anmeldeseite, wenn der Benutzer nicht angemeldet ist
     header("Location: login.php");
