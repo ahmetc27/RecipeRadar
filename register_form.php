@@ -33,11 +33,19 @@
         <label for="mail" class="left-align-label">E-Mail Adresse:</label>
         <input type="email" class="form-control auth-input" name="email" required>
     </div>
+    <!-- Anzeige der Fehlermeldung für Email -->
+    <?php if(isset($emailError)) { ?>
+        <div class="alert alert-danger"><?php echo $emailError; ?></div>
+    <?php } ?>
 
     <div class="mb-2">
         <label for="userName" class="left-align-label">Benutzername:</label>
         <input type="text" class="form-control auth-input" name="userName" required>
     </div>
+     <!-- Anzeige der Fehlermeldung für Username -->
+     <?php if(isset($userNameError)) { ?>
+        <div class="alert alert-danger"><?php echo $userNameError; ?></div>
+    <?php } ?>
 
     <div class="mb-2">
         <label for="password" class="left-align-label">Passwort:</label>
