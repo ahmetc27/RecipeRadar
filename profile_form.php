@@ -41,19 +41,30 @@ if (isset($_SESSION['currentSession'])) {
 
         // Validierung der Eingaben...
 
-        // Wenn keine Validierungsfehler auftreten
-        if (!$error) {
-            // UPDATE-Abfrage vorbereiten und ausführen, um die Benutzerdaten in der Datenbank zu aktualisieren
-            $update = "UPDATE users SET salutation='$salutation', firstName='$fname', middleName='$mname', lastName='$lname', userName='$username', email='$email', birthDate='$birthDate' WHERE userID={$userData['userID']}";
-            $updateResult = mysqli_query($conn, $update);
+        // Überprüfen, ob tatsächlich Änderungen an den Benutzerdaten vorgenommen wurden
+        if (
+            $salutation != $row["salutation"] ||
+            $fname != $row["firstName"] ||
+            $mname != $row["middleName"] ||
+            $lname != $row["lastName"] ||
+            $username != $row["userName"] ||
+            $email != $row["email"] ||
+            $birthDate != $row["birthDate"]
+        ) {
+            // Wenn keine Validierungsfehler auftreten
+            if (!$error) {
+                // UPDATE-Abfrage vorbereiten und ausführen, um die Benutzerdaten in der Datenbank zu aktualisieren
+                $update = "UPDATE users SET salutation='$salutation', firstName='$fname', middleName='$mname', lastName='$lname', userName='$username', email='$email', birthDate='$birthDate' WHERE userID={$userData['userID']}";
+                $updateResult = mysqli_query($conn, $update);
 
-            // Überprüfen, ob die Aktualisierung erfolgreich war
-            if ($updateResult) {
-                // Erfolgsmeldung anzeigen
-                $successMessage = "<div class='alert alert-success'>Update erfolgreich<br><small>Laden Sie die Seite neu, um die Updates anzuzeigen</small></div>";
-            } else {
-                // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
-                $errorMessage = "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
+                // Überprüfen, ob die Aktualisierung erfolgreich war
+                if ($updateResult) {
+                    // Erfolgsmeldung anzeigen
+                    $successMessage = "<div class='alert alert-success'>Update erfolgreich<br><small>Laden Sie die Seite neu, um die Updates anzuzeigen</small></div>";
+                } else {
+                    // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
+                    $errorMessage = "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
+                }
             }
         }
     }
