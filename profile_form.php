@@ -39,57 +39,67 @@ if (isset($_SESSION['currentSession'])) {
         $email = cleanInputs($_POST["email"]);
         $birthDate = cleanInputs($_POST["birthDate"]);
 
-            // simple validation for the "first name"
-    if (empty($fname)) {
-        $error = true;
-        $fnameError = "Please, enter your first name";
-    } elseif (strlen($fname) < 3) {
-        $error = true;
-        $fnameError = "Name must have at least 3 characters.";
-    } elseif (!preg_match("/^[a-zA-Z\s]+$/", $fname)) {
-        $error = true;
-        $fnameError = "Name must contain only letters and spaces.";
-    }
-
-    // simple validation for the "last name"
-    if (empty($lname)) {
-        $error = true;
-        $lnameError = "Please, enter your last name";
-    } elseif (strlen($lname) < 3) {
-        $error = true;
-        $lnameError = "Last name must have at least 3 characters.";
-    } elseif (!preg_match("/^[a-zA-Z\s]+$/", $lname)) {
-        $error = true;
-        $lnameError = "Last name must contain only letters and spaces.";
-    }
-
-
-
-    // simple validation for the "date of birth"
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // if the provided text is not a format of an email, error will be true
-        $error = true;
-        $emailError = "Please enter a valid email address";
-    } elseif ($email != $row["email"]) {
-        // if email is already exists in the database, error will be true
-        $query = "SELECT email FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0) {
+        // simple validation for the "first name"
+        if (empty($fname)) {
             $error = true;
-            $emailError = "Provided Email is already in use";
-        }
-    }
-
-    if (empty($username)) { // if the provided text is not a format of an email, error will be true
-        $error = true;
-        $unameError = "Please enter your username";
-    } elseif ($username != $row["userName"]) {
-        $query = "SELECT userName FROM users WHERE userName='$username'";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) != 0) {
+            $fnameError = "Please, enter your first name";
+        } elseif (strlen($fname) < 3) {
             $error = true;
-            $unameError = "Provided Username is already in use";
+            $fnameError = "Name must have at least 3 characters.";
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $fname)) {
+            $error = true;
+            $fnameError = "Name must contain only letters and spaces.";
         }
-    }
+
+        // simple validation for the "Middle name"
+        if (empty($mname)) {
+            $error = true;
+            $mnameError = "Please, enter your Middle name";
+        } elseif (strlen($mname) < 3) {
+            $error = true;
+            $mnameError = "Middle name must have at least 3 characters.";
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $mname)) {
+            $error = true;
+            $mnameError = "Middle name must contain only letters and spaces.";
+        }
+
+        // simple validation for the "last name"
+        if (empty($lname)) {
+            $error = true;
+            $lnameError = "Please, enter your last name";
+        } elseif (strlen($lname) < 3) {
+            $error = true;
+            $lnameError = "Last name must have at least 3 characters.";
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $lname)) {
+            $error = true;
+            $lnameError = "Last name must contain only letters and spaces.";
+        }
+
+        // simple validation for the "email"
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // if the provided text is not a format of an email, error will be true
+            $error = true;
+            $emailError = "Please enter a valid email address";
+        } elseif ($email != $row["email"]) {
+            // if email is already exists in the database, error will be true
+            $query = "SELECT email FROM users WHERE email='$email'";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) != 0) {
+                $error = true;
+                $emailError = "Provided Email is already in use";
+            }
+        }
+
+        if (empty($username)) { // if the provided text is not a format of an email, error will be true
+            $error = true;
+            $unameError = "Please enter your username";
+        } elseif ($username != $row["userName"]) {
+            $query = "SELECT userName FROM users WHERE userName='$username'";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) != 0) {
+                $error = true;
+                $unameError = "Provided Username is already in use";
+            }
+        }
 
         // Überprüfen, ob tatsächlich Änderungen an den Benutzerdaten vorgenommen wurden
         if (
@@ -122,14 +132,13 @@ if (isset($_SESSION['currentSession'])) {
         }
     }
 
-   // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
-if (isset($_SESSION['successMessage'])) {
-    echo '<div class="container">';
-    echo $_SESSION['successMessage'];
-    echo '</div>';
-    unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
-}
-
+    // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
+    if (isset($_SESSION['successMessage'])) {
+        echo '<div class="container">';
+        echo $_SESSION['successMessage'];
+        echo '</div>';
+        unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
+    }
 } else {
     // Weiterleitung zur Anmeldeseite, wenn der Benutzer nicht angemeldet ist
     header("Location: login.php");
@@ -166,22 +175,27 @@ if (isset($_SESSION['successMessage'])) {
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First name</label>
                     <input type="text" required class="form-control" id="firstName" name="firstName" placeholder="First name" value="<?= $row["firstName"] ?>">
+                    <span class="text-danger"><?= $fnameError ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="middleName" class="form-label">Middle name</label>
                     <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="<?= $row["middleName"] ?>">
+                    <span class="text-danger"><?= $mnameError ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last name</label>
                     <input type="text" required class="form-control" id="lastName" name="lastName" placeholder="Last name" value="<?= $row["lastName"] ?>">
+                    <span class="text-danger"><?= $lnameError ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="userName" class="form-label">User name</label>
                     <input type="text" required class="form-control" id="userName" name="userName" placeholder="User name" value="<?= $row["userName"] ?>">
+                    <span class="text-danger"><?= $unameError ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" required class="form-control" id="email" name="email" placeholder="Email address" value="<?= $row["email"] ?>">
+                    <span class="text-danger"><?= $emailError ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="birthDate" class="form-label">Birth date</label>
