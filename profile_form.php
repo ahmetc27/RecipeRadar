@@ -60,13 +60,22 @@ if (isset($_SESSION['currentSession'])) {
                 // Überprüfen, ob die Aktualisierung erfolgreich war
                 if ($updateResult) {
                     // Erfolgsmeldung anzeigen
-                    $successMessage = "<div class='alert alert-success'>Update erfolgreich<br><small>Laden Sie die Seite neu, um die Updates anzuzeigen</small></div>";
+                    $_SESSION['successMessage'] = "<div class='alert alert-success'>Update erfolgreich<br><small>Laden Sie die Seite neu, um die Updates anzuzeigen</small></div>";
+                    // Weiterleitung zur gleichen Seite, um die Erfolgsmeldung zu entfernen
+                    header("Location: {$_SERVER['REQUEST_URI']}");
+                    exit();
                 } else {
                     // Fehlermeldung anzeigen, wenn die Aktualisierung fehlschlägt
                     $errorMessage = "<div class='alert alert-danger'>Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.</div>";
                 }
             }
         }
+    }
+
+    // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
+    if (isset($_SESSION['successMessage'])) {
+        echo $_SESSION['successMessage'];
+        unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
     }
 } else {
     // Weiterleitung zur Anmeldeseite, wenn der Benutzer nicht angemeldet ist
