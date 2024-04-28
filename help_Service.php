@@ -21,13 +21,12 @@ include('head.php');
 
     <main>
 
-        <div class="container">
-            <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
-                <?php
-                include('help.php');
-                ?>
 
-            </div>
+        <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+            <?php
+            include('help.php');
+            ?>
+
         </div>
 
     </main>

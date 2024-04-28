@@ -59,10 +59,9 @@ include 'navbar.php';
 
 <body>
     <div class="container mt-3">
-        <h1 class="text-center">FAQs</h1>
-        <hr>
-
         <div class="faq-card">
+            <h1 class="text-center">FAQs</h1>
+            <hr>
             <div class="faq-question" onclick="toggleAnswer('answer1')">
                 Wann wird die Seite fertig sein?
             </div>
@@ -106,9 +105,6 @@ include 'navbar.php';
                 Falls Sie noch unbeantwortete Fragen haben, freuen wir uns &uuml;ber eine <a href="mailto:hotelname@domain.com" class="text-link">Mail</a> von Ihnen.
             </div>
         </div>
-
-        <hr>
-        <p>Zurück zur <a href="index.php" class="text-link">Startseite</a></p>
     </div>
 
     <!-- Bootstrap js -->
