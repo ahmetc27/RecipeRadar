@@ -15,7 +15,7 @@ include 'navbar.php';
 </head>
 
 <body>
-    <div class="container ml-5 mr-5">
+    <div class="container">
         <div class="faq-card">
             <h1 class="text-center">FAQs</h1>
             <hr>
