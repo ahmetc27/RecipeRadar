@@ -3,7 +3,7 @@
 require "config/db_connect.php";
 
 // Session starten, um auf Benutzerdaten zugreifen zu können
-session_start();
+//session_start();
 
 // Überprüfen, ob der Benutzer angemeldet ist
 if (isset($_SESSION['currentSession'])) {
