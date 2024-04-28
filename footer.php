@@ -22,9 +22,9 @@
         
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
-            <a class="nav-link"> Impressum </a>
+            <a> Impressum </a>
             <br>
-            <a class="nav-link" href="help_Service.php">FAQ</a>
+            <a>FAQ</a>
             
         </div>
         
