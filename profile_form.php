@@ -201,7 +201,7 @@ if (isset($_SESSION['currentSession'])) {
                     <label for="birthDate" class="form-label">Birth date</label>
                     <input type="date" class="form-control" id="birthDate" name="birthDate" value="<?= $row["birthDate"] ?>">
                 </div>
-                <p class="text mb-1 mt-2">Haben Sie Ihr Passort vergessen? <a href="passwordreset_service.php?id=<?= $_GET["id"] ?>Passwort ändern</a></p>
+                <p class="text mb-1 mt-2">Haben Sie Ihr Passort vergessen? <a href="passwordreset_service.php?id=<?= $_GET["id"] ?>">Passwort ändern</a></p>
 
                 <button name="edit" type="submit" class="btn btn-primary mt-3">Edit account</button>
             </form>
