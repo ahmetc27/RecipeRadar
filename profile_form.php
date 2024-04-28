@@ -131,14 +131,6 @@ if (isset($_SESSION['currentSession'])) {
             }
         }
     }
-
-    // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
-    if (isset($_SESSION['successMessage'])) {
-        echo '<div class="container">';
-        echo $_SESSION['successMessage'];
-        echo '</div>';
-        unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
-    }
 } else {
     // Weiterleitung zur Anmeldeseite, wenn der Benutzer nicht angemeldet ist
     header("Location: login.php");
@@ -159,6 +151,15 @@ if (isset($_SESSION['currentSession'])) {
 
 <body>
     <div class="container">
+    <?php 
+        // Überprüfen, ob eine Erfolgsmeldung vorhanden ist und sie dann ausgeben
+        if (isset($_SESSION['successMessage'])) {
+            echo '<div class="alert-success" role="alert">';
+            echo $_SESSION['successMessage'];
+            echo '</div>';
+            unset($_SESSION['successMessage']); // Die Erfolgsmeldung aus der Session entfernen
+        }
+        ?>
         <div class="row">
             <?php echo isset($successMessage) ? $successMessage : ''; ?>
             <?php echo isset($errorMessage) ? $errorMessage : ''; ?>
