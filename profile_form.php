@@ -39,7 +39,57 @@ if (isset($_SESSION['currentSession'])) {
         $email = cleanInputs($_POST["email"]);
         $birthDate = cleanInputs($_POST["birthDate"]);
 
-        // Validierung der Eingaben...
+            // simple validation for the "first name"
+    if (empty($fname)) {
+        $error = true;
+        $fnameError = "Please, enter your first name";
+    } elseif (strlen($fname) < 3) {
+        $error = true;
+        $fnameError = "Name must have at least 3 characters.";
+    } elseif (!preg_match("/^[a-zA-Z\s]+$/", $fname)) {
+        $error = true;
+        $fnameError = "Name must contain only letters and spaces.";
+    }
+
+    // simple validation for the "last name"
+    if (empty($lname)) {
+        $error = true;
+        $lnameError = "Please, enter your last name";
+    } elseif (strlen($lname) < 3) {
+        $error = true;
+        $lnameError = "Last name must have at least 3 characters.";
+    } elseif (!preg_match("/^[a-zA-Z\s]+$/", $lname)) {
+        $error = true;
+        $lnameError = "Last name must contain only letters and spaces.";
+    }
+
+
+
+    // simple validation for the "date of birth"
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // if the provided text is not a format of an email, error will be true
+        $error = true;
+        $emailError = "Please enter a valid email address";
+    } elseif ($email != $row["email"]) {
+        // if email is already exists in the database, error will be true
+        $query = "SELECT email FROM users WHERE email='$email'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) != 0) {
+            $error = true;
+            $emailError = "Provided Email is already in use";
+        }
+    }
+
+    if (empty($username)) { // if the provided text is not a format of an email, error will be true
+        $error = true;
+        $unameError = "Please enter your username";
+    } elseif ($username != $row["userName"]) {
+        $query = "SELECT userName FROM users WHERE userName='$username'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) != 0) {
+            $error = true;
+            $unameError = "Provided Username is already in use";
+        }
+    }
 
         // Überprüfen, ob tatsächlich Änderungen an den Benutzerdaten vorgenommen wurden
         if (
