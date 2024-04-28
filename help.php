@@ -12,53 +12,10 @@ include 'navbar.php';
     <!-- Bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: white;
-        }
-
-        h1 {
-            color: #5d9cd8;
-            text-align: center;
-            margin-bottom: 20px;
-
-        }
-
-        .faq-container {
-            margin-top: 40px;
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-
-        .faq-card {
-            margin-bottom: 20px;
-        }
-
-        .faq-question {
-            background-color: #f0f0f0;
-            padding: 15px;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .faq-answer {
-            display: none;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .faq-question.active {
-            background-color: #ddd;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="container ml-5 mr-5">
         <div class="faq-card">
             <h1 class="text-center">FAQs</h1>
             <hr>
