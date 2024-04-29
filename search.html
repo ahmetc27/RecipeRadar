@@ -1,0 +1,28 @@
+<!-- HTML Form and Search Results Container -->
+<form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Enter name or last name">
+    <button type="button" onclick="searchUsers()">Search</button>
+</form>
+<div id="searchResults"></div>
+
+<!-- JavaScript Function for AJAX Request -->
+<script>
+    function searchUsers() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+
+        // Make an AJAX request to the backend PHP script
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Display search results
+                    document.getElementById('searchResults').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
+            }
+        };
+        xhr.open('GET', `search_users.php?term=${searchTerm}`, true);
+        xhr.send();
+    }
+</script>
