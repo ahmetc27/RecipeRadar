@@ -89,9 +89,13 @@ if (isset($_SESSION['currentSession'])) {
             }
         }
 
-        if (empty($username)) { // if the provided text is not a format of an email, error will be true
+        // simple validation for the "username"
+        if (empty($username)) { 
             $error = true;
             $unameError = "Please enter your username";
+        } elseif (strlen($username) < 3) {
+            $error = true;
+            $unameError = "Username must have at least 3 characters.";
         } elseif ($username != $row["userName"]) {
             $query = "SELECT userName FROM users WHERE userName='$username'";
             $result = mysqli_query($conn, $query);
@@ -99,7 +103,7 @@ if (isset($_SESSION['currentSession'])) {
                 $error = true;
                 $unameError = "Provided Username is already in use";
             }
-        }
+        }        
 
         // Überprüfen, ob tatsächlich Änderungen an den Benutzerdaten vorgenommen wurden
         if (
