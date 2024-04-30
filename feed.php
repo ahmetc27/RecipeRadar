@@ -14,13 +14,11 @@ if (!isset($_SESSION['currentSession'])) {
 }
 
 // Fetch recent posts with associated usernames from the database
-/*
 $sql = "SELECT posts.*, users.userName 
         FROM posts 
         INNER JOIN users ON posts.userID = users.userID 
         ORDER BY postDate DESC";
 $result = $conn->query($sql);
-*/
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +48,6 @@ $result = $conn->query($sql);
                 <br>
 
                 <?php
-                // Fetch recent posts from the database
-                $sql = "SELECT * FROM posts ORDER BY postDate DESC";
-                $result = $conn->query($sql);
-
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
@@ -67,6 +61,8 @@ $result = $conn->query($sql);
                         echo '<div class="container">'; // Container for title and content
                         echo '<h6>Title: ' . $row['title'] . '</h6>';
                         echo '<p>Content: ' . $row['content'] . '</p>';
+                        // Display the username associated with the post
+                        echo '<p>Posted by: ' . $row['userName'] . '</p>';
                         echo '</div>'; // Close title and content container
                         // Add space between content and like/share options
                         echo '<div style="margin-top: 10px;"></div>';
