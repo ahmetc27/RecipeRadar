@@ -1,9 +1,27 @@
-<!-- HTML Form and Search Results Container -->
-<form id="searchForm">
-    <input type="text" id="searchInput" placeholder="Enter name or last name">
-    <button type="button" onclick="searchUsers()">Search</button>
-</form>
-<div id="searchResults"></div>
+<?php
+// Retrieve search term from the AJAX request
+if (isset($_GET['term'])) {
+    $searchTerm = $_GET['term'];
+
+    include("config/db_connect.php");
+
+    // Prepare and execute SQL query
+    $sql = "SELECT * FROM users WHERE first_name LIKE '%$searchTerm%' OR last_name LIKE '%$searchTerm%'";
+    $result = $conn->query($sql);
+
+    // Display search results
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<p>User: " . $row['firstName'] . " " . $row['lastName'] . "</p>";
+        }
+    } else {
+        echo "No users found";
+    }
+
+} else {
+    echo "No search term provided";
+}
+?>
 
 <!-- JavaScript Function for AJAX Request -->
 <script>
@@ -26,3 +44,4 @@
         xhr.send();
     }
 </script>
+

@@ -6,6 +6,19 @@
 
     </a>
 
+    <?php
+    if (isset($_SESSION['currentSession'])) {
+
+        include ('search_service.php');
+        
+        echo '<form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter name or last name">
+        <button type="button" onclick="searchUsers()">Search</button>
+        </form>
+        <div id="searchResults"></div>';
+    }
+    ?>
+
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
         <ul class="navbar-nav">

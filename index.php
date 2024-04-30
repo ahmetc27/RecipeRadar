@@ -19,7 +19,7 @@ include('config/db_connect.php');
             <?php
                 include('navigation.php');
             ?>
-        
+                    
         </header>
 
         <main>
