@@ -1,4 +1,4 @@
-    <div class="container">
+    <div class="container" style="margin: 100px auto;">
         <div class="faq-card">
             <h1 class="text-center">FAQs</h1>
             <hr>
@@ -12,7 +12,7 @@
 
         <div class="faq-card">
             <div class="faq-question" onclick="toggleAnswer('answer2')">
-                Wo finde ich die Kontaktdaten des Hotels beziehungsweise ein Impressum des Hotels?
+                Question 2 test
             </div>
             <div id="answer2" class="faq-answer">
                 Das Impressum samt Kontaktdaten kann unter folgendem Link gefunden werden: <a href="impressum.php" class="text-link">Impressum</a>
@@ -21,7 +21,7 @@
 
         <div class="faq-card">
             <div class="faq-question" onclick="toggleAnswer('answer3')">
-                Wo und wie kann ich ein Zimmer reservieren?
+                Question 3 test
             </div>
             <div id="answer3" class="faq-answer">
                 Sie k&ouml;nnen ein Zimmer unter den oben stehenden Link reservieren, sobald Sie registriert und eingeloggt sind.
