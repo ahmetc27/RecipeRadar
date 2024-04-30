@@ -7,6 +7,8 @@
     </a>
 
     <?php
+    /*      bis es funktioniert
+
     if (isset($_SESSION['currentSession'])) {
 
         include ('search_service.php');
@@ -17,14 +19,19 @@
         </form>
         <div id="searchResults"></div>';
     }
+
+    */
     ?>
+
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
         <ul class="navbar-nav">
-
             <li class="nav-item">
-                <a class="nav-link" href="index.php">DISCOVER</a>
+                <a class="nav-link" href="index.php">START</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="discover.php">DISCOVER</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="feed.php">HOME</a>
