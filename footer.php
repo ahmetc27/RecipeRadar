@@ -1,4 +1,4 @@
-<footer class="text-center text-lg-start ">
+<footer class="text-center text-lg-start" style="background-color: rgb(146,191,255);">
 
     <div class="text-center p-2 footer">
 
