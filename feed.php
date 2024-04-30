@@ -30,7 +30,7 @@ $result = $conn->query($sql);
     include('head.php');
 ?>
 
-<body>
+<body style="background-color: rgb(250,245,225);">
 
     <?php
         include('navigation.php');
@@ -46,7 +46,6 @@ $result = $conn->query($sql);
             <?php endif; ?>
 
             <div class="card-body">
-                <br><br><br><br><br>
                 <h1 class="card-title">Recent Posts</h1>
                 <br>
 
@@ -59,9 +58,18 @@ $result = $conn->query($sql);
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="post">';
-                        echo '<img src="' . $row['picPath'] . '" alt="' . $row['title'] . '" class="img-fluid mb-2" style="max-width: 30%; height: auto;">';
-                        echo '<h6>' . $row['title'] . '</h6>';
-                        echo '<p>' . $row['content'] . '</p>';
+                        echo '<div class="text-center">'; // Centering only the picture
+                        echo '<div style="max-width: 30%; margin: 0 auto;">'; // Container for centered image
+                        
+                        echo '<img src="' . $row['picPath'] . '" alt="' . $row['title'] . '" class="img-fluid mb-2" style="width: 100%; height: auto; border-radius: 10px;">'; // Added border-radius
+                        echo '</div>'; // Close centered image container
+                        echo '</div>'; // Close text-center wrapper
+                        echo '<div class="container">'; // Container for title and content
+                        echo '<h6>Title: ' . $row['title'] . '</h6>';
+                        echo '<p>Content: ' . $row['content'] . '</p>';
+                        echo '</div>'; // Close title and content container
+                        // Add space between content and like/share options
+                        echo '<div style="margin-top: 10px;"></div>';
                         // Like, share, and bookmark buttons
                         echo '<div class="rating" data-recipe-id="' . $row['postID'] . '">';
                         echo '<button class="btn btn-success like-btn">👍 <span class="like-count">0</span></button>';
@@ -88,7 +96,7 @@ $result = $conn->query($sql);
                                 echo '</div>';
                             }
                         } else {
-                            echo "No comments available.";
+                            //echo "No comments available.";
                         }
 
                         echo '</div>'; // Close comment-container

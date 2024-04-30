@@ -12,7 +12,7 @@ include('config/db_connect.php');
         include('head.php');
     ?>
 
-    <body style="background-image: url('pics/background.jpeg'); background-size: cover;">
+    <body style="background-image: url('pics/bg-2.jpeg'); background-size: cover;">
 
         <header>
 

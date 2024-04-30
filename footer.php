@@ -1,4 +1,5 @@
-<footer class="text-center text-lg-start" style="background-color: rgb(146,191,255);">
+<!-- <footer class="text-center text-lg-start" style="background-color: rgb(146,191,255);"> -->
+<footer class="text-center text-lg-start" style="background-color: rgb(250,245,225);">
 
     <div class="text-center p-2 footer">
 
@@ -7,7 +8,7 @@
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
             Copyright © <?php echo date("Y"); ?>
-            <a class="text-light" href="index.php">Recipe Radar</a>
+            <a class="text-bold" href="index.php" style="color: black;">Recipe Radar</a>
             <br>
         </div>
 
@@ -22,9 +23,9 @@
         
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
-            <a class="text-light" href="impressum.php" style="color: white;">Impressum</a>
+            <a class="text-bold" href="impressum.php" style="color: black;">Impressum</a>
             <br>
-            <a class="text-light" href="help_service.php" style="color: white;">FAQ</a>
+            <a class="text-bold" href="help_service.php" style="color: black;">FAQ</a>
             
         </div>
         

@@ -9,7 +9,7 @@ session_start();
 include('head.php');
 ?>
 
-<body>
+<body style="background-color: rgb(250,245,225);">
 
     <header>
 
