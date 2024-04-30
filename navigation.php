@@ -34,7 +34,7 @@
                 <a class="nav-link" href="discover.php">DISCOVER</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="feed.php">HOME</a>
+                <a class="nav-link" href="feed.php">MY FEED</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="help_Service.php">FAQ</a>
