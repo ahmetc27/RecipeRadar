@@ -12,7 +12,7 @@ include('config/db_connect.php');
         include('head.php');
     ?>
 
-    <body>
+    <body style="background-image: url('pics/background.jpeg'); background-size: cover;">
 
         <header>
 
@@ -24,7 +24,7 @@ include('config/db_connect.php');
 
         <main>
 
-        <img class="home-logo" src="pics/logo.png" alt="Recipe Radar" />
+        <img class="home-logo" src="pics/logo-new.png" alt="Recipe Radar" />
 
         </main>
         

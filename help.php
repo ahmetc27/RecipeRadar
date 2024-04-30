@@ -42,8 +42,13 @@
                 Wohin kann ich mich wenden, falls meine Frage hier nicht aufscheint?
             </div>
             <div id="answer5" class="faq-answer">
-                Falls Sie noch unbeantwortete Fragen haben, freuen wir uns &uuml;ber eine <a href="mailto:hotelname@domain.com" class="text-link">Mail</a> von Ihnen.
-            </div>
+                Falls Sie noch unbeantwortete Fragen haben, freuen wir uns &uuml;ber eine 
+                <a href="mailto:info@recipe-radar.at" class="text-link">Mail</a> von Ihnen.
+                <br>
+                <a>Email: info@recipe-radar.at</a>
+                <br>
+                <a>Phone: 123-456-7890</a>
+                </div>
         </div>
     </div>
     <script>

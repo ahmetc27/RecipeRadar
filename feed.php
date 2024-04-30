@@ -1,31 +1,55 @@
 <?php
-include('config/db_connect.php'); // Include the database connection file
+session_start(); // Start the session
+
+// Include the database connection file
+include('config/db_connect.php');
+
+// Check if the user is logged in
+if (!isset($_SESSION['currentSession'])) {
+    // Display a message indicating that only logged-in users can post meals
+    $message = "Only logged-in users can post meals. <a href='login.php'>Login now</a>.";
+} else {
+    // Fetch recent posts from the database
+    include('post_meal.php');
+}
+
+// Fetch recent posts with associated usernames from the database
+/*
+$sql = "SELECT posts.*, users.userName 
+        FROM posts 
+        INNER JOIN users ON posts.userID = users.userID 
+        ORDER BY postDate DESC";
+$result = $conn->query($sql);
+*/
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
         include('head.php');
     ?>
 <head>
+
 <link rel="stylesheet" type="text/css" href="css/feed_style.css">
 
 </head>
 
 <body>
 
-    <nav>
-        <?php
-            include('navigation.php');
-        ?>
-    </nav>
-
-    <div class="container" style="max-width: 1200px;">
-        <?php include('post_meal.php'); ?>
-    </div>
+    <?php
+        include('navigation.php');
+    ?>
 
     <div class="row">
-        <div class="container" style="max-width: 1200px;">
+        <div class="container" style="max-width: 1200px; margin: 100px auto;">
+
+            <?php if (isset($message)): ?>
+                <div class="container">
+                    <?php echo $message; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="card-body">
                 <br><br><br><br><br>
                 <h1 class="card-title">Recent Posts</h1>
@@ -212,3 +236,7 @@ include('config/db_connect.php'); // Include the database connection file
     </script>
 </body>
 </html>
+
+<?php
+    include('footer.php');
+?>
