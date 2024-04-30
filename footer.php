@@ -1,9 +1,10 @@
 <!-- <footer class="text-center text-lg-start" style="background-color: rgb(146,191,255);"> -->
 <footer class="text-center text-lg-start" style="background-color: rgb(250,245,225);">
-
+<hr style="border-top: 1px solid black; margin-bottom: 10px;"> <!-- Add this line -->
     <div class="text-center p-2 footer">
-
+    
         <div class="row col-12">
+
 
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
