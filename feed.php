@@ -27,13 +27,8 @@ $result = $conn->query($sql);
 <html lang="en">
 
 <?php
-        include('head.php');
-    ?>
-<head>
-
-<link rel="stylesheet" type="text/css" href="css/feed_style.css">
-
-</head>
+    include('head.php');
+?>
 
 <body>
 
@@ -41,7 +36,7 @@ $result = $conn->query($sql);
         include('navigation.php');
     ?>
 
-    <div class="row">
+    <div class="row" style="flex-grow: 1;">
         <div class="container" style="max-width: 1200px; margin: 100px auto;">
 
             <?php if (isset($message)): ?>
@@ -235,8 +230,11 @@ $result = $conn->query($sql);
         });
     </script>
 </body>
-</html>
 
 <?php
     include('footer.php');
 ?>
+
+</html>
+
+

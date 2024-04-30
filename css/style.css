@@ -99,12 +99,9 @@ main {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
     background-color: #5d9cd8;
     color: white;
-    padding: 20px 0;
-    /* Adjust padding as needed */
+    height: 6.5em;
 }
 
 

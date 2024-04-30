@@ -1,4 +1,4 @@
-    <div class="container" style="margin: 100px auto;">
+    <div class="container" style="width: 100%; height: 100vh; margin: 100px auto;">
         <div class="faq-card">
             <h1 class="text-center">FAQs</h1>
             <hr>

@@ -21,5 +21,5 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Sono&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="css/feed_style.css">
 </head>
