@@ -22,9 +22,9 @@
         
         <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
 
-            <a> Impressum </a>
+            <a class="text-light" href="impressum.php" style="color: white;">Impressum</a>
             <br>
-            <a>FAQ</a>
+            <a class="text-light" href="help_service.php" style="color: white;">FAQ</a>
             
         </div>
         
@@ -32,9 +32,9 @@
             <a>Follow us</a>
             <br>
             
-            <a href="https://www.facebook.com/fhtechnikumwien" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@fhtechnikumwien" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/technikum_wien" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/fhtechnikumwien" target="_blank"><i class="fab fa-facebook" style="color: black;"></i></a>
+            <a href="https://www.tiktok.com/@fhtechnikumwien" target="_blank"><i class="fab fa-tiktok" style="color: black;" ></i></a>
+            <a href="https://www.instagram.com/technikum_wien" target="_blank"><i class="fab fa-instagram" style="color: black;"></i></a>
         </div>
 
     </div>
