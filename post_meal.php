@@ -34,13 +34,8 @@ if (isset($_SESSION['message'])) {
         include('navigation.php');
     ?>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <div class="container" style="max-width: 600px; padding: 20px;">
+    <div class="container" style="margin: 100px auto;">
     <h1 style="font-size: 24px; margin-bottom: 20px;">New Meal</h1>
     <?php if (!empty($message)): ?>
         <div class="message"><?php echo $message; ?></div>
