@@ -1,48 +1,71 @@
 <?php
-include('config/db_connect.php'); // Include the database connection file
+session_start(); // Start the session
+
+// Include the database connection file
+include('config/db_connect.php');
+
+// Check if the user is logged in
+if (!isset($_SESSION['currentSession'])) {
+    // Display a message indicating that only logged-in users can post meals
+    $message = "Only logged-in users can post meals. <a href='login.php'>Login now</a>.";
+} else {
+    // Fetch recent posts from the database
+    include('post_meal.php');
+}
+
+// Fetch recent posts with associated usernames from the database
+$sql = "SELECT posts.*, users.userName 
+        FROM posts 
+        INNER JOIN users ON posts.userID = users.userID 
+        ORDER BY postDate DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
-        include('head.php');
+    include('head.php');
+?>
+
+<body style="background-color: rgb(250,245,225);">
+
+    <?php
+        include('navigation.php');
     ?>
-<head>
-<link rel="stylesheet" type="text/css" href="css/feed_style.css">
 
-</head>
+    <div class="row" style="flex-grow: 1;">
+        <div class="container" style="max-width: 1200px; margin: 100px auto;">
 
-<body>
+            <?php if (isset($message)): ?>
+                <div class="container">
+                    <?php echo $message; ?>
+                </div>
+            <?php endif; ?>
 
-    <nav>
-        <?php
-            include('navigation.php');
-        ?>
-    </nav>
-
-    <div class="container" style="max-width: 1200px;">
-        <?php include('post_meal.php'); ?>
-    </div>
-
-    <div class="row">
-        <div class="container" style="max-width: 1200px;">
             <div class="card-body">
-                <br><br><br><br><br>
                 <h1 class="card-title">Recent Posts</h1>
                 <br>
 
                 <?php
-                // Fetch recent posts from the database
-                $sql = "SELECT * FROM posts ORDER BY postDate DESC";
-                $result = $conn->query($sql);
-
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="post">';
-                        echo '<img src="' . $row['picPath'] . '" alt="' . $row['title'] . '" class="img-fluid mb-2" style="max-width: 30%; height: auto;">';
-                        echo '<h6>' . $row['title'] . '</h6>';
-                        echo '<p>' . $row['content'] . '</p>';
+                        echo '<div class="text-center">'; // Centering only the picture
+                        echo '<div style="max-width: 30%; margin: 0 auto;">'; // Container for centered image
+                        
+                        echo '<img src="' . $row['picPath'] . '" alt="' . $row['title'] . '" class="img-fluid mb-2" style="width: 100%; height: auto; border-radius: 10px;">'; // Added border-radius
+                        echo '</div>'; // Close centered image container
+                        echo '</div>'; // Close text-center wrapper
+                        echo '<div class="container">'; // Container for title and content
+                        echo '<h6>Title: ' . $row['title'] . '</h6>';
+                        echo '<p>Content: ' . $row['content'] . '</p>';
+                        // Display the username associated with the post
+                        echo '<p>Posted by: ' . $row['userName'] . '</p>';
+                        echo '</div>'; // Close title and content container
+                        // Add space between content and like/share options
+                        echo '<div style="margin-top: 10px;"></div>';
                         // Like, share, and bookmark buttons
                         echo '<div class="rating" data-recipe-id="' . $row['postID'] . '">';
                         echo '<button class="btn btn-success like-btn">👍 <span class="like-count">0</span></button>';
@@ -69,7 +92,7 @@ include('config/db_connect.php'); // Include the database connection file
                                 echo '</div>';
                             }
                         } else {
-                            echo "No comments available.";
+                            //echo "No comments available.";
                         }
 
                         echo '</div>'; // Close comment-container
@@ -211,4 +234,11 @@ include('config/db_connect.php'); // Include the database connection file
         });
     </script>
 </body>
+
+<?php
+    include('footer.php');
+?>
+
 </html>
+
+

@@ -41,3 +41,5 @@ if (!isset($_SESSION["currentSession"])) {
     }
 
 }
+
+?>

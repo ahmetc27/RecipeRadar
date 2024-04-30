@@ -17,31 +17,23 @@ include('config/db_connect.php');
         include('head.php');
     ?>
 
-    <body>
+    <body style="background-color: rgb(250,245,225);">
 
-        <header>
-
-            <?php
-                include('navigation.php');
-            ?>
+    <?php
+        include('navigation.php');
+    ?>
         
-        </header>
-
-        <main class="page-content d-lg-block py-5 align-items-center ">
-
-            <?php
-                    include('profile_form.php');
-            ?>
-
-        </main>
+    <main class="page-content d-lg-block py-5 align-items-center ">
 
         <?php
-            include('footer.php');
+            include('profile_form.php');
         ?>
 
-        <!-- Bootsttap js -->
-         <!-- warum brauchen wir es hier? -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </main>
+
+    <?php
+        include('footer.php');
+     ?>
 
     </body>
 

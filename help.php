@@ -1,4 +1,4 @@
-    <div class="container">
+    <div class="container" style="width: 100%; height: 100vh; margin: 100px auto;">
         <div class="faq-card">
             <h1 class="text-center">FAQs</h1>
             <hr>
@@ -12,7 +12,7 @@
 
         <div class="faq-card">
             <div class="faq-question" onclick="toggleAnswer('answer2')">
-                Wo finde ich die Kontaktdaten des Hotels beziehungsweise ein Impressum des Hotels?
+                Question 2 test
             </div>
             <div id="answer2" class="faq-answer">
                 Das Impressum samt Kontaktdaten kann unter folgendem Link gefunden werden: <a href="impressum.php" class="text-link">Impressum</a>
@@ -21,7 +21,7 @@
 
         <div class="faq-card">
             <div class="faq-question" onclick="toggleAnswer('answer3')">
-                Wo und wie kann ich ein Zimmer reservieren?
+                Question 3 test
             </div>
             <div id="answer3" class="faq-answer">
                 Sie k&ouml;nnen ein Zimmer unter den oben stehenden Link reservieren, sobald Sie registriert und eingeloggt sind.
@@ -42,8 +42,13 @@
                 Wohin kann ich mich wenden, falls meine Frage hier nicht aufscheint?
             </div>
             <div id="answer5" class="faq-answer">
-                Falls Sie noch unbeantwortete Fragen haben, freuen wir uns &uuml;ber eine <a href="mailto:hotelname@domain.com" class="text-link">Mail</a> von Ihnen.
-            </div>
+                Falls Sie noch unbeantwortete Fragen haben, freuen wir uns &uuml;ber eine 
+                <a href="mailto:info@recipe-radar.at" class="text-link">Mail</a> von Ihnen.
+                <br>
+                <a>Email: info@recipe-radar.at</a>
+                <br>
+                <a>Phone: 123-456-7890</a>
+                </div>
         </div>
     </div>
     <script>
