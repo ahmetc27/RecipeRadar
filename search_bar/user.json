@@ -5,7 +5,7 @@
       "salutation": "Keine Angabe",
       "firstName": "Ben",
       "middleName": "",
-      "lastName": "1996-01-01",
+      "lastName": "Fero",
       "userName": "benfero",
       "email": "ben@fero.com",
       "password": "$2y$10$3SFC3S1VKyI3ZOqwTxQ7/OAD9rgVCcX4/QT6w0p4WAxaFgOk.qt22",
@@ -16,11 +16,11 @@
       "type": "",
       "salutation": "Keine Angabe",
       "firstName": "fovea",
-      "lastName": "1996-01-01",
+      "lastName": "love",
       "userName": "fovea",
       "email": "fovea@fovea.com",
       "password": "$2y$10$nOc2kbuwqxd0jjDZKjZQ1On1B12jXsXnH7AI2svIpfnxdH8pQBZP2",
-      "birthDate": "0000-00-00"
+      "birthDate": "1996-01-01"
     },
     {
       "userID": "75",
