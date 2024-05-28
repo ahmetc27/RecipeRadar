@@ -1,0 +1,61 @@
+[
+    {
+      "userID": "73",
+      "type": "",
+      "salutation": "Keine Angabe",
+      "firstName": "Ben",
+      "middleName": "",
+      "lastName": "1996-01-01",
+      "userName": "benfero",
+      "email": "ben@fero.com",
+      "password": "$2y$10$3SFC3S1VKyI3ZOqwTxQ7/OAD9rgVCcX4/QT6w0p4WAxaFgOk.qt22",
+      "birthDate": "1993-09-01"
+    },
+    {
+      "userID": "74",
+      "type": "",
+      "salutation": "Keine Angabe",
+      "firstName": "fovea",
+      "lastName": "1996-01-01",
+      "userName": "fovea",
+      "email": "fovea@fovea.com",
+      "password": "$2y$10$nOc2kbuwqxd0jjDZKjZQ1On1B12jXsXnH7AI2svIpfnxdH8pQBZP2",
+      "birthDate": "0000-00-00"
+    },
+    {
+      "userID": "75",
+      "type": "",
+      "salutation": "Herr",
+      "firstName": "Nick",
+      "lastName": "2000-01-01",
+      "userName": "nickchopper",
+      "email": "nick@chopper.com",
+      "password": "$2y$10$ZBEIrtdbLVgwDH3FWnVimeIaesVK9Zce7RpvIezvdcJXOZAXj2d.a",
+      "birthDate": "0000-00-00"
+    },
+    {
+      "userID": "79",
+      "type": "",
+      "salutation": "Herr",
+      "firstName": "Tin",
+      "middleName": "Mid",
+      "lastName": "Woodman",
+      "userName": "tintin",
+      "email": "tin@tin.com",
+      "password": "$2y$10$4AEOeFBvG3lbq/UO9VKZJeb2YzdgWHI7YMa..5oK0CtcjSq4/QlBu",
+      "birthDate": "2020-01-01"
+    },
+    {
+      "userID": "80",
+      "type": "",
+      "salutation": "Herr",
+      "firstName": "Ahmet",
+      "middleName": "",
+      "lastName": "Cicek",
+      "userName": "ahmo",
+      "email": "ahmo@ahmo.com",
+      "password": "$2y$10$qlDytecwL2FzhvGuCfBjfuzIPoh0sJS.YDnrAJ5mb60JuUxQ8TjHm",
+      "birthDate": "2020-01-01"
+    }
+  ]
+  
