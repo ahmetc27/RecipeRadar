@@ -1,9 +1,11 @@
-<?php
+<?php 
+
+require 'config/db_connect.php';
 
 session_start();
 
-if (isset($_SESSION["currentSession"])) {
-    header("Location: home.php");
+if (!isset($_SESSION['currentSession'])) {
+    header("location: index.php");
 }
 
 ?>
@@ -16,6 +18,8 @@ if (isset($_SESSION["currentSession"])) {
         <?php
             include('components/head.php');
         ?>
+
+        <script src="resources/js/post_form_script.js"></script>
 
     </head>
 
@@ -31,12 +35,14 @@ if (isset($_SESSION["currentSession"])) {
 
         <main>
 
+            <!-- we should set it up as background instead of the image element -->
+            <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
             <div class="container">
-            
+
                 <?php
-                    include('components/register_form.php');
+                    include('components/search_result_form.php');
                 ?>
-            
+
             </div>
 
         </main>
