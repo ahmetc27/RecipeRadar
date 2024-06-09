@@ -1,4 +1,4 @@
-<form action="services/search_service.php" method="post">
+<form action="services/search_service.php" method="post" class="search-form">
 
     <input type="text" class="form-control auth-input" id="searchBar" name="searchBar" placeholder="Search for users..." >
 

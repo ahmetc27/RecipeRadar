@@ -21,6 +21,26 @@
     margin: auto;
 }
 
+/* search bar - start*/
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form input {
+    flex: 1;
+}
+
+.search-form button {
+    flex-shrink: 0; 
+    width: 100px; 
+    padding: 5px 10px; 
+}
+
+/* search bar - end */
+
 
 /*armin */
 
