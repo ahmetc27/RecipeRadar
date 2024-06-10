@@ -1,39 +1,48 @@
 <?php
+
 session_start();
 
 if (isset($_SESSION["currentSession"])) {
-    header("Location: profile.php");
-  }
+    header("Location: home.php");
+}
 
 ?>
 
 <!DOCTYPE html>
 <html>
 
-    <?php
-        include('head.php');
-    ?>
+    <head>
 
-    <body>
+        <?php
+            include('components/head.php');
+        ?>
+
+    </head>
+
+    <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
 
         <header>
 
             <?php
-                include('navigation.php');
+                include('components/navigation.php');
             ?>
-        
+                    
         </header>
 
-        <main class="page-content d-lg-block py-5 align-items-center ">
+        <main>
 
-            <?php
-                    include('login_form.php');
-            ?>
+            <div class="container">
+            
+                <?php
+                    include('components/login_form.php');
+                ?>
+            
+            </div>
 
         </main>
-
+        
         <?php
-            include('footer.php');
+            include('components/footer.php');
         ?>
 
     </body>
