@@ -71,7 +71,7 @@
                 }
                 
                 if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
-                    echo "<a href='dashboard.php'>User-Verwaltung</a>";
+                    echo '<a class="nav-link" href="userslist.php">Users Verwaltung</a>';
                 }
 
                 ?>
