@@ -62,8 +62,12 @@
 
                 if (!isset($_SESSION['currentSession'])) {
                     echo '<a class="nav-link" href="login.php">LOGIN</a>';
+                } else if (isset($_SESSION['currentSession']['userID'])) {
+                    $userID = $_SESSION['currentSession']['userID'];
+                    echo '<a class="nav-link" href="profile.php?userID=' . $userID . '">PROFILE</a>';
                 } else {
-                    echo '<a class="nav-link" href="profile.php">PROFILE</a>';
+                    // Handle the case where userID is not available, perhaps show a default link or error
+                    echo '<a class="nav-link" href="index.php">PROFILE</a>';
                 }
 
                 ?>
