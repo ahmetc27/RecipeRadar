@@ -69,6 +69,10 @@
                     // Handle the case where userID is not available, perhaps show a default link or error
                     echo '<a class="nav-link" href="index.php">PROFILE</a>';
                 }
+                
+                if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
+                    echo "<a href='dashboard.php'>User-Verwaltung</a>";
+                }
 
                 ?>
 
