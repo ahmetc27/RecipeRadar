@@ -7,13 +7,14 @@ if (session_status() == PHP_SESSION_NONE) {
 // Include database connection
 require 'config/db_connect.php';
 
+
 // Fetch current session user
 $sql = "SELECT * FROM users WHERE userID = {$_SESSION['currentSession']['userID']}";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
 // Fetch non-admin users
-$users = "SELECT * FROM users WHERE userTyp != 'admin'";
+$users = "SELECT * FROM users WHERE Type != 'admin'";
 $usersResult = mysqli_query($conn, $users);
 
 $layout = "";

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +14,7 @@
 </head>
 
 <body>
-    <?php include 'services/userslist_service.php'; ?>
+    <?php require 'services/userslist_service.php'; ?>
     <div class="container mt-3">
         <h1>Registrierte Users</h1>
         <hr>
