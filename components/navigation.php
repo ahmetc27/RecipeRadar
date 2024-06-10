@@ -70,13 +70,15 @@
                     echo '<a class="nav-link" href="index.php">PROFILE</a>';
                 }
                 
-                if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
-                    echo '<a class="nav-link" href="userslist.php">Users Verwaltung</a>';
-                }
-
                 ?>
 
             </li>
+
+            <?php
+            if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
+                echo '<a class="nav-link" href="userslist.php">Users Verwaltung</a>';
+            }
+            ?>
 
         </ul>
 
