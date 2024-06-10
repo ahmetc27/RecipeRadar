@@ -22,7 +22,7 @@
 
     */
 
-        include('components/search.php');
+    include('components/search.php');
 
     ?>
 
@@ -33,10 +33,10 @@
 
             <?php
 
-                if (isset($_SESSION['currentSession'])) {
+            if (isset($_SESSION['currentSession'])) {
 
-                    echo
-                    '<li class="nav-item">
+                echo
+                '<li class="nav-item">
                         <a class="nav-link" href="index.php">START</a>
                     </li>
                     <li class="nav-item">
@@ -51,8 +51,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="friends.php">Friends</a>
                     </li>';
-                
-                }
+            }
 
             ?>
 
@@ -69,16 +68,12 @@
                     // Handle the case where userID is not available, perhaps show a default link or error
                     echo '<a class="nav-link" href="index.php">PROFILE</a>';
                 }
-                
+                if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
+                    echo '<a class="nav-link" href="userslist.php">Users Verwaltung</a>';
+                }
                 ?>
 
             </li>
-
-            <?php
-            if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userTyp'] == "admin") {
-                echo '<a class="nav-link" href="userslist.php">Users Verwaltung</a>';
-            }
-            ?>
 
         </ul>
 
