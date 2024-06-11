@@ -9,6 +9,10 @@ if (!isset($_SESSION['currentSession'])) {
     exit();
 }
 
+$viewedUserID = $_GET['userID'] ?? null; // Use null coalescing operator to handle undefined index
+$currentUserID = $_SESSION['currentSession']['userID']; // Define currentUserID
+$targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow requests
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +30,8 @@ if (!isset($_SESSION['currentSession'])) {
     <!-- include the js file -->
     <script src="resources/js/user_script.js"></script> 
     <script src="resources/js/main.js"></script> 
+    <script src="resources/js/approve_request_script.js"></script>
+    <script src="resources/js/refuse_request_script.js"></script>
 
 </head>
 
@@ -53,12 +59,32 @@ if (!isset($_SESSION['currentSession'])) {
 
         <div class="container col-6-m col-12-sm">
 
-
             <!-- need to deal with cached information in order to show new info immediately after saving
             new info -->
             <button id="editButton" onclick="toggleForms('edit')">Edit Info</button>
             <button id="cancelButton" style="display:none;" onclick="toggleForms('view')">Cancel</button>
             
+
+            <!-- I think that it should be possible to write a single javascript script that can handle
+            all buttons. that would make it easier to change text when neccessary (ie. from "send request"
+            to "refuse request"). This could probably be done by adding another value that is passed with 
+            currentUserID and viewingUserID (ie. 1 for send follow request, 2 accept, 3 refuse-->
+
+
+            <form action="services/follow_request_service.php" method="post">
+                <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
+                <input type="hidden" name="relationTo" value="<?php echo $targetUserID; ?>"> 
+                <button type="submit">Send Follow Request</button>
+            </form>
+
+            <!-- Approve Request Button -->
+            <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Approve Request</button>
+
+            <!-- currently "refuse request button" also removes the "friend" -->
+
+            <!-- Refuse Request Button -->
+            <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Refuse Request</button>
+
             <form action="services/logout_service.php" method="post">
                 <button type="submit">Logout</button>
             </form>
@@ -70,8 +96,6 @@ if (!isset($_SESSION['currentSession'])) {
             <div id="userEditForm" style="display:none;">
                 <?php include('components/user_edit_form.php'); ?>
             </div>
-
-            
         
         </div>
     
