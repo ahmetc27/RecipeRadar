@@ -21,7 +21,7 @@ if ($row = $result->fetch_assoc()) {
     $relationID = $row['relationID'];
 
     // Update the relation type to 'friends'
-    $updateQuery = "UPDATE relations SET type = 'friends' WHERE relationID = ?";
+    $updateQuery = "UPDATE relations SET type = 'friend' WHERE relationID = ?";
     $updateStmt = $conn->prepare($updateQuery);
     $updateStmt->bind_param("i", $relationID);
 
