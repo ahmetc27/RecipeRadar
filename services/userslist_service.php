@@ -25,7 +25,7 @@ if (mysqli_num_rows($usersResult) == 0) {
     while ($user = mysqli_fetch_assoc($usersResult)) {
         $layout .= "<div class='card' style='width: 18rem'>
         <div class='card-body'>
-          <h5 class='card-title'>{$user["firstName"]} {$user["lastName"]}</h5>
+          <h5 class='card-title'>{$user["firstName"]} {$user["middleName"]} {$user["lastName"]}</h5>
           <hr>
           <p class='card-text'>Username: {$user["userName"]}</p>
           <a href='userdetails.php?id={$user["userID"]}' class='btn btn-success' >Details</a>
