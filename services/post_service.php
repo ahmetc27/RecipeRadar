@@ -9,6 +9,7 @@ require '../config/db_connect.php'; // Include the database connection file
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gather data from the form
     $meal_title = $_POST['meal_title'];
+    $category = $_POST['category'];
     $description = $_POST['description'];
     $ingredients = $_POST['ingredients'];
     
@@ -50,7 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
                 // Insert data into the database using the established connection
-                $sql = "INSERT INTO posts (authorID, title, content, picPath) VALUES ('$userID', '$meal_title', '$description', '$target_file')";
+                //$sql = "INSERT INTO posts (authorID, title, category, content, picPath) VALUES ('$userID', '$meal_title', '$category', $description', '$target_file')";
+                $stmt = $conn->prepare("INSERT INTO posts (authorID, title, category, content, picPath) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("issss", $userID, $meal_title, $category, $description, $target_file);
 
                 if ($conn->query($sql) === TRUE) {
                     // Display a JavaScript popup message without redirecting
