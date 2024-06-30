@@ -392,73 +392,73 @@ session_start();
     });
 
     // Function to fetch and display comments
-    function fetchComments() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `services/fetch_comments.php?postID=${postID}`, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const commentsList = document.getElementById('comments-list');
-                const comments = JSON.parse(xhr.responseText);
-                if (comments.length > 0) {
-                    commentsList.innerHTML = comments.map(comment => {
-                        const deleteButton = comment.canDelete ? `<button class="delete-comment-button" data-comment-id="${comment.commentID}">Delete</button>` : '';
-                        return `
-                            <div class="comment">
-                                <p><strong>${comment.userName}</strong> (${comment.commentDate}): ${comment.content}</p>
-                                ${deleteButton}
-                            </div>
-                        `;
-                    }).join('');
+function fetchComments() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `services/fetch_comments.php?postID=${postID}`, true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const commentsList = document.getElementById('comments-list');
+            const comments = JSON.parse(xhr.responseText);
+            if (comments.length > 0) {
+                commentsList.innerHTML = comments.map(comment => {
+                    const deleteButton = (comment.canDelete || comment.isAdmin) ? `<button class="delete-comment-button" data-comment-id="${comment.commentID}">Delete</button>` : '';
+                    return `
+                        <div class="comment">
+                            <p><strong>${comment.userName}</strong> (${comment.commentDate}): ${comment.content}</p>
+                            ${deleteButton}
+                        </div>
+                    `;
+                }).join('');
 
-                    // Add event listeners to delete buttons after comments are rendered
-                    document.querySelectorAll('.delete-comment-button').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const commentID = button.getAttribute('data-comment-id');
-                            deleteComment(commentID);
-                        });
+                // Add event listeners to delete buttons after comments are rendered
+                document.querySelectorAll('.delete-comment-button').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const commentID = button.getAttribute('data-comment-id');
+                        deleteComment(commentID);
                     });
-                } else {
-                    commentsList.innerHTML = '<p>No comments yet.</p>';
-                }
+                });
             } else {
-                console.error('Failed to fetch comments. Status:', xhr.status);
+                commentsList.innerHTML = '<p>No comments yet.</p>';
             }
-        };
-        xhr.onerror = function () {
-            console.error('Failed to fetch comments. Check your network connection.');
-        };
-        xhr.send();
-    }
+        } else {
+            console.error('Failed to fetch comments. Status:', xhr.status);
+        }
+    };
+    xhr.onerror = function () {
+        console.error('Failed to fetch comments. Check your network connection.');
+    };
+    xhr.send();
+}
 
-    // Initial fetch of comments on page load
-    fetchComments();
+// Initial fetch of comments on page load
+fetchComments();
 
-    // Function to delete a comment
-    function deleteComment(commentID) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'services/delete_comment_service.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    // Refresh comments after deletion
-                    fetchComments();
-                } else {
-                    alert(response.message);
-                }
+// Function to delete a comment
+function deleteComment(commentID) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'services/delete_comment_service.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                // Refresh comments after deletion
+                fetchComments();
             } else {
-                alert('Failed to delete comment. Please try again later.');
+                alert(response.message);
             }
-        };
-        xhr.onerror = function () {
-            alert('Failed to delete comment. Please check your network connection.');
-        };
-        xhr.send(`commentID=${commentID}`);
-    }
-});
+        } else {
+            alert('Failed to delete comment. Please try again later.');
+        }
+    };
+    xhr.onerror = function () {
+        alert('Failed to delete comment. Please check your network connection.');
+    };
+    xhr.send(`commentID=${commentID}`);
+}
+    });
 
-        </script>
+    </script>
 
     </main>
 </body>
