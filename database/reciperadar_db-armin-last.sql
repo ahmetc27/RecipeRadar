@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Jun 2024 um 18:53
+-- Erstellungszeit: 01. Jul 2024 um 01:04
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `comments` (
   `updateDate` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Daten für Tabelle `comments`
+--
+
+INSERT INTO `comments` (`commentID`, `postID`, `userID`, `content`, `commentDate`, `updateDate`) VALUES
+(5, 34, 83, 'very cool', '2024-07-01 01:02:38', '2024-07-01 01:02:38');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,13 @@ CREATE TABLE `likes` (
   `postID` int(20) NOT NULL,
   `userID` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `likes`
+--
+
+INSERT INTO `likes` (`likeID`, `postID`, `userID`) VALUES
+(133, 34, 83);
 
 -- --------------------------------------------------------
 
@@ -87,11 +101,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`postID`, `authorID`, `category`, `title`, `content`, `instructions`, `season`, `ingredients`, `picPath`, `postDate`) VALUES
-(21, 81, '', 'test', 'test1', NULL, 'All Seasons', NULL, '../uploads/BMW E30 M3.jpg', '2024-05-28 03:00:12'),
-(28, 82, '', 'ddd', 'ddd', NULL, 'All Seasons', NULL, '../uploads/salad.png', '2024-06-30 14:15:12'),
-(29, 82, '', 'Best Homemade Alfredo Sauce ', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor!  This Alfredo Sauce is easy to make and perfect with your favorite pasta!', NULL, 'All Seasons', NULL, '../uploads/pasta-alfredo.png', '2024-06-30 14:29:57'),
-(30, 82, '', 'new', 'new', NULL, 'All Seasons', '1\r\n2\r\n3', '../uploads/salad.png', '2024-06-30 15:04:00'),
-(31, 82, '', 'New pasta alfredo', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor! This Alfredo Sauce is easy to make and perfect with your favorite pasta!', '', 'All Seasons', '1/2 Cup Butter\r\n1 1/2 Cups Heavy Whipping Cream\r\n2 Teaspoons Garlic Minced\r\n1/2 Teaspoon Italian Seasoning\r\n1/2 Teaspoon Salt\r\n1/4 Teaspoon Pepper\r\n2 Cups Freshly Grated Parmesan Cheese', '../uploads/pasta-alfredo.png', '2024-06-30 15:21:24'),
+(30, 82, '', 'Fresh Salad', 'new', NULL, 'All Seasons', '1\r\n2\r\n3', '../uploads/salad.png', '2024-06-30 15:04:00'),
+(31, 82, '', 'Best Homemade Alfredo Sauce ', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor! This Alfredo Sauce is easy to make and perfect with your favorite pasta!', '', 'All Seasons', '1/2 Cup Butter\r\n1 1/2 Cups Heavy Whipping Cream\r\n2 Teaspoons Garlic Minced\r\n1/2 Teaspoon Italian Seasoning\r\n1/2 Teaspoon Salt\r\n1/4 Teaspoon Pepper\r\n2 Cups Freshly Grated Parmesan Cheese', '../uploads/pasta-alfredo.png', '2024-06-30 15:21:24'),
 (34, 82, '', 'Epic summer salad', 'Perfect for BBQs and buffets, our epic salad is an assembly job of gorgeous ingredients – no cooking required. Serve it with lamb kebabs for an impressive summer feast', 'STEP 1\r\nMake the dressing by blending all of the ingredients in a food processor (or very finely chop them), saving a few herb leaves for the salad. You can make the dressing up to 24 hrs before serving.\r\n\r\nSTEP 2\r\nScatter the beans and spinach over a large platter. Arrange the tomatoes, cucumber, mango, onion and radishes on top and gently toss together with your hands. Top the salad with the avocados, feta and herbs, and serve the dressing on the side.', 'Summer', '400g black beans, drained\r\n2 large handfuls baby spinach leaves, roughly chopped\r\n500g heritage tomatoes, chopped into large chunks\r\n½ cucumber, halved lengthways, seeds scooped out and sliced on an angle\r\n1 mango, peeled and chopped into chunks\r\n1 large red onion, halved and finely sliced\r\n6-8 radishes, sliced\r\n2 avocados, peeled and sliced\r\n100g feta, crumbled\r\nhandful of herbs (reserved from the dressing)', '../uploads/Epic-summer-salad.jpg', '2024-06-30 16:42:56');
 
 -- --------------------------------------------------------
@@ -150,7 +161,8 @@ INSERT INTO `users` (`userID`, `type`, `salutation`, `firstName`, `middleName`, 
 (79, '', 'Herr', 'Tin', 'Mid', 'Woodman', 'tintin', 'tin@tin.com', '$2y$10$4AEOeFBvG3lbq/UO9VKZJeb2YzdgWHI7YMa..5oK0CtcjSq4/QlBu', '2020-01-01', NULL),
 (80, '', 'Herr', 'Ahmet', '', 'Cicek', 'ahmo', 'ahmo@ahmo.com', '$2y$10$qlDytecwL2FzhvGuCfBjfuzIPoh0sJS.YDnrAJ5mb60JuUxQ8TjHm', '2020-01-01', NULL),
 (81, 'normal', 'Herr', 'ahmo', 'mesa', 'ahmo', 'ahmoahmo', 'ahmo@mo.com', '$2y$10$6oHkmkrcB1qkHH1tFUFn8eFJNwbJDnJR3oTDq/E2sYd0sAmoDglgy', '2000-01-01', NULL),
-(82, 'normal', 'Herr', 'Armin', '', 'Dervisefendic', 'armin', 'armin.amino99@gmail.com', '$2y$10$YbctY/hS.dvmXhRWtKPiJugg1sZuLNJnGWLs0XissaOYFGW4C1vPq', '1999-04-20', NULL);
+(82, 'normal', 'Herr', 'Armin', '', 'Dervisefendic', 'armin', 'armin.amino99@gmail.com', '$2y$10$YbctY/hS.dvmXhRWtKPiJugg1sZuLNJnGWLs0XissaOYFGW4C1vPq', '1999-04-20', NULL),
+(83, 'normal', '', 'admin', 'admin', 'admin', 'admin', 'admin@admin.at', '$2y$10$s1DTYDnXQkptb9hUbEu1l.M1MsHdZc.bzsUpQsShza5Dr2dqa0TcW', '2024-01-01', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -209,13 +221,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT für Tabelle `messages`
@@ -227,7 +239,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT für Tabelle `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT für Tabelle `relations`
@@ -239,7 +251,7 @@ ALTER TABLE `relations`
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Constraints der exportierten Tabellen
