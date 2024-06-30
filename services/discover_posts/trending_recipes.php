@@ -1,8 +1,13 @@
 <?php
 require 'config/db_connect.php'; 
 
-// Fetch latest 3 posts ordered by postDate in descending order
-$sql = "SELECT * FROM posts ORDER BY postDate DESC LIMIT 3"; 
+// Fetch latest 3 posts joined with users table to get author's first name, ordered by postDate in descending order
+$sql = "SELECT posts.*, users.firstname 
+        FROM posts 
+        INNER JOIN users ON posts.authorID = users.userID 
+        ORDER BY posts.postDate DESC 
+        LIMIT 3"; 
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -21,14 +26,14 @@ if ($result->num_rows > 0) {
         }
 
         echo '<h2>' . $row["title"] . '</h2>';
-        echo '<p>Posted by ' . $row["authorID"] . ' at ' . $row["postDate"] . '</p>';
+        echo '<p>Posted by ' . $row["firstname"] . ' at ' . $row["postDate"] . '</p>'; // Display firstname instead of authorID
         echo '<p class="content">' . $row["content"] . '</p>';
 
         echo '</div>';
-        echo '</a>'; // Closing anchor tag
+        echo '</a>'; 
     }
 
-    echo '</div>'; // Close the row container
+    echo '</div>';
 } else {
     echo '<p>No trending recipes available.</p>';
 }

@@ -27,7 +27,7 @@
                 <option value="Summer">Summer</option>
                 <option value="Autumn">Autumn</option>
                 <option value="Winter">Winter</option>
-            </select><br><br>
+            </select><br><br><br><br>
 
             <input type="submit" value="Submit" class="auth-btn">
             <br><br>

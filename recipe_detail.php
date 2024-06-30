@@ -73,6 +73,12 @@ include('config/db_connect.php');
             color: #333;
             margin-top: 15px;
         }
+
+        .recipe-detail p.season {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -90,33 +96,39 @@ include('config/db_connect.php');
                     if (isset($_GET['postID'])) {
                         $postID = $_GET['postID'];
 
-                        // Fetch recipe details based on postID
-                        $sql = "SELECT * FROM posts WHERE postID = $postID";
+                        // Fetch recipe details and user's first name based on postID
+                        $sql = "SELECT posts.*, users.firstname 
+                                FROM posts 
+                                INNER JOIN users ON posts.authorID = users.userID 
+                                WHERE postID = $postID";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             // Output recipe details
                             $row = $result->fetch_assoc();
                             $title = $row["title"];
-                            $authorID = $row["authorID"];
+                            $authorFirstName = $row["firstname"]; // Fetching first name from users table
                             $postDate = $row["postDate"];
                             $content = $row["content"];
                             $ingredients = nl2br($row["ingredients"]);
                             $instructions = nl2br($row["instructions"]);
                             $picPath = str_replace('../', '', $row["picPath"]);
+                            $season = $row["season"];
 
                             echo '<div class="recipe-detail">';
                             if (!empty($picPath)) {
                                 echo '<img src="' . $picPath . '" class="recipe-image" alt="Recipe Picture">';
                             }
                             echo '<h2>' . $title . '</h2>';
-                            echo '<p>Posted by ' . $authorID . ' at ' . $postDate . '</p>';
+                            echo '<p>Posted by ' . $authorFirstName . ' at ' . $postDate . '</p>';
                             echo '<h3>Description:</h3>';
                             echo '<p>' . $content . '</p>';
                             echo '<h3>Instructions:</h3>';
                             echo '<p class="instructions">' . $instructions . '</p>'; 
                             echo '<h3>Ingredients:</h3>';
                             echo '<p class="ingredients">' . $ingredients . '</p>';
+                            echo '<h3>Season:</h3>';
+                            echo '<p class="season">' . $season . '</p>';
                             echo '</div>';
 
                         } else {

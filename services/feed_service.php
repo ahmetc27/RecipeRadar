@@ -1,8 +1,11 @@
 <?php
-
 require 'config/db_connect.php'; 
 
-$sql = "SELECT * FROM posts ORDER BY postDate DESC"; 
+$sql = "SELECT posts.*, users.firstname 
+        FROM posts 
+        INNER JOIN users ON posts.authorID = users.userID 
+        ORDER BY postDate DESC"; 
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -21,7 +24,7 @@ if ($result->num_rows > 0) {
         }
 
         echo '<h2>' . $row["title"] . '</h2>';
-        echo '<p>Posted by ' . $row["authorID"] . ' at ' . $row["postDate"] . '</p>';
+        echo '<p>Posted by ' . $row["firstname"] . ' at ' . $row["postDate"] . '</p>';
         echo '<p class="content">' . $row["content"] . '</p>';
 
         echo '</div>';
@@ -31,5 +34,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
 ?>

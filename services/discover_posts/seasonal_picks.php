@@ -1,8 +1,17 @@
 <?php
 require 'config/db_connect.php'; 
 
-// Fetch latest 3 posts ordered by postDate in descending order
-$sql = "SELECT * FROM posts ORDER BY postDate DESC LIMIT 3"; 
+// Filter by summer season
+$season = "summer";
+
+// Fetch latest 3 posts with summer season, joined with users table to get author's first name, ordered by postDate in descending order
+$sql = "SELECT posts.*, users.firstname 
+        FROM posts 
+        INNER JOIN users ON posts.authorID = users.userID 
+        WHERE posts.season = '$season' 
+        ORDER BY posts.postDate DESC 
+        LIMIT 3"; 
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -21,7 +30,7 @@ if ($result->num_rows > 0) {
         }
 
         echo '<h2>' . $row["title"] . '</h2>';
-        echo '<p>Posted by ' . $row["authorID"] . ' at ' . $row["postDate"] . '</p>';
+        echo '<p>Posted by ' . $row["firstname"] . ' at ' . $row["postDate"] . '</p>'; // Display firstname instead of authorID
         echo '<p class="content">' . $row["content"] . '</p>';
 
         echo '</div>';
@@ -30,6 +39,6 @@ if ($result->num_rows > 0) {
 
     echo '</div>';
 } else {
-    echo '<p>No trending recipes available.</p>';
+    echo '<p>No trending recipes available for summer.</p>';
 }
 ?>

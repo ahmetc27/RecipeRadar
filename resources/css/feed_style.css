@@ -91,11 +91,14 @@
 }
 
 .recipe-image {
-    width: 100%;
+    max-width: 350px;
+    /* Set maximum width */
     height: auto;
+    /* Maintain aspect ratio */
     border-radius: 8px 8px 0 0;
     /* Rounded corners for the top */
 }
+
 
 .recipe-card h2 {
     font-size: 20px;

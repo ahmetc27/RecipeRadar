@@ -11,12 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $ingredients = $_POST['ingredients'];
     $instructions = $_POST['instructions']; // New field for instructions
-    
+    $season = $_POST['season']; // Retrieve the selected season
+
     // Get the userID from the session
     if (isset($_SESSION['currentSession']) && isset($_SESSION['currentSession']['userID'])) {
         $userID = $_SESSION['currentSession']['userID'];
 
-        // File upload handling
+        // File upload handling (similar to your existing code)
         $target_dir = "../uploads/"; // Ensure this directory exists and is writable
         $target_file = $target_dir . basename($_FILES["photo"]["name"]);
         $uploadOk = 1;
@@ -54,13 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sanitized_description = mysqli_real_escape_string($conn, $description);
                 $sanitized_ingredients = mysqli_real_escape_string($conn, $ingredients);
                 $sanitized_instructions = mysqli_real_escape_string($conn, $instructions);
-                
+                $sanitized_season = mysqli_real_escape_string($conn, $season);
+
                 // Insert data into the database using the established connection
-                $sql = "INSERT INTO posts (authorID, title, content, picPath, ingredients, instructions) 
-                        VALUES ('$userID', '$sanitized_title', '$sanitized_description', '$target_file', '$sanitized_ingredients', '$sanitized_instructions')";
+                $sql = "INSERT INTO posts (authorID, title, content, picPath, ingredients, instructions, season) 
+                        VALUES ('$userID', '$sanitized_title', '$sanitized_description', '$target_file', '$sanitized_ingredients', '$sanitized_instructions', '$sanitized_season')";
 
                 if ($conn->query($sql) === TRUE) {
-                    // Display a JavaScript popup message without redirecting
+                    // Display a success message and redirect
                     echo "New record created successfully";
                     header("location: ../home.php");
                 } else {
@@ -75,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "User is not logged in.";
 
-        // handle the case where the user is not logged in?
-        // redirect the user somewhere at the end of posting just in case?
+        // Handle the case where the user is not logged in
+        // You might want to redirect the user or handle this differently
     }
 }
 ?>

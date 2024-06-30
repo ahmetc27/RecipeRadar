@@ -8,7 +8,13 @@ $userIDs = [75, 80, 82];
 $userIDList = implode(',', $userIDs);
 
 // Fetch latest 3 posts by the specified user IDs, ordered by postDate in descending order
-$sql = "SELECT * FROM posts WHERE authorID IN ($userIDList) ORDER BY postDate DESC LIMIT 3"; 
+$sql = "SELECT posts.*, users.firstname 
+        FROM posts 
+        INNER JOIN users ON posts.authorID = users.userID 
+        WHERE posts.authorID IN ($userIDList) 
+        ORDER BY posts.postDate DESC 
+        LIMIT 3"; 
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -27,7 +33,7 @@ if ($result->num_rows > 0) {
         }
 
         echo '<h2>' . $row["title"] . '</h2>';
-        echo '<p>Posted by ' . $row["authorID"] . ' at ' . $row["postDate"] . '</p>';
+        echo '<p>Posted by ' . $row["firstname"] . ' at ' . $row["postDate"] . '</p>'; // Display firstname instead of authorID
         echo '<p class="content">' . $row["content"] . '</p>';
 
         echo '</div>';
