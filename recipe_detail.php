@@ -1,5 +1,6 @@
 <?php
 include('config/db_connect.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,7 @@ include('config/db_connect.php');
         }
 
         .recipe-detail {
+            margin-left: 5px;
             margin-bottom: 20px;
         }
 
@@ -40,12 +42,18 @@ include('config/db_connect.php');
             height: auto;
             border-radius: 8px;
             margin-bottom: 10px;
+            display: block;
+            /* Make the image a block element */
+            margin-left: auto;
+            /* Center the image horizontally */
+            margin-right: auto;
+            /* Center the image horizontally */
         }
 
         .recipe-detail h2 {
             font-size: 28px;
             margin-bottom: 10px;
-            margin-top: 15px;
+            margin-top: 25px;
             color: #333;
         }
 
@@ -78,6 +86,24 @@ include('config/db_connect.php');
             font-weight: 600;
             color: #333;
             margin-bottom: 15px;
+        }
+
+        .delete-button {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #cc0000;
         }
     </style>
 </head>
@@ -130,6 +156,14 @@ include('config/db_connect.php');
                             echo '<h3>Season:</h3>';
                             echo '<p class="season">' . $season . '</p>';
                             echo '</div>';
+
+                            // Check if the logged-in user is "Admin"
+                            if (isset($_SESSION['currentSession']['userName']) && $_SESSION['currentSession']['userName'] === 'admin') {
+                                echo '<form action="services/delete_recipe_service.php" method="POST" onsubmit="return confirm(\'Are you sure you want to delete this recipe?\');">';
+                                echo '<input type="hidden" name="postID" value="' . $postID . '">';
+                                echo '<button type="submit" class="delete-button">Delete Recipe</button>';
+                                echo '</form>';
+                            }
 
                         } else {
                             echo "Recipe not found.";

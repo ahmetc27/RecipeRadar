@@ -68,11 +68,12 @@
     display: flex;
     justify-content: space-between;
     /* Distribute items evenly across the row */
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 30px;
-    /* Adjust margin as needed */
+    margin: 0 auto 30px;
+    /* Center the row horizontally and set the bottom margin */
+    padding: 0 10px;
+    /* Add left and right padding to adjust spacing */
 }
+
 
 .recipe-card {
     flex: 0 0 calc(33.33% - 20px);

@@ -26,11 +26,11 @@ include('components/head.php');
 }
 
 .container section {
-    text-align: center; /* Center align the content within each section */
+    text-align: center;
 }
 
 .container section h2 {
-    margin-bottom: 20px; /* Optional: Adds some bottom margin to separate the heading from content */
+    margin-bottom: 20px;
 }
 
 </style>
