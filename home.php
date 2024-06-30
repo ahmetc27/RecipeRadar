@@ -37,7 +37,7 @@ if (!isset($_SESSION['currentSession'])) {
 
             <!-- we should set it up as background instead of the image element -->
             <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
-            <div class="container">
+            <div class="container" style="margin-top: 120px;">
 
                 <!-- need to make it a bit slower when appearing/dissappearing -->
                 <div id="postFormContainer" style="display: none;">

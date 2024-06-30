@@ -37,13 +37,10 @@
 
                     echo
                     '<li class="nav-item">
-                        <a class="nav-link" href="index.php">START</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="discover.php">DISCOVER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="feed.php">MY FEED</a>
+                        <a class="nav-link" href="discover.php">Discover</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="help_Service.php">FAQ</a>
@@ -64,7 +61,7 @@
                     echo '<a class="nav-link" href="login.php">LOGIN</a>';
                 } else if (isset($_SESSION['currentSession']['userID'])) {
                     $userID = $_SESSION['currentSession']['userID'];
-                    echo '<a class="nav-link" href="profile.php?userID=' . $userID . '">PROFILE</a>';
+                    echo '<a class="nav-link" href="profile.php?userID=' . $userID . '">Profile</a>';
                 } else {
                     // Handle the case where userID is not available, perhaps show a default link or error
                     echo '<a class="nav-link" href="index.php">PROFILE</a>';
