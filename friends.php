@@ -39,9 +39,6 @@ if (!isset($_SESSION['currentSession'])) {
         </header>
 
         <main>
-
-            <!-- we should set it up as background instead of the image element -->
-            <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
             <div class="container" style="margin-top: 120px; max-width: 900px;">
 
                 <?php

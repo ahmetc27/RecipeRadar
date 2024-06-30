@@ -1,0 +1,123 @@
+body {
+    background-image: url('../../pictures/bg-2.jpeg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-row {
+    max-width: 1400px;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+.container {
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.recipe-detail {
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+.recipe-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block;
+    /* Make the image a block element */
+    margin-left: auto;
+    /* Center the image horizontally */
+    margin-right: auto;
+    /* Center the image horizontally */
+}
+
+.recipe-detail h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    color: #333;
+}
+
+.recipe-detail h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    color: #333;
+}
+
+.recipe-detail p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.recipe-detail p.ingredients {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.recipe-detail p.instructions {
+    font-size: 18px;
+    color: #333;
+    margin-top: 15px;
+}
+
+.recipe-detail p.season {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.delete-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.like-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ccc;
+    /* Default background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.like-button:hover {
+    background-color: #aaa;
+    /* Hover background color */
+}
+
+.like-button.liked {
+    background-color: #008cba;
+    /* Liked background color */
+}
+
+.like-button.liked:hover {
+    background-color: #005f75;
+    /* Liked hover background color */
+}

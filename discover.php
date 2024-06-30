@@ -74,19 +74,19 @@ include('components/head.php');
                 </section>
             </div>
 
-            <div class="container" style="margin: 50px auto;">
-                <section>
+            <div class="container" style="margin: 50px auto; text-align: center;">
+            <section>
                     <h2>Seasonal Picks</h2>
-
                     <hr style="border-top: 0px;">
 
-                    <div class="container">
-                    <?php
-                        include('services/discover_posts/seasonal_picks.php');
-                    ?>
-                     </div>
+                    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+                        <?php
+                            include('services/discover_posts/seasonal_picks.php');
+                        ?>
+                    </div>
                 </section>
             </div>
+
         </div>
 
         <?php
