@@ -34,9 +34,9 @@
 }
 
 .search-form button {
-    flex-shrink: 0; 
-    width: 100px; 
-    padding: 5px 10px; 
+    flex-shrink: 0;
+    width: 100px;
+    padding: 5px 10px;
 }
 
 /* search bar - end */
@@ -50,7 +50,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;

@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $meal_title = $_POST['meal_title'];
     $description = $_POST['description'];
     $ingredients = $_POST['ingredients'];
+    $instructions = $_POST['instructions']; // New field for instructions
     
     // Get the userID from the session
     if (isset($_SESSION['currentSession']) && isset($_SESSION['currentSession']['userID'])) {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if image file is a actual image or fake image
+        // Check if image file is an actual image or fake image
         $check = getimagesize($_FILES["photo"]["tmp_name"]);
         if ($check !== false) {
             $uploadOk = 1;
@@ -49,8 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include('../components/feed.php');
         } else {
             if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                // Sanitize inputs to prevent SQL injection
+                $sanitized_title = mysqli_real_escape_string($conn, $meal_title);
+                $sanitized_description = mysqli_real_escape_string($conn, $description);
+                $sanitized_ingredients = mysqli_real_escape_string($conn, $ingredients);
+                $sanitized_instructions = mysqli_real_escape_string($conn, $instructions);
+                
                 // Insert data into the database using the established connection
-                $sql = "INSERT INTO posts (authorID, title, content, picPath) VALUES ('$userID', '$meal_title', '$description', '$target_file')";
+                $sql = "INSERT INTO posts (authorID, title, content, picPath, ingredients, instructions) 
+                        VALUES ('$userID', '$sanitized_title', '$sanitized_description', '$target_file', '$sanitized_ingredients', '$sanitized_instructions')";
 
                 if ($conn->query($sql) === TRUE) {
                     // Display a JavaScript popup message without redirecting

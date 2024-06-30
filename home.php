@@ -37,7 +37,7 @@ if (!isset($_SESSION['currentSession'])) {
 
             <!-- we should set it up as background instead of the image element -->
             <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
-            <div class="container" style="margin-top: 120px;">
+            <div class="container" style="margin-top: 120px; max-width: 900px;">
 
                 <!-- need to make it a bit slower when appearing/dissappearing -->
                 <div id="postFormContainer" style="display: none;">
@@ -49,17 +49,18 @@ if (!isset($_SESSION['currentSession'])) {
                 </div>
     
                 <!-- need to make it full width and have some space between two buttons later -->
-                <button id="togglePostFormBtn" class="btn btn-primary">Toggle Post Form</button>
+                <button id="togglePostFormBtn" class="btn btn-primary full-width">Toggle Post Form</button>
+
 
             </div>
 
             <!-- change this later? -->
             <hr style="border-top: 0px;">
 
-            <div class="container">
+            <div class="container" style="max-width: 900px;">
 
                 <?php
-                        include('components/feed.php');
+                        include('services/discover_posts/all_posts.php');
                 ?>
 
             </div>

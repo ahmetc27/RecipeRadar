@@ -14,6 +14,9 @@
             <label for="description" style="font-size: 12px;">Description:</label><br>
             <textarea id="description" name="description" rows="4" cols="50" style="font-size: 14px; padding: 5px;" required></textarea><br><br>
 
+            <label for="description" style="font-size: 12px;">Instruction:</label><br>
+            <textarea id="instructions" name="instructions" rows="5" cols="50" style="font-size: 14px; padding: 5px;" required></textarea><br><br>
+
             <label for="photo" style="font-size: 12px;">Upload Photo:</label><br>
             <input type="file" id="photo" name="photo" accept="image/*" style="font-size: 14px; padding: 5px;" required><br><br>
 
@@ -22,6 +25,7 @@
 
             <input type="submit" value="Submit" class="auth-btn">
 
+            <br><br>
         </form>
 
     </div>

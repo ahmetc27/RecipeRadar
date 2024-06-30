@@ -15,6 +15,26 @@ include('config/db_connect.php');
 include('components/head.php');
 ?>
 
+<style>
+    .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container section {
+    text-align: center; /* Center align the content within each section */
+}
+
+.container section h2 {
+    margin-bottom: 20px; /* Optional: Adds some bottom margin to separate the heading from content */
+}
+
+</style>
+
 <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
 
     <?php
@@ -25,33 +45,46 @@ include('components/head.php');
 
         <div class="profile-row" style="max-width: 1400px; margin: 120px auto;">
 
-            <div class="container" style="margin: 10px auto;">
+            <div class="container" style="margin: 50px auto;">
                 <section>
                     <h2>Trending Recipes</h2>
-                    <p>This section displays trending recipes based on popularity, likes, and comments.</p>
 
                     <hr style="border-top: 0px;">
 
                     <div class="container">
                     <?php
-                        include('components/feed.php');
+                        include('services/discover_posts/trending_recipes.php');
                     ?>
                      </div>
 
                 </section>
             </div>
 
-            <div class="container" style="margin: 10px auto;">
+            <div class="container" style="margin: 50px auto;">
                 <section>
-                    <h2>Featured Chefs/Cooks</h2>
-                <p>This section showcases profiles of popular chefs or home cooks and their signature recipes.</p>
+                    <h2>Featured Chefs Recipes</h2>
+
+                    <hr style="border-top: 0px;">
+
+                    <div class="container">
+                    <?php
+                        include('services/discover_posts/featured_chefs.php');
+                    ?>
+                     </div>
                 </section>
             </div>
 
-            <div class="container" style="margin: 10px auto;">
+            <div class="container" style="margin: 50px auto;">
                 <section>
                     <h2>Seasonal Picks</h2>
-                    <p>This section highlights seasonal ingredients and recipes that are trending or relevant to the current season.</p>
+
+                    <hr style="border-top: 0px;">
+
+                    <div class="container">
+                    <?php
+                        include('services/discover_posts/seasonal_picks.php');
+                    ?>
+                     </div>
                 </section>
             </div>
         </div>

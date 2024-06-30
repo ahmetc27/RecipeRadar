@@ -1,7 +1,5 @@
-
 <?php
 include('config/db_connect.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -13,57 +11,85 @@ include('config/db_connect.php');
         body {
             background-image: url('pictures/bg-2.jpeg');
             background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
+
         .profile-row {
             max-width: 1400px;
             margin: 120px auto;
+            padding: 0 20px;
         }
+
         .container {
             margin: 10px auto;
-        }
-        .recipe-detail {
-            background-color: white;
-            padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .recipe-detail {
             margin-bottom: 20px;
         }
+
         .recipe-image {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin-bottom: 10px;
         }
+
         .recipe-detail h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .recipe-detail h3 {
             font-size: 24px;
             margin-bottom: 10px;
+            margin-top: 15px;
+            color: #333;
         }
+
         .recipe-detail p {
             font-size: 16px;
             line-height: 1.6;
-            color: #666;
+            color: #333;
+        }
+
+        .recipe-detail p.ingredients {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .recipe-detail p.instructions {
+            font-size: 18px;
+            color: #333;
+            margin-top: 15px;
         }
     </style>
 </head>
 
-<body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
+<body>
 
-    <?php
-    include('components/navigation.php');
-    ?>
+    <?php include('components/navigation.php'); ?>
 
     <main>
 
         <div class="profile-row">
-
             <div class="container">
                 <section>
                     <?php
-                    
                     // Check if postID is provided in the URL
                     if (isset($_GET['postID'])) {
                         $postID = $_GET['postID'];
-    
+
                         // Fetch recipe details based on postID
                         $sql = "SELECT * FROM posts WHERE postID = $postID";
                         $result = $conn->query($sql);
@@ -75,35 +101,38 @@ include('config/db_connect.php');
                             $authorID = $row["authorID"];
                             $postDate = $row["postDate"];
                             $content = $row["content"];
+                            $ingredients = nl2br($row["ingredients"]);
+                            $instructions = nl2br($row["instructions"]);
                             $picPath = str_replace('../', '', $row["picPath"]);
 
                             echo '<div class="recipe-detail">';
                             if (!empty($picPath)) {
-                                 echo '<img src="' . $picPath . '" class="recipe-image" alt="Recipe Picture">';
-                                }
+                                echo '<img src="' . $picPath . '" class="recipe-image" alt="Recipe Picture">';
+                            }
                             echo '<h2>' . $title . '</h2>';
                             echo '<p>Posted by ' . $authorID . ' at ' . $postDate . '</p>';
+                            echo '<h3>Description:</h3>';
                             echo '<p>' . $content . '</p>';
+                            echo '<h3>Instructions:</h3>';
+                            echo '<p class="instructions">' . $instructions . '</p>'; 
+                            echo '<h3>Ingredients:</h3>';
+                            echo '<p class="ingredients">' . $ingredients . '</p>';
                             echo '</div>';
 
-                            } else {
-                                echo "Recipe not found.";
-                            }
                         } else {
-                            echo "PostID parameter not provided.";
+                            echo "Recipe not found.";
                         }
+                    } else {
+                        echo "PostID parameter not provided.";
+                    }
                     ?>
                 </section>
             </div>
         </div>
 
-        <?php
-        include('components/footer.php');
-        ?>
-
+        <?php include('components/footer.php'); ?>
 
     </main>
 </body>
 
 </html>
-
