@@ -36,10 +36,10 @@ include('components/head.php');
                     <h2 class="text-center">FAQs</h2>
                     <hr>
                     <div class="faq-question" onclick="toggleAnswer('answer1')">
-                        Wann wird die Seite fertig sein?
+                        When will the site be finished?
                     </div>
                     <div id="answer1" class="faq-answer">
-                        Die Webseite wird jede Woche laufend erweitert. Die vollständige Seite wird ungefähr Anfang Juli 2024 fertig sein.
+                        The website will be continuously updated every week and the full site will be ready around early July 2024.
                     </div>
                 </div>
             </div>
