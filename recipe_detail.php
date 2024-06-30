@@ -128,6 +128,23 @@ session_start();
         .like-button.liked:hover {
             background-color: #005f75; /* Liked hover background color */
         }
+
+        .share-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Share button color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .share-button:hover {
+            background-color: #0056b3; /* Share button hover color */
+        }
     </style>
 </head>
 
@@ -187,6 +204,11 @@ session_start();
                              echo '<button id="like-button" class="like-button ' . ($userLiked ? 'liked' : '') . '">Like ' . ($userLiked ? '👍' : '👍') . ' (' . $likeCount . ')</button>';
 
 
+                            echo '<button id="share-button" class="share-button">Share ';
+                            echo '<i class="fas fa-share-square"></i>';
+                            echo '</button>';
+
+
                             // Check if the logged-in user is "Admin"
                             if (isset($_SESSION['currentSession']['userName']) && $_SESSION['currentSession']['userName'] === 'admin') {
                                 echo '<form action="services/delete_recipe_service.php" method="POST" onsubmit="return confirm(\'Are you sure you want to delete this recipe?\');">';
@@ -212,64 +234,77 @@ session_start();
 
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-    const likeButton = document.getElementById('like-button');
-    const postID = '<?php echo $postID; ?>';
-    let userLiked = '<?php echo $userLiked; ?>'; // Convert to boolean
+    document.addEventListener('DOMContentLoaded', function () {
+        const likeButton = document.getElementById('like-button');
+        const shareButton = document.getElementById('share-button');
+        const postID = '<?php echo $postID; ?>';
+        let userLiked = '<?php echo $userLiked; ?>' === '1'; // Convert to boolean
 
-    // Function to update like count and button style
-    function updateLikeButton(likeCount) {
-        likeButton.innerHTML = `Like ${userLiked ? '👍' : '👍'} (${likeCount})`;
-        likeButton.classList.toggle('liked', userLiked);
-    }
+        // Function to update like count and button style
+        function updateLikeButton(likeCount) {
+            likeButton.innerHTML = `Like ${userLiked ? '👍' : '👍'} (${likeCount})`;
+            likeButton.classList.toggle('liked', userLiked);
+        }
 
-    // Function to fetch updated like count from server
-    function fetchAndUpdateLikeCount() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `services/fetch_like_count.php?postID=${postID}`, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                updateLikeButton(response.likeCount);
-            } else {
-                console.error('Failed to fetch like count.');
-            }
-        };
-        xhr.onerror = function () {
-            console.error('Failed to fetch like count. Check your network connection.');
-        };
-        xhr.send();
-    }
-
-    // Initial update of like button on page load
-    fetchAndUpdateLikeCount();
-
-    // Event listener for like button click
-    likeButton.addEventListener('click', function () {
-        const action = userLiked ? 'unlike' : 'like';
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'services/like_recipe_service.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    userLiked = !userLiked;
+        // Function to fetch updated like count from server
+        function fetchAndUpdateLikeCount() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `services/fetch_like_count.php?postID=${postID}`, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
                     updateLikeButton(response.likeCount);
                 } else {
-                    alert(response.message);
+                    console.error('Failed to fetch like count.');
                 }
-            } else {
-                alert('Failed to process your request. Please try again later.');
-            }
-        };
-        xhr.onerror = function () {
-            alert('Failed to process your request. Please check your network connection.');
-        };
-        xhr.send(`postID=${postID}&action=${action}`);
+            };
+            xhr.onerror = function () {
+                console.error('Failed to fetch like count. Check your network connection.');
+            };
+            xhr.send();
+        }
+
+        // Initial update of like button on page load
+        fetchAndUpdateLikeCount();
+
+        // Event listener for like button click
+        likeButton.addEventListener('click', function () {
+            const action = userLiked ? 'unlike' : 'like';
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'services/like_recipe_service.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        userLiked = !userLiked;
+                        updateLikeButton(response.likeCount);
+                    } else {
+                        alert(response.message);
+                    }
+                } else {
+                    alert('Failed to process your request. Please try again later.');
+                }
+            };
+            xhr.onerror = function () {
+                alert('Failed to process your request. Please check your network connection.');
+            };
+            xhr.send(`postID=${postID}&action=${action}`);
+        });
+
+        // Event listener for share button click
+        shareButton.addEventListener('click', function () {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url)
+                .then(function () {
+                    alert('Link copied to clipboard!');
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy: ', err);
+                });
+        });
     });
-});
-        </script>
+</script>
 
 
     </main>
