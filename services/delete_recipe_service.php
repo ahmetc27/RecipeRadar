@@ -9,19 +9,27 @@ if (isset($_SESSION['currentSession']['userName']) && $_SESSION['currentSession'
     if (isset($_POST['postID'])) {
         $postID = $_POST['postID'];
 
-        // Delete the recipe from the database
-        $sql = "DELETE FROM posts WHERE postID = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $postID);
-        if ($stmt->execute()) {
-            // Redirect to deleted.php after successful deletion
-            header("Location: ../deleted_recipe.php");
-            exit();
+        // Delete likes associated with the post
+        $deleteLikesSql = "DELETE FROM likes WHERE postID = ?";
+        $stmtLikes = $conn->prepare($deleteLikesSql);
+        $stmtLikes->bind_param("i", $postID);
+        if ($stmtLikes->execute()) {
+            // Proceed to delete the recipe from the posts table
+            $deletePostSql = "DELETE FROM posts WHERE postID = ?";
+            $stmtPost = $conn->prepare($deletePostSql);
+            $stmtPost->bind_param("i", $postID);
+            if ($stmtPost->execute()) {
+                // Redirect to deleted.php after successful deletion
+                header("Location: ../deleted_recipe.php");
+                exit();
+            } else {
+                echo "Error deleting recipe: " . $stmtPost->error;
+            }
+            $stmtPost->close();
         } else {
-            echo "Error deleting recipe: " . $conn->error;
+            echo "Error deleting likes: " . $stmtLikes->error;
         }
-
-        $stmt->close();
+        $stmtLikes->close();
     } else {
         echo "PostID parameter not provided.";
     }
