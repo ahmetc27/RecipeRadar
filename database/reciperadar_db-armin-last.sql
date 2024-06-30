@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 01. Jul 2024 um 01:04
+-- Erstellungszeit: 01. Jul 2024 um 01:16
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentID`, `postID`, `userID`, `content`, `commentDate`, `updateDate`) VALUES
-(5, 34, 83, 'very cool', '2024-07-01 01:02:38', '2024-07-01 01:02:38');
+(5, 34, 83, 'very cool', '2024-07-01 01:02:38', '2024-07-01 01:02:38'),
+(6, 34, 82, 'nice recipe', '2024-07-01 01:06:16', '2024-07-01 01:06:16');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,8 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`likeID`, `postID`, `userID`) VALUES
-(133, 34, 83);
+(133, 34, 83),
+(134, 34, 82);
 
 -- --------------------------------------------------------
 
@@ -221,13 +223,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT für Tabelle `messages`
