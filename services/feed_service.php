@@ -12,6 +12,8 @@ if ($result->num_rows > 0) {
         $picPath = $row["picPath"];
         $picPath = str_replace('../', '', $picPath);
 
+        // Creating a link to the recipe detail page with the post ID
+        echo '<a href="recipe_detail.php?postID=' . $row["postID"] . '" class="post-link">';
         echo '<div class="post-container">'; 
 
         if (!empty($picPath)) {
@@ -23,6 +25,7 @@ if ($result->num_rows > 0) {
         echo '<p class="content">' . $row["content"] . '</p>';
 
         echo '</div>';
+        echo '</a>'; // Closing anchor tag
 
     }
 } else {

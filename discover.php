@@ -23,7 +23,7 @@ include('components/head.php');
 
     <main>
 
-        <div class="profile-row" style="max-width: 1400px; margin: 130px auto;">
+        <div class="profile-row" style="max-width: 1400px; margin: 120px auto;">
 
             <div class="container" style="margin: 10px auto;">
                 <section>
