@@ -64,59 +64,6 @@
     margin-bottom: 10px;
 }
 
-.recipe-row {
-    display: flex;
-    justify-content: space-between;
-    /* Distribute items evenly across the row */
-    margin: 0 auto 30px;
-    /* Center the row horizontally and set the bottom margin */
-    padding: 0 10px;
-    /* Add left and right padding to adjust spacing */
-}
-
-
-.recipe-card {
-    flex: 0 0 calc(33.33% - 20px);
-    /* Each recipe card takes up one-third of the row with spacing */
-    margin-right: 20px;
-    /* Space between recipe cards */
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    /* Ensure content doesn't overflow */
-}
-
-.recipe-card:hover {
-    transform: translateY(-5px);
-}
-
-.recipe-image {
-    max-width: 350px;
-    /* Set maximum width */
-    height: auto;
-    /* Maintain aspect ratio */
-    border-radius: 8px 8px 0 0;
-    /* Rounded corners for the top */
-}
-
-
-.recipe-card h2 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: #333;
-}
-
-.recipe-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-
 
 
 .full-width {

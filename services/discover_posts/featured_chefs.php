@@ -25,8 +25,9 @@ if ($result->num_rows > 0) {
         $picPath = str_replace('../', '', $picPath);
 
         // Creating a link to the recipe detail page with the post ID
+        echo '<div class="recipe-card">';
         echo '<a href="recipe_detail.php?postID=' . $row["postID"] . '" class="recipe-link">';
-        echo '<div class="recipe-card">'; 
+         
 
         if (!empty($picPath)) {
             echo '<img src="' . $picPath . '" class="recipe-image" alt="Post Picture">';
@@ -36,8 +37,9 @@ if ($result->num_rows > 0) {
         echo '<p>Posted by ' . $row["firstname"] . ' at ' . $row["postDate"] . '</p>'; // Display firstname instead of authorID
         echo '<p class="content">' . $row["content"] . '</p>';
 
-        echo '</div>';
+        
         echo '</a>'; 
+        echo '</div>';
     }
 
     echo '</div>';
