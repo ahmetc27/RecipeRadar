@@ -1,26 +1,28 @@
 <?php
 
-require 'config/db_connect.php'; // Ensure correct relative path to db_connect.php
+require 'config/db_connect.php'; 
 
-$sql = "SELECT * FROM posts";
+$sql = "SELECT * FROM posts ORDER BY postDate DESC"; 
 $result = $conn->query($sql);
 
-// need to change this so that the latest posts are on top
 if ($result->num_rows > 0) {
 
     while($row = $result->fetch_assoc()) {
 
         $picPath = $row["picPath"];
+        $picPath = str_replace('../', '', $picPath);
+
+        echo '<div class="post-container">'; 
 
         if (!empty($picPath)) {
-            echo '<img src="' . $picPath . '" alt="Post Picture">';
+            echo '<img src="' . $picPath . '" class="post-image" alt="Post Picture">';
         }
 
         echo '<h2>' . $row["title"] . '</h2>';
-
         echo '<p>Posted by ' . $row["authorID"] . ' at ' . $row["postDate"] . '</p>';
+        echo '<p class="content">' . $row["content"] . '</p>';
 
-        echo '<p>' . $row["content"] . '</p>';
+        echo '</div>';
 
     }
 } else {
