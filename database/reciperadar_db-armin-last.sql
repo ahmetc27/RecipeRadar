@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Jun 2024 um 18:30
+-- Erstellungszeit: 30. Jun 2024 um 18:53
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -76,6 +76,7 @@ CREATE TABLE `posts` (
   `title` varchar(255) NOT NULL,
   `content` text DEFAULT NULL,
   `instructions` text DEFAULT NULL,
+  `season` varchar(50) NOT NULL DEFAULT 'All Seasons',
   `ingredients` text DEFAULT NULL,
   `picPath` varchar(50) DEFAULT NULL,
   `postDate` timestamp NULL DEFAULT current_timestamp()
@@ -85,13 +86,13 @@ CREATE TABLE `posts` (
 -- Daten für Tabelle `posts`
 --
 
-INSERT INTO `posts` (`postID`, `authorID`, `category`, `title`, `content`, `instructions`, `ingredients`, `picPath`, `postDate`) VALUES
-(21, 81, '', 'test', 'test1', NULL, NULL, '../uploads/BMW E30 M3.jpg', '2024-05-28 03:00:12'),
-(28, 82, '', 'ddd', 'ddd', NULL, NULL, '../uploads/salad.png', '2024-06-30 14:15:12'),
-(29, 82, '', 'Best Homemade Alfredo Sauce ', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor!  This Alfredo Sauce is easy to make and perfect with your favorite pasta!', NULL, NULL, '../uploads/pasta-alfredo.png', '2024-06-30 14:29:57'),
-(30, 82, '', 'new', 'new', NULL, '1\r\n2\r\n3', '../uploads/salad.png', '2024-06-30 15:04:00'),
-(31, 82, '', 'New pasta alfredo', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor! This Alfredo Sauce is easy to make and perfect with your favorite pasta!', '', '1/2 Cup Butter\r\n1 1/2 Cups Heavy Whipping Cream\r\n2 Teaspoons Garlic Minced\r\n1/2 Teaspoon Italian Seasoning\r\n1/2 Teaspoon Salt\r\n1/4 Teaspoon Pepper\r\n2 Cups Freshly Grated Parmesan Cheese', '../uploads/pasta-alfredo.png', '2024-06-30 15:21:24'),
-(32, 82, '', 'last pasta alfredo', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor! This Alfredo Sauce is easy to make and perfect with your favorite pasta!', 'Add the butter and cream to a large skillet.\r\nSimmer over low heat for 2 minutes.\r\nWhisk in the garlic, Italian seasoning, salt, and pepper for one minute.\r\nWhisk in the parmesan cheese until melted.\r\nServe immediately.', '1/2 Cup Butter\r\n1 1/2 Cups Heavy Whipping Cream\r\n2 Teaspoons Garlic Minced\r\n1/2 Teaspoon Italian Seasoning\r\n1/2 Teaspoon Salt\r\n1/4 Teaspoon Pepper\r\n2 Cups Freshly Grated Parmesan Cheese', '../uploads/pasta-alfredo.png', '2024-06-30 15:24:15');
+INSERT INTO `posts` (`postID`, `authorID`, `category`, `title`, `content`, `instructions`, `season`, `ingredients`, `picPath`, `postDate`) VALUES
+(21, 81, '', 'test', 'test1', NULL, 'All Seasons', NULL, '../uploads/BMW E30 M3.jpg', '2024-05-28 03:00:12'),
+(28, 82, '', 'ddd', 'ddd', NULL, 'All Seasons', NULL, '../uploads/salad.png', '2024-06-30 14:15:12'),
+(29, 82, '', 'Best Homemade Alfredo Sauce ', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor!  This Alfredo Sauce is easy to make and perfect with your favorite pasta!', NULL, 'All Seasons', NULL, '../uploads/pasta-alfredo.png', '2024-06-30 14:29:57'),
+(30, 82, '', 'new', 'new', NULL, 'All Seasons', '1\r\n2\r\n3', '../uploads/salad.png', '2024-06-30 15:04:00'),
+(31, 82, '', 'New pasta alfredo', 'Best Homemade Alfredo Sauce is rich, creamy, and packed with garlic parmesan flavor! This Alfredo Sauce is easy to make and perfect with your favorite pasta!', '', 'All Seasons', '1/2 Cup Butter\r\n1 1/2 Cups Heavy Whipping Cream\r\n2 Teaspoons Garlic Minced\r\n1/2 Teaspoon Italian Seasoning\r\n1/2 Teaspoon Salt\r\n1/4 Teaspoon Pepper\r\n2 Cups Freshly Grated Parmesan Cheese', '../uploads/pasta-alfredo.png', '2024-06-30 15:21:24'),
+(34, 82, '', 'Epic summer salad', 'Perfect for BBQs and buffets, our epic salad is an assembly job of gorgeous ingredients – no cooking required. Serve it with lamb kebabs for an impressive summer feast', 'STEP 1\r\nMake the dressing by blending all of the ingredients in a food processor (or very finely chop them), saving a few herb leaves for the salad. You can make the dressing up to 24 hrs before serving.\r\n\r\nSTEP 2\r\nScatter the beans and spinach over a large platter. Arrange the tomatoes, cucumber, mango, onion and radishes on top and gently toss together with your hands. Top the salad with the avocados, feta and herbs, and serve the dressing on the side.', 'Summer', '400g black beans, drained\r\n2 large handfuls baby spinach leaves, roughly chopped\r\n500g heritage tomatoes, chopped into large chunks\r\n½ cucumber, halved lengthways, seeds scooped out and sliced on an angle\r\n1 mango, peeled and chopped into chunks\r\n1 large red onion, halved and finely sliced\r\n6-8 radishes, sliced\r\n2 avocados, peeled and sliced\r\n100g feta, crumbled\r\nhandful of herbs (reserved from the dressing)', '../uploads/Epic-summer-salad.jpg', '2024-06-30 16:42:56');
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT für Tabelle `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT für Tabelle `relations`
