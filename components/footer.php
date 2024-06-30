@@ -1,6 +1,6 @@
 <!-- <footer class="text-center text-lg-start" style="background-color: rgb(146,191,255);"> -->
 <footer class="text-center text-lg-start" style="background-color: rgb(250,245,225);">
-<hr style="border-top: 1px solid black; margin-bottom: 10px;"> <!-- Add this line -->
+<hr style="border-top: 1px solid black; margin-bottom: 10px;">
     <div class="text-center p-2 footer">
     
         <div class="row col-12">
@@ -26,7 +26,7 @@
 
             <a class="text-bold" href="impressum.php" style="color: black;">Impressum</a>
             <br>
-            <a class="text-bold" href="help_service.php" style="color: black;">FAQ</a>
+            <a class="text-bold" href="faq.php" style="color: black;">FAQ</a>
             
         </div>
         

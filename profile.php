@@ -19,15 +19,15 @@ if (!isset($_SESSION['currentSession'])) {
     <?php
         include('components/head.php');
     ?>
-
-    <!-- check if this is still needed? -->
-    <link rel="stylesheet" type="text/css" href="resources/css/tabs_style.css">
-
     <!-- include the js file -->
     <script src="resources/js/user_script.js"></script> 
     <script src="resources/js/main.js"></script> 
 
 </head>
+
+<style>
+
+</style>
 
 <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
 
@@ -45,23 +45,16 @@ if (!isset($_SESSION['currentSession'])) {
     <!-- we should set it up as background instead of the image element -->
     <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
 
-    <!-- temporarily here, will need to change css later -->
-    <hr>
-
+    
     <!-- later will need a "row" so that the admin feed is next to the login/register form -->
-    <div class="row">
+    <div class="row" style="margin-top: 120px;">
 
         <div class="container col-6-m col-12-sm">
 
 
             <!-- need to deal with cached information in order to show new info immediately after saving
             new info -->
-            <button id="editButton" onclick="toggleForms('edit')">Edit Info</button>
-            <button id="cancelButton" style="display:none;" onclick="toggleForms('view')">Cancel</button>
             
-            <form action="services/logout_service.php" method="post">
-                <button type="submit">Logout</button>
-            </form>
 
             <div id="userForm">
                 <?php include('components/user_form.php'); ?>
@@ -71,8 +64,13 @@ if (!isset($_SESSION['currentSession'])) {
                 <?php include('components/user_edit_form.php'); ?>
             </div>
 
-            
+            <button id="editButton" onclick="toggleForms('edit')">Edit Info</button>
+            <button id="cancelButton" style="display:none;" onclick="toggleForms('view')">Cancel</button>
         
+            <form action="services/logout_service.php" method="post">
+                <button type="submit">Logout</button>
+            </form>
+
         </div>
     
     </div>

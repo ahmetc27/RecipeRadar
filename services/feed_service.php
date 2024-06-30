@@ -4,8 +4,8 @@ require 'config/db_connect.php';
 $sql = "SELECT posts.*, users.firstname 
         FROM posts 
         INNER JOIN users ON posts.authorID = users.userID 
-        ORDER BY postDate DESC"; 
-
+        ORDER BY postDate DESC
+        LIMIT 2"; 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

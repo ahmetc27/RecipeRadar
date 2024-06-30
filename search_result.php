@@ -21,6 +21,11 @@ if (!isset($_SESSION['currentSession'])) {
 
         <script src="resources/js/post_form_script.js"></script>
 
+        <style>
+            main {
+            min-height: 1000px;
+            }
+        </style>
     </head>
 
     <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
@@ -34,10 +39,7 @@ if (!isset($_SESSION['currentSession'])) {
         </header>
 
         <main>
-
-            <!-- we should set it up as background instead of the image element -->
-            <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
-            <div class="container">
+            <div class="container" style="margin-top: 120px;">
 
                 <?php
                     include('components/search_result_form.php');

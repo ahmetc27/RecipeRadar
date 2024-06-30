@@ -68,6 +68,8 @@
     display: flex;
     justify-content: space-between;
     /* Distribute items evenly across the row */
+    margin-right: 10px;
+    margin-left: 10px;
     margin-bottom: 30px;
     /* Adjust margin as needed */
 }

@@ -17,7 +17,7 @@ include('components/head.php');
 
 <style>
     .container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -51,7 +51,7 @@ include('components/head.php');
 
                     <hr style="border-top: 0px;">
 
-                    <div class="container">
+                    <div class="container" style="max-width: 1300px;">
                     <?php
                         include('services/discover_posts/trending_recipes.php');
                     ?>

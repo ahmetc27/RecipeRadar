@@ -43,16 +43,7 @@ if (isset($_SESSION['currentSession'])) {
             <hr>
 
             <!-- later will need a "row" so that the admin feed is next to the login/register form -->
-            <div class ="row">
-
-                <div class="container col-6-m col-12-sm">
-
-                    <?php
-                            include('components/feed.php');
-                    ?>
-                
-                </div>
-
+            <div class ="row" style="margin-top: 120px;">
                 <div class="container col-6-m col-12-sm">
 
                     <div class="tab">
@@ -71,6 +62,18 @@ if (isset($_SESSION['currentSession'])) {
                 
                 </div>
             
+                <div class="container col-6-m col-12-sm" style="margin-top: 40px;">
+
+                    <?php
+                            include('components/feed.php');
+                    ?>
+
+                    <br>
+                    <h3 style="text-align: center;">Login/Register to see more recipes</h3>
+                    <br>
+                    
+                </div>
+
             </div>
 
         </main>

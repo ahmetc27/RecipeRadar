@@ -6,6 +6,14 @@
 
 </form>
 
+<!-- 
+echo '<form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter name or last name">
+        <button type="button" onclick="searchUsers()">Search</button>
+        </form>
+        <div id="searchResults"></div>';
+-->
+
 <!-- <input type="text" class="form-control auth-input" id="searchBar" placeholder="Search for users..." onkeyup="searchUsers()"> -->
 <!-- <ul id="userList"></ul>
 <script src="search_script.js"></script> -->

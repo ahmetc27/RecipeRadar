@@ -7,22 +7,14 @@
     </a>
 
     <?php
-    /*      bis es funktioniert
 
     if (isset($_SESSION['currentSession'])) {
 
-        include ('search_service.php');
+        include('components/search.php');
         
-        echo '<form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Enter name or last name">
-        <button type="button" onclick="searchUsers()">Search</button>
-        </form>
-        <div id="searchResults"></div>';
+        
     }
 
-    */
-
-        include('components/search.php');
 
     ?>
 
@@ -43,7 +35,7 @@
                         <a class="nav-link" href="discover.php">Discover</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="help_Service.php">FAQ</a>
+                        <a class="nav-link" href="faq.php">FAQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="friends.php">Friends</a>

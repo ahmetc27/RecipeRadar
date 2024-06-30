@@ -13,8 +13,8 @@
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
-    width: 50%; 
-    box-sizing: border-box; 
+    width: 50%;
+    box-sizing: border-box;
 }
 
 .tab button.active {

@@ -20,5 +20,5 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="resources/css/feed_style.css">
-
+<link rel="stylesheet" type="text/css" href="resources/css/tabs_style.css">
 
