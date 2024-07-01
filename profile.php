@@ -70,7 +70,6 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
             to "refuse request"). This could probably be done by adding another value that is passed with 
             currentUserID and viewingUserID (ie. 1 for send follow request, 2 accept, 3 refuse-->
 
-            <!--
 
             <form action="services/follow_request_service.php" method="post">
                 <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
@@ -78,16 +77,13 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
                 <button type="submit">Send Follow Request</button>
             </form>
 
-            // Approve Request Button 
+            <!-- Approve Request Button -->
             <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Approve Request</button>
 
-            // currently "refuse request button" also removes the "friend"
+            <!-- currently "refuse request button" also removes the "friend" -->
 
-            // Refuse Request Button 
+            <!-- Refuse Request Button -->
             <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Refuse Request</button>
-
-
-            -->
 
             <form action="services/logout_service.php" method="post">
                 <button type="submit">Logout</button>
@@ -106,6 +102,45 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
     </div>
 
 </main>
+
+<script>
+    // Function to handle the approval of the request
+function approveRequest(viewedUserID, currentUserID) {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the request URL
+    var url = 'services/approve_request_service.php';
+
+    // Create a FormData object to send data
+    var formData = new FormData();
+    formData.append('viewedUserID', viewedUserID);
+    formData.append('currentUserID', currentUserID);
+
+    // Open a POST request
+    xhr.open('POST', url, true);
+
+    // Set up the onload function to handle the response
+    xhr.onload = function () {
+        // Check if the request was successful (status code 200)
+        if (xhr.status === 200) {
+            // Redirect to the profile page of the viewed user
+            window.location.href = 'profile.php?userID=' + viewedUserID;
+        } else {
+            // Display an error message
+            console.error('Request failed. Status: ' + xhr.status);
+        }
+    };
+
+    // Set up the onerror function to handle errors
+    xhr.onerror = function () {
+        console.error('Request failed. Check your network connection.');
+    };
+
+    // Send the request with the FormData
+    xhr.send(formData);
+}
+</script>
 
 <?php
     include('components/footer.php');
