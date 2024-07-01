@@ -38,8 +38,8 @@ if (isset($_SESSION['currentSession'])) {
 
             <!-- later will need a "row" so that the admin feed is next to the login/register form -->
             <div class ="row" style="margin-top: 120px;">
-                <div class="container col-6-m col-12-sm">
-
+                <div class="container" style=" max-width: 900px; max-height: 650px; overflow-y: auto;">
+        
                     <div class="tab">
                         <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'login')">Login</button>
                         <button class="tablinks" onclick="openTab(event, 'register')">Register</button>
@@ -56,7 +56,7 @@ if (isset($_SESSION['currentSession'])) {
                 
                 </div>
             
-                <div class="container col-6-m col-12-sm" style="margin-top: 40px;">
+                <div class="container col-6-m col-12-sm">
 
                     <?php
                             include('components/feed.php');
