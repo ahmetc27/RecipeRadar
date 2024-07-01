@@ -41,6 +41,17 @@ include('components/head.php');
                     <div id="answer1" class="faq-answer">
                         The website will be continuously updated every week and the full site will be ready around early July 2024.
                     </div>
+                    
+                </div>
+
+                <div class="faq-card">
+                    <hr>
+                    <div class="faq-question" onclick="toggleAnswer('answer2')">
+                        I can't find answer to my question.
+                    </div>
+                    <div id="answer2" class="faq-answer">
+                        For more questions you can contact us per email: info@recipe-radar.at
+                    </div>
                 </div>
             </div>
         </div>

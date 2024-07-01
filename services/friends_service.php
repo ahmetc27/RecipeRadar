@@ -1,7 +1,6 @@
 <?php
 require 'config/db_connect.php';
 
-
 if (!isset($_SESSION['currentSession']) || !isset($_SESSION['currentSession']['userID'])) {
     header("location: ../index.php");
     exit();
@@ -9,10 +8,10 @@ if (!isset($_SESSION['currentSession']) || !isset($_SESSION['currentSession']['u
 
 $currentUserID = $_SESSION['currentSession']['userID'];
 
-// Query to find users the current user is following
+// Query to find users the current user is following with the type
 $sqlFollowing = "
     SELECT 
-        relationTo AS followingID
+        relationTo AS followingID, type
     FROM relations
     WHERE relationFrom = '$currentUserID'
 ";
@@ -26,14 +25,14 @@ if (!$resultFollowing) {
 $followings = [];
 if ($resultFollowing->num_rows > 0) {
     while ($row = $resultFollowing->fetch_assoc()) {
-        $followings[] = $row['followingID'];
+        $followings[] = ['id' => $row['followingID'], 'type' => $row['type']];
     }
 }
 
-// Query to find users who are following the current user
+// Query to find users who are following the current user with the type
 $sqlFollowers = "
     SELECT 
-        relationFrom AS followerID
+        relationFrom AS followerID, type
     FROM relations
     WHERE relationTo = '$currentUserID'
 ";
@@ -47,7 +46,7 @@ if (!$resultFollowers) {
 $followers = [];
 if ($resultFollowers->num_rows > 0) {
     while ($row = $resultFollowers->fetch_assoc()) {
-        $followers[] = $row['followerID'];
+        $followers[] = ['id' => $row['followerID'], 'type' => $row['type']];
     }
 }
 ?>
