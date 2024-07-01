@@ -63,7 +63,7 @@
 
                 <?php
                  if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['type'] == "admin") {
-                    echo '<a class="nav-link" href="userslist.php">Userslist</a>';
+                    echo '<a class="nav-link" href="userlist.php">Userslist</a>';
                 }
                 ?>
 
