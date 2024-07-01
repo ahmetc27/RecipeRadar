@@ -9,7 +9,6 @@ include 'services/friends_service.php';
         <?php foreach ($followings as $following) : ?>
             <li>
                 <?php
-                // Fetch more details about the friend
                 $friendQuery = "SELECT firstName, lastName FROM users WHERE userID = '" . $following['id'] . "'";
                 $friendResult = $conn->query($friendQuery);
                 if ($friendResult && $friendResult->num_rows > 0) {
@@ -22,18 +21,11 @@ include 'services/friends_service.php';
             </li>
         <?php endforeach; ?>
     </ul>
-<?php else : ?>
-    <p>You have no friends in your list.</p>
-<?php endif; ?>
-
-<!-- <h2 style="text-align: center;">Requests</h2> -->
-
-<?php if (!empty($followers)) : ?>
+<?php elseif (!empty($followers)) : ?>
     <ul>
         <?php foreach ($followers as $follower) : ?>
             <li>
                 <?php
-                // Fetch more details about the friend
                 $friendQuery = "SELECT firstName, lastName FROM users WHERE userID = '" . $follower['id'] . "'";
                 $friendResult = $conn->query($friendQuery);
                 if ($friendResult && $friendResult->num_rows > 0) {

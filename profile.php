@@ -70,6 +70,7 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
             to "refuse request"). This could probably be done by adding another value that is passed with 
             currentUserID and viewingUserID (ie. 1 for send follow request, 2 accept, 3 refuse-->
 
+            <!--
 
             <form action="services/follow_request_service.php" method="post">
                 <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
@@ -77,13 +78,16 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
                 <button type="submit">Send Follow Request</button>
             </form>
 
-            <!-- Approve Request Button -->
+            // Approve Request Button 
             <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Approve Request</button>
 
-            <!-- currently "refuse request button" also removes the "friend" -->
+            // currently "refuse request button" also removes the "friend"
 
-            <!-- Refuse Request Button -->
+            // Refuse Request Button 
             <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Refuse Request</button>
+
+
+            -->
 
             <form action="services/logout_service.php" method="post">
                 <button type="submit">Logout</button>
