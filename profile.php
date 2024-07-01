@@ -12,6 +12,15 @@ $viewedUserID = $_GET['userID'] ?? null;
 $currentUserID = $_SESSION['currentSession']['userID']; 
 $targetUserID = $viewedUserID; 
 
+// Check if current user is friends with viewed user
+$sql = "SELECT * FROM relations WHERE ((relationFrom = ? AND relationTo = ?) OR (relationFrom = ? AND relationTo = ?)) AND type = 'friend'";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("iiii", $currentUserID, $viewedUserID, $viewedUserID, $currentUserID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$isFriends = $result->num_rows > 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +59,7 @@ $targetUserID = $viewedUserID;
                 <form action="services/logout_service.php" method="post">
                     <button type="submit">Logout</button>
                 </form>
-            <?php else: ?>
+            <?php elseif (!$isFriends): ?>
                 <form action="services/follow_request_service.php" method="post">
                     <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
                     <input type="hidden" name="relationTo" value="<?php echo $targetUserID; ?>"> 
@@ -60,6 +69,8 @@ $targetUserID = $viewedUserID;
 
                 <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Approve Request</button>
                 <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Refuse Request</button>
+            <?php else: ?>
+                <button onclick="removeFriend(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Remove Friend</button>
             <?php endif; ?>
 
             <div id="userForm">
@@ -108,6 +119,35 @@ $targetUserID = $viewedUserID;
         };
 
         xhr.send(formData);
+    }
+
+    // Function to handle removing a friend relation
+    function removeFriend(viewedUserID, currentUserID) {
+        if (confirm('Are you sure you want to remove this user as a friend?')) {
+            var xhr = new XMLHttpRequest();
+            var url = 'services/remove_friend_service.php';
+            var formData = new FormData();
+            formData.append('viewedUserID', viewedUserID);
+            formData.append('currentUserID', currentUserID);
+
+            xhr.open('POST', url, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('Friend removed successfully.');
+                    // Reload the page or update UI as needed
+                    window.location.reload();
+                } else {
+                    console.error('Request failed. Status: ' + xhr.status);
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error('Request failed. Check your network connection.');
+            };
+
+            xhr.send(formData);
+        }
     }
 </script>
 

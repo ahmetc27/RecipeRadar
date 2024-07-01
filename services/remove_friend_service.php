@@ -1,38 +1,39 @@
 <?php
 require '../config/db_connect.php';
-
 session_start();
 
-if (!isset($_SESSION['currentSession'])) {
-    http_response_code(403); // Forbidden
-    exit("Session not found");
+if (!isset($_SESSION['currentSession']) || !isset($_SESSION['currentSession']['userID'])) {
+    header("location: ../index.php");
+    exit();
 }
 
-$currentUserID = $_SESSION['currentSession']['userID'];
-$viewedUserID = $_POST['viewedUserID'] ?? null;
+$currentUserID = $_POST['currentUserID'];
+$viewedUserID = $_POST['viewedUserID'];
 
-if (!$viewedUserID) {
-    http_response_code(400); // Bad Request
-    exit("Invalid parameters");
-}
-
-// Ensure both IDs are integers
-$currentUserID = intval($currentUserID);
-$viewedUserID = intval($viewedUserID);
-
-// Delete the friendship relation from relations table
-$sql = "DELETE FROM relations WHERE 
-            (relationFrom = ? AND relationTo = ? AND type = 'friend') OR 
-            (relationFrom = ? AND relationTo = ? AND type = 'friend')";
-$stmt = $conn->prepare($sql);
+// Check if relation exists
+$query = "SELECT relationID FROM relations WHERE ((relationFrom = ? AND relationTo = ?) OR (relationFrom = ? AND relationTo = ?)) AND type = 'friend'";
+$stmt = $conn->prepare($query);
 $stmt->bind_param("iiii", $currentUserID, $viewedUserID, $viewedUserID, $currentUserID);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($stmt->execute()) {
-    http_response_code(200); // OK
-    exit("Friend removed successfully");
+if ($row = $result->fetch_assoc()) {
+    $relationID = $row['relationID'];
+
+    // Delete the relation
+    $deleteQuery = "DELETE FROM relations WHERE relationID = ?";
+    $deleteStmt = $conn->prepare($deleteQuery);
+    $deleteStmt->bind_param("i", $relationID);
+
+    if ($deleteStmt->execute()) {
+        echo "Friend removed successfully.";
+    } else {
+        echo "Error removing friend: " . $deleteStmt->error;
+    }
+
+    $deleteStmt->close();
 } else {
-    http_response_code(500); // Internal Server Error
-    exit("Failed to remove friend: " . $stmt->error);
+    echo "No friend relation found.";
 }
 
 $stmt->close();
