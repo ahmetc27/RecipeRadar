@@ -18,6 +18,11 @@ if (!isset($_SESSION['currentSession'])) {
         <?php
             include('components/head.php');
         ?>
+        <style>
+            main {
+            min-height: 1000px;
+            }
+        </style>
 
         <script src="resources/js/post_form_script.js"></script>
 
@@ -34,10 +39,7 @@ if (!isset($_SESSION['currentSession'])) {
         </header>
 
         <main>
-
-            <!-- we should set it up as background instead of the image element -->
-            <!-- <img class="home-logo" src="pictures/logo-new.png" alt="Recipe Radar" /> -->
-            <div class="container">
+            <div class="container" style="margin-top: 120px; max-width: 900px;">
 
                 <?php
                     include('components/friends_form.php');
