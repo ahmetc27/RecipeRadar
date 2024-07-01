@@ -55,7 +55,7 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
     <hr>
 
     <!-- later will need a "row" so that the admin feed is next to the login/register form -->
-    <div class="row">
+    <div class="row" style="margin-top: 90px;">
 
         <div class="container col-6-m col-12-sm">
 
@@ -75,6 +75,7 @@ $targetUserID = $viewedUserID; // Assuming viewedUserID is the target for follow
                 <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
                 <input type="hidden" name="relationTo" value="<?php echo $targetUserID; ?>"> 
                 <button type="submit">Send Follow Request</button>
+                <br><br>
             </form>
 
             <!-- Approve Request Button -->
