@@ -10,6 +10,13 @@ session_start();
     include('components/head.php');
     ?>
 </head>
+
+<style>
+    main {
+        min-height: 1000px;
+    }
+</style>
+
 <header>
 
     <?php
@@ -21,9 +28,9 @@ session_start();
 <body>
 
     <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
-        <?php require 'services/userslist_service.php'; ?>
+        <?php require 'services/userlist_service.php'; ?>
         <main>
-            <div class="container mt-3">
+            <div class="container" style=" max-width: 700px; margin-top: 120px; overflow-y: auto; ">
                 <h1>Registrierte Users</h1>
                 <hr>
                 <div class="d-flex justify-content-center gap-5 flex-wrap mt-3">

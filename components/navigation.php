@@ -40,9 +40,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="friends.php">Friends</a>
                     </li>';
-                
-                }
 
+                    if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['type'] == "admin") {
+                        echo 
+                        '<li class="nav-item">
+                            <a class="nav-link" href="userlist.php">User List</a>
+                        </li>';
+                    }
+                }
+            
             ?>
 
             <li class="nav-item">
@@ -55,17 +61,11 @@
                     $userID = $_SESSION['currentSession']['userID'];
                     echo '<a class="nav-link" href="profile.php?userID=' . $userID . '">Profile</a>';
                 } else {
-                    // Handle the case where userID is not available, perhaps show a default link or error
                     echo '<a class="nav-link" href="index.php">Profile</a>';
                 }
 
                 ?>
 
-                <?php
-                 if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['type'] == "admin") {
-                    echo '<a class="nav-link" href="userlist.php">Userslist</a>';
-                }
-                ?>
 
             </li>
 
