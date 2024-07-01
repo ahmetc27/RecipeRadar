@@ -3,7 +3,7 @@ include 'services/friends_service.php';
 ?>
 
 
-<h1>Your Friends</h1>
+<h2 style="text-align: center;">Your Friends</h2>
 
 <?php if (!empty($followings)) : ?>
     <ul>
@@ -27,7 +27,7 @@ include 'services/friends_service.php';
     <p>You have no friends in your list.</p>
 <?php endif; ?>
 
-<h1>Your Friends</h1>
+<h2 style="text-align: center;">Requests</h2>
 
 <?php if (!empty($followers)) : ?>
     <ul>
