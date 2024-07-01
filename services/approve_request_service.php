@@ -10,17 +10,18 @@ if (!isset($_SESSION['currentSession']) || !isset($_SESSION['currentSession']['u
 $currentUserID = $_POST['currentUserID'];
 $viewedUserID = $_POST['viewedUserID'];
 
-// Check if relation exists
-$query = "SELECT relationID FROM relations WHERE relationFrom = ? AND relationTo = ?";
+// Check if relation exists in either direction
+$query = "SELECT relationID FROM relations 
+          WHERE (relationFrom = ? AND relationTo = ?) OR (relationFrom = ? AND relationTo = ?)";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("ii", $viewedUserID, $currentUserID);
+$stmt->bind_param("iiii", $viewedUserID, $currentUserID, $currentUserID, $viewedUserID);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($row = $result->fetch_assoc()) {
     $relationID = $row['relationID'];
 
-    // Update the relation type to 'friends'
+    // Update the relation type to 'friend'
     $updateQuery = "UPDATE relations SET type = 'friend' WHERE relationID = ?";
     $updateStmt = $conn->prepare($updateQuery);
     $updateStmt->bind_param("i", $relationID);
