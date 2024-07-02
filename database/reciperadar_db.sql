@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2024 at 12:01 PM
+-- Generation Time: Jul 02, 2024 at 12:46 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -237,7 +237,9 @@ INSERT INTO `users` (`userID`, `type`, `salutation`, `firstName`, `middleName`, 
 (95, 'normal', 'Herr', 'Michael', 'Joseph', 'Thomas', 'michaelthomas80', 'michael.thomas@example.com', '$2y$10$vRsn3mLHTfYtUQNkNoYrlesek08POhnWq54.A8hyBJrc9fxe8VFBy', '1980-04-02', NULL),
 (96, 'normal', 'Frau', 'Jennifer', 'Marie', 'Jackson', 'jenniferjackson86', 'jennifer.jackson@example.com', '$2y$10$ITJB.zNt3w05o0R50PepeuhWYh7Y/Qd/a5xKQx3f.ZOWO1jSTMWm.', '1986-07-07', NULL),
 (97, 'normal', 'Herr', 'Matthew', 'Alexander', 'White', 'matthewwhite94', 'matthew.white@example.com', '$2y$10$LqDHY/Zp711kQ9/dVIDKye0OoWbEsdWib0ZSD9mlyqt4whtSMJbl6', '1994-01-01', NULL),
-(98, 'normal', 'Frau', 'Jessica', 'Lynn', 'Harris', 'jessicaharris89', 'jessica.harris@example.com', '$2y$10$DbEGq9GzkGzO0rk/MJdR4eLKpq0keYAoY2aIX.xDDK6jtvVfyOpb.', '1989-04-05', NULL);
+(98, 'normal', 'Frau', 'Jessica', 'Lynn', 'Harris', 'jessicaharris89', 'jessica.harris@example.com', '$2y$10$DbEGq9GzkGzO0rk/MJdR4eLKpq0keYAoY2aIX.xDDK6jtvVfyOpb.', '1989-04-05', NULL),
+(99, 'normal', 'Herr', 'testtt', 'testt', 'testt', 'testt', 'testt@test.at', '$2y$10$SmpY5q7O.kAjbi7P7fiRpeImgt/GB1Hvc3hhfI8af.IAzRuMtgDAu', '2024-07-02', NULL),
+(100, 'normal', 'Herr', 'Ahmet', 'Ahmo', 'Cicek', 'ahmetc27', 'ahmetcicek@gmail.at', '$2y$10$BMcT.TmQpSw/762iy3/QVeel894kmEqsmywYSnU4FuaU.FHz0XlOS', '2024-07-02', NULL);
 
 --
 -- Indexes for dumped tables
@@ -320,13 +322,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `relations`
 --
 ALTER TABLE `relations`
-  MODIFY `relationID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `relationID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
