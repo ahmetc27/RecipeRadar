@@ -18,7 +18,7 @@ include('components/head.php');
 
 <style>
     main {
-    min-height: 1000px;
+    min-height: 900px;
     }
 </style>
 
@@ -31,7 +31,7 @@ include('components/head.php');
     <main>
 
         <div class="profile-row" style="max-width: 1400px; margin: 120px auto;">
-            <div class="container" style="width: 100%; height: 100vh; margin: 100px auto;">
+            <div class="container" style="width: 100%; height: 500px; margin: 100px auto;">
                 <div class="faq-card">
                     <h2 class="text-center">FAQs</h2>
                     <hr>
@@ -56,12 +56,12 @@ include('components/head.php');
             </div>
         </div>
 
-        <?php
-        include('components/footer.php');
-        ?>
+       
 
     </main>
-
+    <?php
+        include('components/footer.php');
+        ?>
     </body>
 
     
