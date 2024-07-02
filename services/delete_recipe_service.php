@@ -22,7 +22,7 @@ if (isset($_SESSION['currentSession']['userID'])) {
         $stmtFetchAuthor->close();
 
         // Check if the logged-in user is the admin or the author of the post
-        if ($_SESSION['currentSession']['type'] == "admin" || $userID == $authorID) {
+        if ($userName === 'admin' || $userID == $authorID) {
             // Delete likes associated with the post
             $deleteLikesSql = "DELETE FROM likes WHERE postID = ?";
             $stmtLikes = $conn->prepare($deleteLikesSql);
