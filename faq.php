@@ -76,7 +76,7 @@ include('components/head.php');
                         I can't find answer to my question.
                     </div>
                     <div id="answer2" class="faq-answer">
-                        For more questions you can contact us by email: info@recipe-radar.at
+                        For more questions you can contact us by email: <a href="mailto:info@recipe-radar.at">info@recipe-radar.at</a>
                     </div>
                 </div>
             </div>
