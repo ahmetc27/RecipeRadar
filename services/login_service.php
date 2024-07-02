@@ -26,8 +26,7 @@ if (!isset($_SESSION["currentSession"])) {
 
         if (password_verify($inputPassword, $userData["password"])) {
             $_SESSION["currentSession"] = $userData;
-            echo '<script>alert("Login successful!"); window.close();</script>';
-            exit; // Stop further execution
+            header("Location: ../home.php");
         } else {
             echo '<script>alert("Username or password is incorrect!"); window.history.back();</script>';
             exit; // Stop further execution
