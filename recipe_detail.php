@@ -259,7 +259,7 @@ session_start();
                             echo '</div>'; // End comments-section
 
                             // Check if the logged-in user is "Admin" or the author of the post
-                            if (isset($_SESSION['currentSession']['userName']) && ($_SESSION['currentSession']['userName'] === 'admin' || $_SESSION['currentSession']['userID'] == $row['authorID'])) {
+                            if (isset($_SESSION['currentSession']['userName']) && ($_SESSION['currentSession']['type'] === 'admin' || $_SESSION['currentSession']['userID'] == $row['authorID'])) {
                                 echo '<form action="services/delete_recipe_service.php" method="POST" onsubmit="return confirm(\'Are you sure you want to delete this recipe?\');">';
                                 echo '<input type="hidden" name="postID" value="' . $postID . '">';
                                 echo '<button type="submit" class="delete-button">Delete Recipe</button>';

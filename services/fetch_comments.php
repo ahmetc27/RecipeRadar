@@ -6,7 +6,7 @@ if (isset($_GET['postID'])) {
     $postID = $_GET['postID'];
 
     // Fetch comments with user information
-    $sql = "SELECT comments.*, users.userName 
+    $sql = "SELECT comments.*, users.userName, users.type
             FROM comments 
             INNER JOIN users ON comments.userID = users.userID
             WHERE postID = ?";
@@ -22,7 +22,7 @@ if (isset($_GET['postID'])) {
             $row['canDelete'] = ($_SESSION['currentSession']['userID'] == $row['userID']);
 
             // Check if the logged-in user is admin
-            $row['isAdmin'] = ($_SESSION['currentSession']['userName'] === 'admin');
+            $row['isAdmin'] = ($_SESSION['currentSession']['type'] === 'admin');
 
             $comments[] = $row;
         }

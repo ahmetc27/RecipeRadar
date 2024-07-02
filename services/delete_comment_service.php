@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['commentID'])) {
     
     // Perform validation and check user permissions
     // Check if logged-in user is admin or owner of the comment
-    if ($_SESSION['currentSession']['userName'] === 'admin' || canDeleteComment($commentID, $_SESSION['currentSession']['userID'])) {
+    if ($_SESSION['currentSession']['type'] === 'admin' || canDeleteComment($commentID, $_SESSION['currentSession']['userID'])) {
         // Delete comment from database
         $sql = "DELETE FROM comments WHERE commentID = ?";
         $stmt = $conn->prepare($sql);
