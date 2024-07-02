@@ -7,7 +7,7 @@ include('../config/db_connect.php');
 // Check if the user is logged in
 if (isset($_SESSION['currentSession']['userID'])) {
     $userID = $_SESSION['currentSession']['userID'];
-    $type = $_SESSION['currentSession']['type'];
+    $userName = $_SESSION['currentSession']['userName'];
 
     if (isset($_POST['postID'])) {
         $postID = $_POST['postID'];
@@ -22,7 +22,7 @@ if (isset($_SESSION['currentSession']['userID'])) {
         $stmtFetchAuthor->close();
 
         // Check if the logged-in user is the admin or the author of the post
-        if ($type === 'admin' || $userID == $authorID) {
+        if ($_SESSION['currentSession']['type'] == "admin" || $userID == $authorID) {
             // Delete likes associated with the post
             $deleteLikesSql = "DELETE FROM likes WHERE postID = ?";
             $stmtLikes = $conn->prepare($deleteLikesSql);
