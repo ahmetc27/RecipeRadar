@@ -41,7 +41,7 @@
                         <a class="nav-link" href="friends.php">Friends</a>
                     </li>';
 
-                    if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['type'] == "admin") {
+                    if (isset($_SESSION['currentSession']) && $_SESSION['currentSession']['userName'] == "admin") {
                         echo 
                         '<li class="nav-item">
                             <a class="nav-link" href="userlist.php">User List</a>
