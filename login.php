@@ -38,7 +38,7 @@ if (isset($_SESSION["currentSession"])) {
         <main>
 
             <!-- later will need a "row" so that the admin feed is next to the login/register form -->
-            <div class ="row" style="margin-top: 120px;">
+            <div class ="row" style="margin-top: 90px;">
                 <div class="container col-6-m col-12-sm">
 
                     <div class="tab">

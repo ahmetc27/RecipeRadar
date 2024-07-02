@@ -31,7 +31,7 @@ if (isset($_SESSION["currentSession"])) {
 
         <main>
 
-            <div class="container">
+            <div class="container" style="margin-top: 90px;">
             
                 <?php
                     include('components/register_form.php');
