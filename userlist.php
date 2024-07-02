@@ -31,7 +31,7 @@ session_start();
         <?php require 'services/userlist_service.php'; ?>
         <main>
             <div class="container" style=" max-width: 700px; margin-top: 120px; overflow-y: auto; ">
-                <h1>Registrierte Users</h1>
+                <h1>Registered Users</h1>
                 <hr>
                 <div class="d-flex justify-content-center gap-5 flex-wrap mt-3">
                     <?= $layout ?>
