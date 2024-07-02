@@ -1,10 +1,7 @@
-
 <?php
 session_start();
 
 include('config/db_connect.php');
-
-
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +15,7 @@ include('components/head.php');
 
 <style>
     main {
-    min-height: 900px;
+        min-height: 900px;
     }
 </style>
 
@@ -34,27 +31,6 @@ include('components/head.php');
             <div class="container" style="width: 100%; height: 900px; margin: 100px auto;">
                 <div class="faq-card">
                     <h2 class="text-center">FAQs</h2>
-                    <hr>
-                    <div class="faq-question" onclick="toggleAnswer('answer1')">
-                        When will the site be finished?
-                    </div>
-                    <div id="answer1" class="faq-answer">
-                        The website will be continuously updated every week and the full site will be ready around early July 2024.
-                    </div>
-                    
-                </div>
-
-                <div class="faq-card">
-                    <hr>
-                    <div class="faq-question" onclick="toggleAnswer('answer2')">
-                        I can't find answer to my question.
-                    </div>
-                    <div id="answer2" class="faq-answer">
-                        For more questions you can contact us by email: info@recipe-radar.at
-                    </div>
-                </div>
-
-                <div class="faq-card">
                     <hr>
                     <div class="faq-question" onclick="toggleAnswer('answer3')">
                         How do I post a recipe on RecipeRadar?
@@ -77,22 +53,41 @@ include('components/head.php');
                 <div class="faq-card">
                     <hr>
                     <div class="faq-question" onclick="toggleAnswer('answer5')">
-                        What should I do after submitting my post? 
+                        What should I do after submitting my post?
                     </div>
                     <div id="answer5" class="faq-answer">
                         After submitting, your recipe will be visible for others to like, comment, and share on RecipeRadar.
                     </div>
                 </div>
+
+                <div class="faq-card">
+                    <hr>
+                    <div class="faq-question" onclick="toggleAnswer('answer1')">
+                        When will the site be finished?
+                    </div>
+                    <div id="answer1" class="faq-answer">
+                        The website will be continuously updated every week and the full site will be ready around early July 2024.
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <hr>
+                    <div class="faq-question" onclick="toggleAnswer('answer2')">
+                        I can't find answer to my question.
+                    </div>
+                    <div id="answer2" class="faq-answer">
+                        For more questions you can contact us by email: info@recipe-radar.at
+                    </div>
+                </div>
             </div>
         </div>
 
-       
-
     </main>
-    <?php
-        include('components/footer.php');
-        ?>
-    </body>
-
     
+    <?php
+    include('components/footer.php');
+    ?>
+    
+</body>
+
 </html>
