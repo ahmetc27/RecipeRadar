@@ -12,15 +12,25 @@ $viewedUserID = $_GET['userID'] ?? null;
 $currentUserID = $_SESSION['currentSession']['userID']; 
 $targetUserID = $viewedUserID; 
 
-// Check if current user is friends with viewed user
-$sql = "SELECT * FROM relations WHERE ((relationFrom = ? AND relationTo = ?) OR (relationFrom = ? AND relationTo = ?)) AND type = 'friend'";
+// Check if current user is friends with viewed user and get the relation type and roles
+$sql = "SELECT type, relationFrom, relationTo FROM relations WHERE (relationFrom = ? AND relationTo = ?) OR (relationFrom = ? AND relationTo = ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("iiii", $currentUserID, $viewedUserID, $viewedUserID, $currentUserID);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$isFriends = $result->num_rows > 0;
+$relationType = null;
+$relationFrom = null;
+$relationTo = null;
+if ($row = $result->fetch_assoc()) {
+    $relationType = $row['type'];
+    $relationFrom = $row['relationFrom'];
+    $relationTo = $row['relationTo'];
+}
 
+$isFriends = $relationType === 'friend';
+$isRequestToCurrentUser = $relationType === 'request' && $relationFrom == $viewedUserID && $relationTo == $currentUserID;
+$isRequest = $relationType === 'request';
 ?>
 
 <!DOCTYPE html>
@@ -90,66 +100,54 @@ $isFriends = $result->num_rows > 0;
 <main>
     <div class="row" style="margin-top: 110px;">
         <div class="container col-6-m col-12-sm" style="max-height: 1100px;">
-
             <?php if ($currentUserID == $viewedUserID): ?>
-            <div class="button-container">
-                <button id="editButton" class="action-button" onclick="toggleForms('edit')">Edit Info</button>
-                <button id="cancelButton" class="action-button" style="display:none;" onclick="toggleForms('view')">Cancel</button>
-                <form action="services/logout_service.php" method="post">
-                    <button type="submit" class="action-button logout">Logout</button>
-                </form>
-            </div>
-            <?php elseif (!$isFriends): ?>
+                <div class="button-container">
+                    <button id="editButton" class="action-button" onclick="toggleForms('edit')">Edit Info</button>
+                    <button id="cancelButton" class="action-button" style="display:none;" onclick="toggleForms('view')">Cancel</button>
+                    <form action="services/logout_service.php" method="post">
+                        <button type="submit" class="action-button logout">Logout</button>
+                    </form>
+                </div>
+            <?php elseif (!$isFriends && !$isRequest): ?>
                 <form action="services/follow_request_service.php" method="post">
                     <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
                     <input type="hidden" name="relationTo" value="<?php echo $targetUserID; ?>"> 
                     <button type="submit" class="action-button send">Send Follow Request</button>
                     <br><br>
                 </form>
-
-            <div class="button-container">
-
-                <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button approve-button">Approve Request</button>
-                <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button refuse-button">Refuse Request</button>
-
-            </div>
-            <?php else: ?>
+            <?php elseif ($isRequestToCurrentUser): ?>
+                <div class="button-container">
+                    <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button approve-button">Approve Request</button>
+                    <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button refuse-button">Refuse Request</button>
+                </div>
+            <?php elseif ($isFriends): ?>
                 <button onclick="removeFriend(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button remove-button">Remove Friend</button>
             <?php endif; ?>
-
             <div id="userForm">
                 <?php include('components/user_form.php'); ?>
             </div>
-
             <div id="userEditForm" style="display:none;">
                 <?php include('components/user_edit_form.php'); ?>
             </div>
-        
         </div>
-
         <div class="container" style="text-align: center;">
             <section>
                 <h2>Recipes</h2>
                 <hr style="border-top: 0px;">
-                <?php
-                    include('services/discover_posts/user_profile_recipes.php');
-                ?>
+                <?php include('services/discover_posts/user_profile_recipes.php'); ?>
             </section>
         </div>
     </div>
 </main>
 
 <script>
-    // Function to handle the approval of the request
     function approveRequest(viewedUserID, currentUserID) {
         var xhr = new XMLHttpRequest();
         var url = 'services/approve_request_service.php';
         var formData = new FormData();
         formData.append('viewedUserID', viewedUserID);
         formData.append('currentUserID', currentUserID);
-
         xhr.open('POST', url, true);
-
         xhr.onload = function () {
             if (xhr.status === 200) {
                 window.location.href = 'profile.php?userID=' + viewedUserID;
@@ -157,15 +155,11 @@ $isFriends = $result->num_rows > 0;
                 console.error('Request failed. Status: ' + xhr.status);
             }
         };
-
         xhr.onerror = function () {
             console.error('Request failed. Check your network connection.');
         };
-
         xhr.send(formData);
     }
-
-    // Function to handle removing a friend relation
     function removeFriend(viewedUserID, currentUserID) {
         if (confirm('Are you sure you want to remove this user as a friend?')) {
             var xhr = new XMLHttpRequest();
@@ -173,23 +167,18 @@ $isFriends = $result->num_rows > 0;
             var formData = new FormData();
             formData.append('viewedUserID', viewedUserID);
             formData.append('currentUserID', currentUserID);
-
             xhr.open('POST', url, true);
-
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     alert('Friend removed successfully.');
-                    // Reload the page or update UI as needed
                     window.location.reload();
                 } else {
                     console.error('Request failed. Status: ' + xhr.status);
                 }
             };
-
             xhr.onerror = function () {
                 console.error('Request failed. Check your network connection.');
             };
-
             xhr.send(formData);
         }
     }
