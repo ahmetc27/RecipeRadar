@@ -21,8 +21,8 @@ require "services/userdetails_service.php";
                     <div class="mb-2">
                         <label for="userType" class="left-align-label">User Type:</label>
                         <select class="form-control auth-input" name="userType">
+                            <option value="normal" <?php if ($user['type'] == 'normal') echo 'selected'; ?>>Normal</option>
                             <option value="admin" <?php if ($user['type'] == 'admin') echo 'selected'; ?>>Admin</option>
-                            <option value="user" <?php if ($user['type'] == 'user') echo 'selected'; ?>>User</option>
                         </select>
                     </div>
                     <div class="mb-2 mt-3">
