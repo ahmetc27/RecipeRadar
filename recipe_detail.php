@@ -239,8 +239,6 @@ session_start();
                             echo '<i class="fas fa-share-square"></i>';
                             echo '</button>';
 
-                            
-
                             // Display comments section
                             echo '<div id="comments-section">';
                             echo '<h3>Comments:</h3>';
@@ -260,9 +258,8 @@ session_start();
                             }
                             echo '</div>'; // End comments-section
 
-
-                            // Check if the logged-in user is "Admin"
-                            if (isset($_SESSION['currentSession']['userName']) && $_SESSION['currentSession']['userName'] === 'admin') {
+                            // Check if the logged-in user is "Admin" or the author of the post
+                            if (isset($_SESSION['currentSession']['userName']) && ($_SESSION['currentSession']['userName'] === 'admin' || $_SESSION['currentSession']['userID'] == $row['authorID'])) {
                                 echo '<form action="services/delete_recipe_service.php" method="POST" onsubmit="return confirm(\'Are you sure you want to delete this recipe?\');">';
                                 echo '<input type="hidden" name="postID" value="' . $postID . '">';
                                 echo '<button type="submit" class="delete-button">Delete Recipe</button>';
@@ -287,178 +284,176 @@ session_start();
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-    const likeButton = document.getElementById('like-button');
-    const shareButton = document.getElementById('share-button');
-    const commentForm = document.getElementById('comment-form');
-    const commentContent = document.getElementById('comment-content');
-    const postID = '<?php echo $postID; ?>';
-    let userLiked = '<?php echo $userLiked; ?>' === '1'; // Convert to boolean
+                const likeButton = document.getElementById('like-button');
+                const shareButton = document.getElementById('share-button');
+                const commentForm = document.getElementById('comment-form');
+                const commentContent = document.getElementById('comment-content');
+                const postID = '<?php echo $postID; ?>';
+                let userLiked = '<?php echo $userLiked; ?>' === '1'; // Convert to boolean
 
-    // Function to update like count and button style
-    function updateLikeButton(likeCount) {
-        likeButton.innerHTML = `Like ${userLiked ? '👍' : '👍'} (${likeCount})`;
-        likeButton.classList.toggle('liked', userLiked);
-    }
-
-    // Function to fetch updated like count from server
-    function fetchAndUpdateLikeCount() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `services/fetch_like_count.php?postID=${postID}`, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                updateLikeButton(response.likeCount);
-            } else {
-                console.error('Failed to fetch like count.');
-            }
-        };
-        xhr.onerror = function () {
-            console.error('Failed to fetch like count. Check your network connection.');
-        };
-        xhr.send();
-    }
-
-    // Initial update of like button on page load
-    fetchAndUpdateLikeCount();
-
-    // Event listener for like button click
-    likeButton.addEventListener('click', function () {
-        const action = userLiked ? 'unlike' : 'like';
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'services/like_recipe_service.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    userLiked = !userLiked;
-                    updateLikeButton(response.likeCount);
-                } else {
-                    alert(response.message);
+                // Function to update like count and button style
+                function updateLikeButton(likeCount) {
+                    likeButton.innerHTML = `Like ${userLiked ? '👍' : '👍'} (${likeCount})`;
+                    likeButton.classList.toggle('liked', userLiked);
                 }
-            } else {
-                alert('Failed to process your request. Please try again later.');
-            }
-        };
-        xhr.onerror = function () {
-            alert('Failed to process your request. Please check your network connection.');
-        };
-        xhr.send(`postID=${postID}&action=${action}`);
-    });
 
-    // Assuming you have a shareButton element defined somewhere in your code
-    shareButton.addEventListener('click', function () {
-        const url = window.location.href;
-        navigator.clipboard.writeText(url)
-            .then(function () {
-                console.log('Link copied to clipboard: ' + url);
-            })
-            .catch(function (err) {
-                console.error('Failed to copy link to clipboard: ', err);
-            });
-    });
-
-
-    // Event listener for comment form submission
-    commentForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const content = commentContent.value.trim();
-        if (content === '') {
-            alert('Please enter a comment.');
-            return;
-        }
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'services/add_comment_service.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    // Clear the comment content and refresh comments list
-                    commentContent.value = '';
-                    fetchComments();
-                } else {
-                    alert(response.message);
+                // Function to fetch updated like count from server
+                function fetchAndUpdateLikeCount() {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', `services/fetch_like_count.php?postID=${postID}`, true);
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            updateLikeButton(response.likeCount);
+                        } else {
+                            console.error('Failed to fetch like count.');
+                        }
+                    };
+                    xhr.onerror = function () {
+                        console.error('Failed to fetch like count. Check your network connection.');
+                    };
+                    xhr.send();
                 }
-            } else {
-                alert('Failed to add comment. Please try again later.');
-            }
-        };
-        xhr.onerror = function () {
-            alert('Failed to add comment. Please check your network connection.');
-        };
-        xhr.send(`postID=${postID}&content=${encodeURIComponent(content)}`);
-    });
 
-    // Function to fetch and display comments
-function fetchComments() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `services/fetch_comments.php?postID=${postID}`, true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            const commentsList = document.getElementById('comments-list');
-            const comments = JSON.parse(xhr.responseText);
-            if (comments.length > 0) {
-                commentsList.innerHTML = comments.map(comment => {
-                    const deleteButton = (comment.canDelete || comment.isAdmin) ? `<button class="delete-comment-button" data-comment-id="${comment.commentID}">Delete</button>` : '';
-                    return `
-                        <div class="comment">
-                            <p><strong>${comment.userName}</strong> (${comment.commentDate}): ${comment.content}</p>
-                            ${deleteButton}
-                        </div>
-                    `;
-                }).join('');
+                // Initial update of like button on page load
+                fetchAndUpdateLikeCount();
 
-                // Add event listeners to delete buttons after comments are rendered
-                document.querySelectorAll('.delete-comment-button').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const commentID = button.getAttribute('data-comment-id');
-                        deleteComment(commentID);
-                    });
+                // Event listener for like button click
+                likeButton.addEventListener('click', function () {
+                    const action = userLiked ? 'unlike' : 'like';
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'services/like_recipe_service.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                userLiked = !userLiked;
+                                updateLikeButton(response.likeCount);
+                            } else {
+                                alert(response.message);
+                            }
+                        } else {
+                            alert('Failed to process your request. Please try again later.');
+                        }
+                    };
+                    xhr.onerror = function () {
+                        alert('Failed to process your request. Please check your network connection.');
+                    };
+                    xhr.send(`postID=${postID}&action=${action}`);
                 });
-            } else {
-                commentsList.innerHTML = '<p>No comments yet.</p>';
-            }
-        } else {
-            console.error('Failed to fetch comments. Status:', xhr.status);
-        }
-    };
-    xhr.onerror = function () {
-        console.error('Failed to fetch comments. Check your network connection.');
-    };
-    xhr.send();
-}
 
-// Initial fetch of comments on page load
-fetchComments();
+                // Assuming you have a shareButton element defined somewhere in your code
+                shareButton.addEventListener('click', function () {
+                    const url = window.location.href;
+                    navigator.clipboard.writeText(url)
+                        .then(function () {
+                            console.log('Link copied to clipboard: ' + url);
+                        })
+                        .catch(function (err) {
+                            console.error('Failed to copy link to clipboard: ', err);
+                        });
+                });
 
-// Function to delete a comment
-function deleteComment(commentID) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'services/delete_comment_service.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                // Refresh comments after deletion
+                // Event listener for comment form submission
+                commentForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const content = commentContent.value.trim();
+                    if (content === '') {
+                        alert('Please enter a comment.');
+                        return;
+                    }
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'services/add_comment_service.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Clear the comment content and refresh comments list
+                                commentContent.value = '';
+                                fetchComments();
+                            } else {
+                                alert(response.message);
+                            }
+                        } else {
+                            alert('Failed to add comment. Please try again later.');
+                        }
+                    };
+                    xhr.onerror = function () {
+                        alert('Failed to add comment. Please check your network connection.');
+                    };
+                    xhr.send(`postID=${postID}&content=${encodeURIComponent(content)}`);
+                });
+
+                // Function to fetch and display comments
+                function fetchComments() {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', `services/fetch_comments.php?postID=${postID}`, true);
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const commentsList = document.getElementById('comments-list');
+                            const comments = JSON.parse(xhr.responseText);
+                            if (comments.length > 0) {
+                                commentsList.innerHTML = comments.map(comment => {
+                                    const deleteButton = (comment.canDelete || comment.isAdmin) ? `<button class="delete-comment-button" data-comment-id="${comment.commentID}">Delete</button>` : '';
+                                    return `
+                                        <div class="comment">
+                                            <p><strong>${comment.userName}</strong> (${comment.commentDate}): ${comment.content}</p>
+                                            ${deleteButton}
+                                        </div>
+                                    `;
+                                }).join('');
+
+                                // Add event listeners to delete buttons after comments are rendered
+                                document.querySelectorAll('.delete-comment-button').forEach(button => {
+                                    button.addEventListener('click', function () {
+                                        const commentID = button.getAttribute('data-comment-id');
+                                        deleteComment(commentID);
+                                    });
+                                });
+                            } else {
+                                commentsList.innerHTML = '<p>No comments yet.</p>';
+                            }
+                        } else {
+                            console.error('Failed to fetch comments. Status:', xhr.status);
+                        }
+                    };
+                    xhr.onerror = function () {
+                        console.error('Failed to fetch comments. Check your network connection.');
+                    };
+                    xhr.send();
+                }
+
+                // Initial fetch of comments on page load
                 fetchComments();
-            } else {
-                alert(response.message);
-            }
-        } else {
-            alert('Failed to delete comment. Please try again later.');
-        }
-    };
-    xhr.onerror = function () {
-        alert('Failed to delete comment. Please check your network connection.');
-    };
-    xhr.send(`commentID=${commentID}`);
-}
-    });
 
-    </script>
+                // Function to delete a comment
+                function deleteComment(commentID) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'services/delete_comment_service.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Refresh comments after deletion
+                                fetchComments();
+                            } else {
+                                alert(response.message);
+                            }
+                        } else {
+                            alert('Failed to delete comment. Please try again later.');
+                        }
+                    };
+                    xhr.onerror = function () {
+                        alert('Failed to delete comment. Please check your network connection.');
+                    };
+                    xhr.send(`commentID=${commentID}`);
+                }
+            });
+        </script>
 
     </main>
 </body>

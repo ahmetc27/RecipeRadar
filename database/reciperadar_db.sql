@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 02. Jul 2024 um 02:59
--- Server-Version: 10.4.32-MariaDB
--- PHP-Version: 8.2.12
+-- Generation Time: Jul 02, 2024 at 12:01 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `reciperadar_db`
+-- Database: `reciperadar_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE `comments` (
@@ -37,17 +37,33 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`commentID`, `postID`, `userID`, `content`, `commentDate`, `updateDate`) VALUES
 (5, 34, 83, 'very cool', '2024-07-01 01:02:38', '2024-07-01 01:02:38'),
-(11, 34, 82, 'nice', '2024-07-02 00:30:31', '2024-07-02 00:30:31');
+(11, 34, 82, 'nice', '2024-07-02 00:30:31', '2024-07-02 00:30:31'),
+(12, 40, 85, 'This looks absolutely delicious! Can\'t wait to try it out. 😋', '2024-07-02 11:21:53', '2024-07-02 11:21:53'),
+(13, 40, 86, 'Wow, the presentation is stunning! Do you have any tips for a beginner?', '2024-07-02 11:23:59', '2024-07-02 11:23:59'),
+(14, 34, 86, 'Just made this for dinner and it was amazing. Thanks for sharing!', '2024-07-02 11:24:20', '2024-07-02 11:24:20'),
+(15, 39, 86, 'Your step-by-step instructions made it so easy to follow. Turned out great!', '2024-07-02 11:24:45', '2024-07-02 11:24:45'),
+(16, 39, 87, 'This is my kind of meal – simple, delicious, and full of flavor.', '2024-07-02 11:29:15', '2024-07-02 11:29:15'),
+(17, 40, 87, 'The combination of spices in this recipe is fantastic. Well done!', '2024-07-02 11:29:29', '2024-07-02 11:29:29'),
+(18, 31, 87, 'I\'m always looking for new recipes to try, and this one looks like a winner!', '2024-07-02 11:29:56', '2024-07-02 11:29:56'),
+(19, 39, 88, 'Tried this recipe last night and it was a hit with the whole family!', '2024-07-02 11:37:04', '2024-07-02 11:37:04'),
+(20, 39, 89, 'This looks like comfort food at its finest. Yum!', '2024-07-02 11:38:50', '2024-07-02 11:38:50'),
+(21, 40, 90, 'The ingredients list is so fresh and vibrant. Perfect for summer!', '2024-07-02 11:39:58', '2024-07-02 11:39:58'),
+(22, 40, 92, 'Made this for my partner and they couldn\'t stop raving about it. Thank you!', '2024-07-02 11:42:23', '2024-07-02 11:42:23'),
+(23, 40, 93, 'Very Cool!!!', '2024-07-02 11:44:34', '2024-07-02 11:44:34'),
+(24, 39, 93, 'So refreshing !!', '2024-07-02 11:44:51', '2024-07-02 11:44:51'),
+(25, 31, 93, 'Delicious !!', '2024-07-02 11:45:11', '2024-07-02 11:45:11'),
+(26, 39, 94, 'Thank you for this great recipe. Delicious!', '2024-07-02 11:46:31', '2024-07-02 11:46:31'),
+(27, 39, 98, 'Amazing and refreshing', '2024-07-02 11:50:40', '2024-07-02 11:50:40');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
@@ -57,18 +73,54 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`likeID`, `postID`, `userID`) VALUES
 (133, 34, 83),
 (135, 34, 82),
-(136, 40, 84);
+(136, 40, 84),
+(137, 39, 82),
+(138, 40, 85),
+(139, 39, 85),
+(140, 30, 85),
+(141, 40, 86),
+(142, 34, 86),
+(143, 39, 86),
+(144, 39, 87),
+(145, 40, 87),
+(146, 31, 87),
+(147, 39, 88),
+(148, 34, 88),
+(149, 40, 88),
+(150, 39, 89),
+(151, 40, 89),
+(152, 40, 90),
+(153, 39, 90),
+(154, 40, 91),
+(155, 39, 91),
+(156, 34, 91),
+(157, 31, 91),
+(158, 30, 91),
+(159, 40, 92),
+(160, 39, 92),
+(161, 40, 93),
+(162, 39, 93),
+(163, 31, 93),
+(164, 40, 94),
+(165, 34, 94),
+(166, 39, 94),
+(167, 40, 95),
+(168, 39, 95),
+(169, 39, 96),
+(170, 40, 96),
+(171, 39, 97),
+(172, 39, 98);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -83,7 +135,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -100,7 +152,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `posts`
+-- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`postID`, `authorID`, `category`, `title`, `content`, `instructions`, `season`, `ingredients`, `picPath`, `postDate`) VALUES
@@ -113,7 +165,7 @@ INSERT INTO `posts` (`postID`, `authorID`, `category`, `title`, `content`, `inst
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `relations`
+-- Table structure for table `relations`
 --
 
 CREATE TABLE `relations` (
@@ -125,7 +177,7 @@ CREATE TABLE `relations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `relations`
+-- Dumping data for table `relations`
 --
 
 INSERT INTO `relations` (`relationID`, `relationFrom`, `relationTo`, `type`, `start`) VALUES
@@ -136,12 +188,12 @@ INSERT INTO `relations` (`relationID`, `relationFrom`, `relationTo`, `type`, `st
 (5, 80, 73, 'friend', '0000-00-00 00:00:00'),
 (9, 82, 84, 'friend', '2024-07-01 15:32:21'),
 (10, 84, 83, 'friend', '2024-07-01 15:34:35'),
-(22, 82, 83, 'request', '2024-07-02 00:32:20');
+(23, 82, 83, 'friend', '2024-07-02 09:11:41');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -159,7 +211,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`userID`, `type`, `salutation`, `firstName`, `middleName`, `lastName`, `userName`, `email`, `password`, `birthDate`, `profilePicture`) VALUES
@@ -169,16 +221,30 @@ INSERT INTO `users` (`userID`, `type`, `salutation`, `firstName`, `middleName`, 
 (79, '', 'Herr', 'Tin', 'Mid', 'Woodman', 'tintin', 'tin@tin.com', '$2y$10$4AEOeFBvG3lbq/UO9VKZJeb2YzdgWHI7YMa..5oK0CtcjSq4/QlBu', '2020-01-01', NULL),
 (80, '', 'Herr', 'Ahmet', '', 'Cicek', 'ahmo', 'ahmo@ahmo.com', '$2y$10$qlDytecwL2FzhvGuCfBjfuzIPoh0sJS.YDnrAJ5mb60JuUxQ8TjHm', '2020-01-01', NULL),
 (81, 'normal', 'Herr', 'ahmo', 'mesa', 'ahmo', 'ahmoahmo', 'ahmo@mo.com', '$2y$10$6oHkmkrcB1qkHH1tFUFn8eFJNwbJDnJR3oTDq/E2sYd0sAmoDglgy', '2000-01-01', NULL),
-(82, 'normal', 'Herr', 'Armin', '', 'Dervisefendic', 'armin', 'armin.amino99@gmail.com', '$2y$10$YbctY/hS.dvmXhRWtKPiJugg1sZuLNJnGWLs0XissaOYFGW4C1vPq', '1999-04-20', NULL),
+(82, 'normal', 'Herr', 'Armin', 'test', 'Dervisefendic', 'armin', 'armin.amino99@gmail.com', '$2y$10$YbctY/hS.dvmXhRWtKPiJugg1sZuLNJnGWLs0XissaOYFGW4C1vPq', '1999-04-20', NULL),
 (83, 'admin', '', 'admin', 'admin', 'admin', 'admin', 'admin@admin.at', '$2y$10$s1DTYDnXQkptb9hUbEu1l.M1MsHdZc.bzsUpQsShza5Dr2dqa0TcW', '2024-01-01', NULL),
-(84, 'normal', 'Herr', 'Chef', '', 'Ramsey', 'chef', 'chef@ramsey.at', '$2y$10$aVL6CPbhRuZ4baPqq3dN1elloj4Kyl4rujrWInmbaxwNsCYGcRAhe', '2024-07-01', NULL);
+(84, 'normal', 'Herr', 'Chef', '', 'Ramsey', 'chef', 'chef@ramsey.at', '$2y$10$aVL6CPbhRuZ4baPqq3dN1elloj4Kyl4rujrWInmbaxwNsCYGcRAhe', '2024-07-01', NULL),
+(85, 'normal', 'Herr', 'John', 'Michael', 'Doe', 'johndoe90', 'john.doe@example.com', '$2y$10$zD9BP2EwMThpjRlqK1/mpO.HXVGqGiEE84uOtWRRoe1ZvQsptKhue', '1990-01-01', NULL),
+(86, 'normal', 'Frau', 'Jane', 'Elizabeth', 'Smith', 'janesmith65', 'jane.smith@example.com', '$2y$10$7oo4AvOrGJJ8ZWR3ICdCRenN.bq5MKm0B84dxP4E03AoKahE.B2SG', '1965-05-05', NULL),
+(87, 'normal', 'Herr', 'William', 'Robert', 'Johnson', 'williamjohnson78', 'william.johnson@example.com', '$2y$10$8ClWYiURugWZ6EavQ1Q1EOodKIDt6cMjQXkdczwf4nprO0EqSUgm.', '1978-11-11', NULL),
+(88, 'normal', 'Frau', 'Emily', 'Grace', 'Brown', 'emilybrown92', 'emily.brown@example.com', '$2y$10$JQ0UwC5ChBDjD41mrbcIL.qVaoP2NNBl0DsVa6YzIWHIiHvziNs0W', '1992-03-07', NULL),
+(89, 'normal', 'Herr', 'James', 'Anthony', 'Davis', 'jamesdavis88', 'james.davis@example.com', '$2y$10$H1h0l4LyoowU/rJQtzoHTOfnCPvwAmYFXG8lqhxILNIIPEJgTZywm', '1988-03-03', NULL),
+(90, 'normal', 'Frau', 'Sarah', 'Louise', 'Miller', 'sarahmiller95', 'sarah.miller@example.com', '$2y$10$RmlMHyt4Hmi6ROQb0tLSpOQXxJd3jSZeEFTTWjcyUJseUscvzCIzC', '1995-05-05', NULL),
+(91, 'normal', 'Herr', 'Daniel', 'Thomas', 'Wilson', 'danielwilson83', 'daniel.wilson@example.com', '$2y$10$doYRNtgeIr2qQwwM9iwyAOkDp3qMveOmFgHnS9LEuLpLERAjgqXpa', '1983-07-07', NULL),
+(92, 'normal', 'Frau', 'Laura', 'Ann', 'Moore', 'lauramoore91', 'laura.moore@example.com', '$2y$10$WmaaBYYS5ZZlECc5SUgUwOJMd1Aw7/ZLa4/XknwQX/8J1/IOiT4se', '1991-12-12', NULL),
+(93, 'normal', 'Herr', 'Christopher', 'David', 'Taylor', 'christophertaylor87', 'christopher.taylor@example.com', '$2y$10$lhw/.x9.nwSzQEM.RfkrC.ioqc1PwmkzQrIWem/hiXRld7aIkoh7C', '1987-04-04', NULL),
+(94, 'normal', 'Frau', 'Amanda', 'Nicole', 'Anderson', 'amandaanderson93', 'amanda.anderson@example.com', '$2y$10$7Ok/Kx1snP9DwBw51dV/L.c6MPiPzssnpCS/JjnMGGenS5QlQH.p2', '1993-10-10', NULL),
+(95, 'normal', 'Herr', 'Michael', 'Joseph', 'Thomas', 'michaelthomas80', 'michael.thomas@example.com', '$2y$10$vRsn3mLHTfYtUQNkNoYrlesek08POhnWq54.A8hyBJrc9fxe8VFBy', '1980-04-02', NULL),
+(96, 'normal', 'Frau', 'Jennifer', 'Marie', 'Jackson', 'jenniferjackson86', 'jennifer.jackson@example.com', '$2y$10$ITJB.zNt3w05o0R50PepeuhWYh7Y/Qd/a5xKQx3f.ZOWO1jSTMWm.', '1986-07-07', NULL),
+(97, 'normal', 'Herr', 'Matthew', 'Alexander', 'White', 'matthewwhite94', 'matthew.white@example.com', '$2y$10$LqDHY/Zp711kQ9/dVIDKye0OoWbEsdWib0ZSD9mlyqt4whtSMJbl6', '1994-01-01', NULL),
+(98, 'normal', 'Frau', 'Jessica', 'Lynn', 'Harris', 'jessicaharris89', 'jessica.harris@example.com', '$2y$10$DbEGq9GzkGzO0rk/MJdR4eLKpq0keYAoY2aIX.xDDK6jtvVfyOpb.', '1989-04-05', NULL);
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `comments`
+-- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`commentID`),
@@ -186,26 +252,26 @@ ALTER TABLE `comments`
   ADD KEY `userID` (`userID`);
 
 --
--- Indizes für die Tabelle `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`likeID`);
 
 --
--- Indizes für die Tabelle `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`messageID`);
 
 --
--- Indizes für die Tabelle `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`postID`),
   ADD KEY `postUserID` (`authorID`);
 
 --
--- Indizes für die Tabelle `relations`
+-- Indexes for table `relations`
 --
 ALTER TABLE `relations`
   ADD PRIMARY KEY (`relationID`),
@@ -213,7 +279,7 @@ ALTER TABLE `relations`
   ADD KEY `type` (`type`,`start`);
 
 --
--- Indizes für die Tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userID`),
@@ -223,51 +289,51 @@ ALTER TABLE `users`
   ADD KEY `firstName` (`firstName`,`lastName`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `comments`
+-- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT für Tabelle `likes`
+-- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `likeID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
--- AUTO_INCREMENT für Tabelle `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `messageID` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `postID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT für Tabelle `relations`
+-- AUTO_INCREMENT for table `relations`
 --
 ALTER TABLE `relations`
-  MODIFY `relationID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `relationID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT für Tabelle `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `userID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `comments`
+-- Constraints for table `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `posts` (`postID`),
