@@ -25,8 +25,6 @@ if (!isset($_SESSION["currentSession"])) {
         $userData = $result->fetch_assoc();
 
         if (password_verify($inputPassword, $userData["password"])) {
-            // Currently the session stores all data, including the password which is not safe practice
-            // Later adjust so that all other user data is included in the currentSession except password
             $_SESSION["currentSession"] = $userData;
             echo '<script>alert("Login successful!"); window.close();</script>';
             exit; // Stop further execution
