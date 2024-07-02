@@ -1,9 +1,12 @@
 <?php
-
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Include database connection
 require 'config/db_connect.php';
@@ -15,9 +18,6 @@ require 'user_service.php';
 $fnameError = $mnameError = $lnameError = $emailError = $unameError = $errorMessage = "";
 $error = false;
 
-//
-// need to move this function into a separate file or main.js, because multiple files use the same code
-//
 // Function to clean user inputs
 function cleanInputs($input)
 {
@@ -128,17 +128,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
                 $_SESSION['currentSession']['email'] = $email;
                 $_SESSION['currentSession']['birthDate'] = $birthDate;
 
-                // Success message
-
-                // the line below that redirects in case of refresh has an issue so this is removed as well
-                //$_SESSION['successMessage'] = "<div class='alert alert-success'>Update successful<br><small>Reload the page to see the updates</small></div>";
-                
-                
-                // Redirect to remove the success message on refresh
-                
-                // the line below has an issue
-                // header("Location: {$_SERVER['REQUEST_URI']}");
-                
+                // Redirect to profile page with userID parameter
+                $profileURL = "profile.php?userID={$userData['userID']}";
+                header("Location: $profileURL");
                 exit();
             } else {
                 $errorMessage = "<div class='alert alert-danger'>Something went wrong. Please try again later.</div>";

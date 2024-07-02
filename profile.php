@@ -41,6 +41,44 @@ $isFriends = $result->num_rows > 0;
     <script src="resources/js/refuse_request_script.js"></script>
 </head>
 
+<style>
+    .action-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.approve-button {
+    background-color: #4CAF50; /* Green */
+}
+
+.refuse-button {
+    background-color: #f44336; /* Red */
+}
+
+.remove-button {
+    background-color: #f44336; /* Red */
+}
+
+.logout {
+    background-color: #4682B4 ;
+}
+ 
+.send {
+    background-color: #4682B4 ;
+}
+
+.button-container {
+    text-align: center; /* Center the buttons */
+    margin-bottom: 20px; /* Optional: Adjust margin as needed */
+}
+</style>
+
 <body style="background-image: url('pictures/bg-2.jpeg'); background-size: cover;">
 
 <header>
@@ -54,23 +92,29 @@ $isFriends = $result->num_rows > 0;
         <div class="container col-6-m col-12-sm" style="max-height: 1100px;">
 
             <?php if ($currentUserID == $viewedUserID): ?>
-                <button id="editButton" onclick="toggleForms('edit')">Edit Info</button>
-                <button id="cancelButton" style="display:none;" onclick="toggleForms('view')">Cancel</button>
+            <div class="button-container">
+                <button id="editButton" class="action-button" onclick="toggleForms('edit')">Edit Info</button>
+                <button id="cancelButton" class="action-button" style="display:none;" onclick="toggleForms('view')">Cancel</button>
                 <form action="services/logout_service.php" method="post">
-                    <button type="submit">Logout</button>
+                    <button type="submit" class="action-button logout">Logout</button>
                 </form>
+            </div>
             <?php elseif (!$isFriends): ?>
                 <form action="services/follow_request_service.php" method="post">
                     <input type="hidden" name="relationFrom" value="<?php echo $_SESSION['currentSession']['userID']; ?>">
                     <input type="hidden" name="relationTo" value="<?php echo $targetUserID; ?>"> 
-                    <button type="submit">Send Follow Request</button>
+                    <button type="submit" class="action-button send">Send Follow Request</button>
                     <br><br>
                 </form>
 
-                <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Approve Request</button>
-                <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Refuse Request</button>
+            <div class="button-container">
+
+                <button onclick="approveRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button approve-button">Approve Request</button>
+                <button onclick="refuseRequest(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button refuse-button">Refuse Request</button>
+
+            </div>
             <?php else: ?>
-                <button onclick="removeFriend(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)">Remove Friend</button>
+                <button onclick="removeFriend(<?php echo $viewedUserID; ?>, <?php echo $currentUserID; ?>)" class="action-button remove-button">Remove Friend</button>
             <?php endif; ?>
 
             <div id="userForm">
